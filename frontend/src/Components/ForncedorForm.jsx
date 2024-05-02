@@ -27,7 +27,7 @@ const FornecedorForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/cadastros', formData);
+            await axios.post('http://localhost:3001/fornecedor', formData);
             alert('Fornecedor cadastrado com sucesso!');
             // Limpar o formulário após o envio bem-sucedido
             setFormData({
@@ -50,7 +50,7 @@ const FornecedorForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="representante" placeholder="Representante da impresa" value={formData.representanteImpresa} onChange={handleChange} />
+            <input type="text" name="representanteImpresa" placeholder="Representante da impresa" value={formData.representanteImpresa} onChange={handleChange} />
             <input type="number" name="telefoneRepresentante" placeholder="Telefone do representante" value={formData.telefoneRepresentante} onChange={handleChange} />
             <input type="text" name="cargoRepresentante" placeholder="Cargo do representante" value={formData.cargoRepresentante} onChange={handleChange} />
             <input type="text" name="cpfRepresentante" placeholder="Cpf do representante" value={formData.cpfRepresentante} onChange={handleChange} />

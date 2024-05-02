@@ -25,7 +25,7 @@ const Header = () => {
             <Link to="/FornecedorCadastro">Cadastrar fornecedor</Link>
           </li>
           <li>
-            <Link to="/listaUsuarios">Lista de Fornecedores</Link>
+            <Link to="/ListaFornecedores">Lista de Fornecedores</Link>
           </li>
         </ul>
       </nav>

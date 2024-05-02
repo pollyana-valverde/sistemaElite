@@ -6,7 +6,7 @@ import Cadastro from "./Pages/Cadastro";
 import Login from "./Pages/Login";
 import TabelaUsuarios from "./Pages/ListaUsuarios";
 import FornecerCadastro from "./Pages/FornecedorCadastro";
-import TabelaFornecedor from "./Components/TabelaFornecedor";
+import TabelaFornecedor from "./Pages/ListaFornecedores";
 
 const Rotas = () => {
   return (
