@@ -3,10 +3,15 @@ import {Routes, Route} from "react-router-dom";
 import Home from "./Pages/Home";
 import Contato from "./Pages/Contato";
 import Cadastro from "./Pages/Cadastro";
+
 import Login from "./Pages/Login";
 import TabelaUsuarios from "./Pages/ListaUsuarios";
+
 import FornecerCadastro from "./Pages/FornecedorCadastro";
 import TabelaFornecedor from "./Pages/ListaFornecedores";
+
+import ClienteCadastro from "./Pages/CadastroClientes";
+import ListaClientes from "./Pages/ListaClientes";
 
 const Rotas = () => {
   return (
@@ -19,6 +24,9 @@ const Rotas = () => {
         <Route path="/FornecedorCadastro" element={<FornecerCadastro />} />
         <Route path="/listaUsuarios" element={<TabelaUsuarios />} />
         <Route path="/ListaFornecedores" element={<TabelaFornecedor />} />
+        <Route path="/CadastroClientes" element={<ClienteCadastro />} />
+        <Route path="/ListaClientes" element={<ListaClientes />} />
+
       </Routes>
     </>
   );

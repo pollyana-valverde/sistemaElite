@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const routesCadastro = require('./routesCadastro'); // Importa as rotas do backend
-const routesForenecedor = require('./routesFornecedor'); // Importa as rotas do backend
+const routes = require('./routes'); // Importa as rotas do backend
 
 
 const app = express();
@@ -14,8 +13,8 @@ app.use(cors());
 
 // Usa as rotas do backend
 
-app.use('/', routesForenecedor);
-// app.use('/', routesCadastro);
+app.use('/', routes);
+
 
 app.listen(port, () => {
   console.log(`Servidor está rodando na porta ${port}`);

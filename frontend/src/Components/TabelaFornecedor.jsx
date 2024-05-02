@@ -53,7 +53,7 @@ const TabelaFornecedor = () => {
           {fornecedores.map((fornecedores) => (
             <tr key={fornecedores.idFornecedor}>
               <td>{fornecedores.idFornecedor}</td>
-              <td>{fornecedores.representante}</td>
+              <td>{fornecedores.representanteImpresa}</td>
               <td>{fornecedores.telefoneRepresentante}</td>
               <td>{fornecedores.cargoRepresentante}</td>
               <td>{fornecedores.cpfRepresentante}</td>
