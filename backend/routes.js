@@ -31,6 +31,24 @@ router.get('/cadastros/:id', (req, res) => {
   });
 });
 
+//Rota para buscar o cfp e senha necessários no login
+router.get('/login/:cpf', (req, res) => {
+  const { cpf } = req.params;
+  
+  connection.query('SELECT * FROM cadastro where cpf =' + cpf, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro do cadastro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o cadastro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Cadastro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
 // Rota para criar um novo registro
 router.post('/cadastros', (req, res) => {
   const { nome, email, cpf, endereco, telefone, senha } = req.body;
