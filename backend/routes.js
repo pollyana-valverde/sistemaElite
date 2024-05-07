@@ -16,9 +16,9 @@ router.get('/cadastros', (req, res) => {
 });
 
 // Rota para buscar um registro específico pelo ID
-router.get('/cadastros/:id', (req, res) => {
+router.get('/cadastros/:idCadastro', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM cadastro WHERE id = ?', [id], (err, results) => {
+  connection.query('SELECT * FROM cadastro WHERE idCadastro = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -26,6 +26,24 @@ router.get('/cadastros/:id', (req, res) => {
     }
     if (results.length === 0) {
       res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
+//Rota para buscar o cfp e senha necessários no login
+router.post('/login/:cpf', (req, res) => {
+  const { cpf } = req.params;
+  
+  connection.query('SELECT * FROM cadastro where cpf =' + cpf, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro do cadastro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o cadastro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Cadastro não encontrado' });
       return;
     }
     res.json(results[0]);
