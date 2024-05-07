@@ -13,6 +13,8 @@ import TabelaFornecedor from "./Pages/ListaFornecedores";
 import ClienteCadastro from "./Pages/CadastroClientes";
 import ListaClientes from "./Pages/ListaClientes";
 
+import ContasReceber from "./Pages/ContasReceber";
+
 const Rotas = () => {
   return (
     <>
@@ -26,6 +28,8 @@ const Rotas = () => {
         <Route path="/ListaFornecedores" element={<TabelaFornecedor />} />
         <Route path="/CadastroClientes" element={<ClienteCadastro />} />
         <Route path="/ListaClientes" element={<ListaClientes />} />
+        <Route path="/ContasReceber" element={<ContasReceber />} />
+
 
       </Routes>
     </>
