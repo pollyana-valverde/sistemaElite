@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const FornecedorForm = () => {
+const ClienteForm = () => {
     const [formData, setFormData] = useState({
         representanteImpresa: '',
         telefoneRepresentante: '',
@@ -27,8 +27,8 @@ const FornecedorForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/fornecedor', formData);
-            alert('Fornecedor cadastrado com sucesso!');
+            await axios.post('http://localhost:3001/cliente', formData);
+            alert('CLiente cadastrado com sucesso!');
             // Limpar o formulário após o envio bem-sucedido
             setFormData({
                 representanteImpresa: '',
@@ -43,8 +43,8 @@ const FornecedorForm = () => {
                 siteImpresa: ''
             });
         } catch (error) {
-            console.error('Erro ao cadastrar fornecedor:', error);
-            alert('Erro ao cadastrar fornecedor. Verifique o console para mais detalhes.');
+            console.error('Erro ao cadastrar cliente:', error);
+            alert('Erro ao cadastrar cliente. Verifique o console para mais detalhes.');
         }
     };
 
@@ -65,4 +65,4 @@ const FornecedorForm = () => {
     );
 };
 
-export default FornecedorForm;
+export default ClienteForm;

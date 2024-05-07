@@ -19,14 +19,27 @@ const Header = () => {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/listaUsuarios">Lista de Usuários</Link>
+            <Link to="/CadastroClientes">Cadastrar cliente</Link>
           </li>
           <li>
             <Link to="/FornecedorCadastro">Cadastrar fornecedor</Link>
           </li>
           <li>
-            <Link to="/listaUsuarios">Lista de Fornecedores</Link>
+            <Link to="/listaUsuarios">Lista de Usuários</Link>
           </li>
+          
+          <li>
+            <Link to="/ListaFornecedores">Lista de Fornecedores</Link>
+          </li>
+
+          <li>
+            <Link to="/ListaClientes">Lista de Clientes</Link>
+          </li>
+
+          <li>
+            <Link to="/ContasReceber">Contas a receber</Link>
+          </li>
+
         </ul>
       </nav>
     </header>
