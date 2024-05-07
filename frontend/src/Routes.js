@@ -14,6 +14,7 @@ import ClienteCadastro from "./Pages/CadastroClientes";
 import ListaClientes from "./Pages/ListaClientes";
 
 import ContasReceber from "./Pages/ContasReceber";
+import ContasPagar from "./Pages/ContasPagar";
 
 const Rotas = () => {
   return (
@@ -29,6 +30,7 @@ const Rotas = () => {
         <Route path="/CadastroClientes" element={<ClienteCadastro />} />
         <Route path="/ListaClientes" element={<ListaClientes />} />
         <Route path="/ContasReceber" element={<ContasReceber />} />
+        <Route path="/ContasPagar" element={<ContasPagar />} />
 
 
       </Routes>

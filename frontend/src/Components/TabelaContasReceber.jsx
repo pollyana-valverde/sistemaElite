@@ -43,7 +43,8 @@ const TabelaContasReceber = () => {
             <th>Descrição do lançamento</th>
             <th>Status</th>
             <th>Valor recebido</th>
-            <th>Ação</th>
+            <th>Ação 1</th>
+            {/* <th>Ação 2</th> */}
             {/* Adicione mais colunas, se necessário */}
           </tr>
         </thead>
@@ -66,7 +67,18 @@ const TabelaContasReceber = () => {
                 >
                   Excluir
                 </button>
+                
               </td>
+              {/* <td>
+                <button
+                  variant="danger"
+                  onClick={() => handleExcluirContaReceber(contasReceber.idcontaReceber)}
+                >
+                  Excluir
+                </button>
+                
+              </td> */}
+              
               {/* Renderizar outras colunas, se necessário */}
             </tr>
           ))}

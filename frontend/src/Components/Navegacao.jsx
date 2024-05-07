@@ -40,6 +40,10 @@ const Header = () => {
             <Link to="/ContasReceber">Contas a receber</Link>
           </li>
 
+          <li>
+            <Link to="/ContasPagar">Contas a pagar</Link>
+          </li>
+
         </ul>
       </nav>
     </header>
