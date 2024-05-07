@@ -225,4 +225,126 @@ router.get('/cliente', (req, res) => {
   
 
 
+
+/////////////////////////////////////////// contas a receber ///////////////////////////////////////////
+
+// Rota para listar todos os registros
+router.get('/contasReceber', (req, res) => {
+  connection.query('SELECT * FROM contasReceber', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para buscar um registro específico pelo ID
+router.get('/contasReceber/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM contasReceber WHERE idcontaReceber = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
+// Rota para atualizar um registro existente pelo ID
+router.put('/contasReceber/:id', (req, res) => {
+  const { id } = req.params;
+  const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
+  connection.query('UPDATE contasReceber SET status = ?, valorRecebido =? WHERE idcontaReceber = ?', 
+    [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, id], (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar conta:', err);
+      res.status(500).json({ error: 'Erro ao atualizar conta' });
+      return;
+    }
+    res.json({ message: 'Registro atualizado com sucesso' });
+  });
+});
+
+  // Rota para excluir um registro pelo ID
+  router.delete('/contasReceber/:id', (req, res) => {
+    const { id } = req.params;
+    connection.query('DELETE FROM contasReceber WHERE idcontaReceber = ?', [id], (err, result) => {
+      if (err) {
+        console.error('Erro ao excluir o registro:', err);
+        res.status(500).json({ error: 'Erro ao excluir o registro' });
+        return;
+      }
+      res.json({ message: 'Registro excluído com sucesso' });
+    });
+  });
+  
+  
+  /////////////////////////////////////////// contas a pagar ///////////////////////////////////////////
+
+// Rota para listar todos os registros
+router.get('/contasPagar', (req, res) => {
+  connection.query('SELECT * FROM contasPagar', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para buscar um registro específico pelo ID
+router.get('/contasPagar/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM contasPagar WHERE idcontaReceber = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
+// Rota para atualizar um registro existente pelo ID
+router.put('/contasPagar/:id', (req, res) => {
+  const { id } = req.params;
+  const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
+  connection.query('UPDATE contasPagar SET status = ?, valorRecebido =? WHERE idcontaReceber = ?', 
+    [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, id], (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar conta:', err);
+      res.status(500).json({ error: 'Erro ao atualizar conta' });
+      return;
+    }
+    res.json({ message: 'Registro atualizado com sucesso' });
+  });
+});
+
+  // Rota para excluir um registro pelo ID
+  router.delete('/contasPagar/:id', (req, res) => {
+    const { id } = req.params;
+    connection.query('DELETE FROM contasPagar WHERE idcontaReceber = ?', [id], (err, result) => {
+      if (err) {
+        console.error('Erro ao excluir o registro:', err);
+        res.status(500).json({ error: 'Erro ao excluir o registro' });
+        return;
+      }
+      res.json({ message: 'Registro excluído com sucesso' });
+    });
+  });
+  
+  
+
 module.exports = router;
