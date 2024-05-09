@@ -18,18 +18,23 @@ const FiltroContasReceber = () => {
     //   };
 
 function filtroReceberBtn (){
+
+    const selectValue = document.getElementById("filtroReceber").value;
+
+    // console.log(selectValue)
+
         axios ({
             method:'GET',
-            url: `http://localhost:3001/contasReceber/`
+            url: `http://localhost:3001/contasReceber/${selectValue}`
         }).then(res =>{
-            console.log(res.data);
+            console.log(res.data [0].status);
         })
     }
 
     return (
         <>
             <div>
-                <select >
+                <select id="filtroReceber">
                     <option selected>Open this select menu</option>
                     <option value="Pendente" >Pendente</option>
                     <option value="Baixado" >Baixado</option>

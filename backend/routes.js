@@ -291,7 +291,7 @@ router.put('/contasReceber/:id', (req, res) => {
 });
 
 
-router.get('/contasReceber/:status', (req, res) => {
+router.get('/contasreceber/:status', (req, res) => {
   const { id } = req.params;
   connection.query('SELECT * FROM contasreceber WHERE status =', [id], (err, results) => {
     if (err) {
