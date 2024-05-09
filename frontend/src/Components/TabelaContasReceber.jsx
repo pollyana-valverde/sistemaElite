@@ -9,53 +9,46 @@ const TabelaContasReceber = () => {
   // const [filtro, setFiltro] = useState(selectValue);
 
 
-  function filtroReceberBtn() {
+
+
+  function useConstruct(filtro = 0) {
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          if (filtro == 0) {
+            const { data } = await axios.get("http://localhost:3001/contasReceber");
+            setContasReceber(data);
+          } else {
+            const { data } = await axios({
+              method: 'GET',
+              url: `http://localhost:3001/filtroContasReceber/${filtro}`
+            })
+            console.log(data);
+            setContasReceber(data);
+          }
+
+
+        } catch (error) {
+          console.error("Erro ao buscar registro:", error); // Adiciona este log de erro
+        }
+      };
+
+      fetchData();
+
+    },);
+  }
+
+  useConstruct(0);
+
+  function useFiltroReceberBtn() {
 
     const selectValue = document.getElementById("filtroReceber").value;
 
-    // console.log(selectValue)
+    useConstruct(selectValue);
 
-    if (selectValue === "Baixado") {
-      axios({
-        method: 'GET',
-        url: `http://localhost:3001/filtroContasReceber/Baixado`
-      })
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    } else if (selectValue === "Pendente") {
-      axios({
-        method: 'GET',
-        url: `http://localhost:3001/filtroContasReceber/Pendente`
-      })
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    }
   }
 
 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:3001/contasReceber");
-        setContasReceber(data);
-        
-      } catch (error) {
-        console.error("Erro ao buscar registro:", error); // Adiciona este log de erro
-      }
-    };
-
-    fetchData();
-
-  },);
 
   // const FiltroReceberBtn = () => {
   //   setFiltro(selectValue);
@@ -77,11 +70,11 @@ const TabelaContasReceber = () => {
     <>
       <div>
         <select id="filtroReceber">
-          <option selected>Open this select menu</option>
+          <option selected value="">Open this select menu</option>
           <option value="Pendente" >Pendente</option>
           <option value="Baixado" >Baixado</option>
         </select>
-        <button type="submit" onClick={filtroReceberBtn} id="btnFiltroReceber" value="Pesquisa">Pesquisar</button>
+        <button type="submit" onClick={useFiltroReceberBtn()} id="btnFiltroReceber" value="Pesquisa">Pesquisar</button>
       </div>
       <div>
         <table border={2} cellPadding={5} cellSpacing={5}>
