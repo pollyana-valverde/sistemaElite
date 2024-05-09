@@ -3,19 +3,6 @@ import React from "react";
 import axios from "axios";
 
 const FiltroContasReceber = () => {
-    // const [contasReceber, setContaReceber] = useState([]);
-
-    // const handleFiltroReceber = async (status) => {
-    //     try {
-    //     //   await axios.select(`http://localhost:3001/contasReceber/${status}`);
-    //       // Atualiza a lista de cliente após a exclusão
-    //       const { data } = await axios.get(`http://localhost:3001/contasReceber/${status}`);
-    //       setContaReceber(data);
-    //       console.log("Cliente excluído com sucesso!");
-    //     } catch (error) {
-    //       console.error("Erro ao excluir cliente:", error);
-    //     }
-    //   };
 
 function filtroReceberBtn (){
 
@@ -25,9 +12,13 @@ function filtroReceberBtn (){
 
         axios ({
             method:'GET',
-            url: `http://localhost:3001/contasReceber/${selectValue}`
-        }).then(res =>{
-            console.log(res.data [0].status);
+            url: `http://localhost:3001/filtroContasReceber/${selectValue}`
+        })
+        .then(res =>{
+            console.log(res.data);
+        })
+        .catch((error) =>{
+            console.error(error)
         })
     }
 

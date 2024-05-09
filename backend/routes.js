@@ -291,9 +291,9 @@ router.put('/contasReceber/:id', (req, res) => {
 });
 
 
-router.get('/contasreceber/:status', (req, res) => {
-  const { id } = req.params;
-  connection.query('SELECT * FROM contasreceber WHERE status =', [id], (err, results) => {
+router.get('/filtroContasReceber/:status', (req, res) => {
+  const { status } = req.params;
+  connection.query('SELECT * FROM contasreceber WHERE status = ?', [status], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -303,9 +303,9 @@ router.get('/contasreceber/:status', (req, res) => {
       res.status(404).json({ error: 'Registro não encontrado' });
       return;
     }
-    res.json(results[0]);
+    res.json(results);
   });
-});
+}); 
 
   // Rota para excluir um registro pelo ID
   router.delete('/contasReceber/:id', (req, res) => {

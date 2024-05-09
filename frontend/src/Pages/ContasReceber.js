@@ -9,7 +9,7 @@ const ContasReceber = () => {
     <>
       <div>
         <h2>Contas a receber</h2>
-        < FiltroContasReceber/>
+        {/* < FiltroContasReceber/> */}
         {/* < PesquisaReceber/> */}
         < TabelaContasReceber/>
       </div>
