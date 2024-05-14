@@ -27,15 +27,12 @@ const Header = () => {
           <li>
             <Link to="/listaUsuarios">Lista de Usuários</Link>
           </li>
-          
           <li>
             <Link to="/ListaFornecedores">Lista de Fornecedores</Link>
           </li>
-
           <li>
             <Link to="/ListaClientes">Lista de Clientes</Link>
           </li>
-
           <li>
             <Link to="/ContasReceber">Contas a receber</Link>
           </li>

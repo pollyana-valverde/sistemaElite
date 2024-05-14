@@ -6,16 +6,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //Importar complementos aqui
 import Rotas from "./Routes";
 
+import AuthProvider from "./provider/AuthProvider";
+
 //Importar componentes aqui
 import Navegacao from "./Components/Navegacao";
 
 const App = () => {
   return (
     <>
-      <Router>
-        <Navegacao />
+      <AuthProvider>
+        {/* <Navegacao /> */}
         <Rotas />
-      </Router>
+      </AuthProvider>
     </>
   );
 };

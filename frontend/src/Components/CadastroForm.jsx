@@ -1,6 +1,7 @@
 // CadastroForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CadastroForm = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const CadastroForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/cadastros', formData);
+      await axios.post('http://localhost:3001/cadastroNovoUsuario', formData);
       alert('Cadastro criado com sucesso!');
       // Limpar o formulário após o envio bem-sucedido
       setFormData({
@@ -49,6 +50,7 @@ const CadastroForm = () => {
       <input type="number" name="telefone" placeholder="Telefone" value={formData.telefone} onChange={handleChange} />
       <input type="password" name="senha" placeholder="Senha" value={formData.senha} onChange={handleChange} />
       <button type="submit">Salvar</button>
+      <br/> Já possui uma conta? <Link to="/login"> Login</Link>
     </form>
   );
 };
