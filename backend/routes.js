@@ -4,7 +4,7 @@ const connection = require('./db');
 const router = express.Router();
 
 // Rota para listar todos os registros
-router.get('/cadastros', (req, res) => {
+router.get('/listarUsuarios', (req, res) => {
   connection.query('SELECT * FROM cadastro', (err, results) => {
     if (err) {
       console.error('Erro ao buscar os registros:', err);
@@ -31,27 +31,8 @@ router.get('/cadastros/:idCadastro', (req, res) => {
     res.json(results[0]);
   });
 });
-
-//Rota para buscar o cfp e senha necessários no login
-router.post('/login/:cpf', (req, res) => {
-  const { cpf } = req.params;
-  
-  connection.query('SELECT * FROM cadastro where cpf =' + cpf, (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar o registro do cadastro:', err);
-      res.status(500).json({ error: 'Erro ao buscar o cadastro' });
-      return;
-    }
-    if (results.length === 0) {
-      res.status(404).json({ error: 'Cadastro não encontrado' });
-      return;
-    }
-    res.json(results[0]);
-  });
-});
-
 // Rota para criar um novo registro
-router.post('/cadastros', (req, res) => {
+router.post('/cadastroNovoUsuario', (req, res) => {
   const { nome, email, cpf, endereco, telefone, senha } = req.body;
   connection.query('INSERT INTO cadastro (nome, email, cpf, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)', 
     [nome, email, cpf, endereco, telefone, senha], (err, result) => {
@@ -65,7 +46,7 @@ router.post('/cadastros', (req, res) => {
 });
 
 // Rota para atualizar um registro existente pelo ID
-router.put('/cadastros/:id', (req, res) => {
+router.put('/cadastros/:idCadastro', (req, res) => {
   const { id } = req.params;
   const { nome, email, cpf, endereco, telefone, senha } = req.body;
   connection.query('UPDATE cadastro SET nome = ?, email = ?, cpf = ?, endereco = ?, telefone = ?, senha = ? WHERE id = ?', 
@@ -92,9 +73,28 @@ router.delete('/cadastros/:id', (req, res) => {
   });
 });
 
+/////////////////////////////////////////////login///////////////////////////////////////////////////////
+
+//Rota para buscar o cfp e senha necessários no login
+router.post('/login/:cpf', (req, res) => {
+  const { cpf } = req.params;
+  
+  connection.query('SELECT * FROM cadastro WHERE cpf = ?', [cpf], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro do cadastro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o cadastro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Cadastro não encontrado' });
+      return;
+    }
+    res.json(results);
+  });
+});
 
 
-////////////////////////////////////////////////// fornecedores /////////////////////////////////////
+///////////////////////////////////////////// fornecedores /////////////////////////////////////////
 // Rota para listar todos os registros
 router.get('/fornecedor', (req, res) => {
   connection.query('SELECT * FROM fornecedores', (err, results) => {

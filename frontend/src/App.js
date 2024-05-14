@@ -10,6 +10,8 @@ import Col from 'react-bootstrap/Col';
 //Importar complementos aqui
 import Rotas from "./Routes";
 
+import AuthProvider from "./provider/AuthProvider";
+
 //Importar componentes aqui
 import Navegacao from "./Components/Navegacao";
 
@@ -20,14 +22,16 @@ import './css/index.css';
 const App = () => {
   return (
     <>
-      <Router>
-        <Container fluid>
+
+      <AuthProvider>
+      <Container fluid>
           <Row>
-            <Col lg={3}><Navegacao /></Col>
+            <Col lg={3}><Navegacao /></Col> 
             <Col lg={8}><Rotas /></Col>
           </Row>
         </Container>
-      </Router>
+      </AuthProvider>
+
     </>
   );
 };
