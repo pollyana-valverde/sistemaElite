@@ -6,6 +6,7 @@ const Header = () => {
     <header>
       <nav>
         <ul>
+          <li><p>Main</p></li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -18,12 +19,20 @@ const Header = () => {
           <li>
             <Link to="/login">Login</Link>
           </li>
+
+
+          <li><p>Cadastrar</p></li>
           <li>
             <Link to="/CadastroClientes">Cadastrar cliente</Link>
           </li>
           <li>
             <Link to="/FornecedorCadastro">Cadastrar fornecedor</Link>
           </li>
+          <li>
+            <Link to="/Produtos">Cadastrar produtos</Link>
+          </li>
+
+       <li> <p>Registros</p></li>
           <li>
             <Link to="/listaUsuarios">Lista de Usuários</Link>
           </li>
@@ -37,22 +46,18 @@ const Header = () => {
           </li>
 
           <li>
+            <Link to="/ListaProdutos">Lista de produtos</Link>
+          </li>
+
+
+          <li><p>Contas</p></li>
+          <li>
             <Link to="/ContasReceber">Contas a receber</Link>
           </li>
 
           <li>
             <Link to="/ContasPagar">Contas a pagar</Link>
           </li>
-
-          <li>
-            <Link to="/Produtos">Produtos</Link>
-          </li>
-
-
-          <li>
-            <Link to="/ListaProdutos">Lista de produtos</Link>
-          </li>
-
 
         </ul>
       </nav>
