@@ -248,7 +248,7 @@ router.get('/cliente', (req, res) => {
 
 // Rota para listar todos os registros
 router.get('/contasReceber', (req, res) => {
-  connection.query('SELECT * FROM contasReceber', (err, results) => {
+  connection.query('SELECT * FROM contasreceber', (err, results) => {
     if (err) {
       console.error('Erro ao buscar os registros:', err);
       res.status(500).json({ error: 'Erro ao buscar os registros' });
@@ -261,7 +261,7 @@ router.get('/contasReceber', (req, res) => {
 // Rota para buscar um registro específico pelo ID
 router.get('/contasReceber/:id', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM contasReceber WHERE idcontaReceber = ?', [id], (err, results) => {
+  connection.query('SELECT * FROM contasreceber WHERE idcontaReceber = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -279,7 +279,7 @@ router.get('/contasReceber/:id', (req, res) => {
 router.put('/contasReceber/:id', (req, res) => {
   const { id } = req.params;
   const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
-  connection.query('UPDATE contasReceber SET status = ?, valorRecebido =? WHERE idcontaReceber = ?', 
+  connection.query('UPDATE contasreceber SET status = ?, valorRecebido =? WHERE idcontaReceber = ?', 
     [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, id], (err, result) => {
     if (err) {
       console.error('Erro ao atualizar conta:', err);
@@ -290,10 +290,27 @@ router.put('/contasReceber/:id', (req, res) => {
   });
 });
 
+
+router.get('/filtroContasReceber/:status', (req, res) => {
+  const { status } = req.params;
+  connection.query('SELECT * FROM contasreceber WHERE status = ?', [status], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results);
+  });
+}); 
+
   // Rota para excluir um registro pelo ID
   router.delete('/contasReceber/:id', (req, res) => {
     const { id } = req.params;
-    connection.query('DELETE FROM contasReceber WHERE idcontaReceber = ?', [id], (err, result) => {
+    connection.query('DELETE FROM contasreceber WHERE idcontaReceber = ?', [id], (err, result) => {
       if (err) {
         console.error('Erro ao excluir o registro:', err);
         res.status(500).json({ error: 'Erro ao excluir o registro' });
@@ -321,7 +338,23 @@ router.get('/contasPagar', (req, res) => {
 // Rota para buscar um registro específico pelo ID
 router.get('/contasPagar/:id', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM contasPagar WHERE idcontaReceber = ?', [id], (err, results) => {
+  connection.query('SELECT * FROM contasPagar WHERE idcontaPagar = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
+router.get('/contasPagar/:status', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM contasPagar WHERE status = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -339,7 +372,7 @@ router.get('/contasPagar/:id', (req, res) => {
 router.put('/contasPagar/:id', (req, res) => {
   const { id } = req.params;
   const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
-  connection.query('UPDATE contasPagar SET status = ?, valorRecebido =? WHERE idcontaReceber = ?', 
+  connection.query('UPDATE contasPagar SET status = ?, valorPago =? WHERE idcontaPagar = ?', 
     [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, id], (err, result) => {
     if (err) {
       console.error('Erro ao atualizar conta:', err);
@@ -353,7 +386,7 @@ router.put('/contasPagar/:id', (req, res) => {
   // Rota para excluir um registro pelo ID
   router.delete('/contasPagar/:id', (req, res) => {
     const { id } = req.params;
-    connection.query('DELETE FROM contasPagar WHERE idcontaReceber = ?', [id], (err, result) => {
+    connection.query('DELETE FROM contasPagar WHERE idcontaPagar = ?', [id], (err, result) => {
       if (err) {
         console.error('Erro ao excluir o registro:', err);
         res.status(500).json({ error: 'Erro ao excluir o registro' });
@@ -363,6 +396,79 @@ router.put('/contasPagar/:id', (req, res) => {
     });
   });
   
+
+  //////////////////////////////////////////////////// Produtos (carros) ////////////////////////////////////////////
+  // Rota para listar todos os registros
+router.get('/produtos', (req, res) => {
+  connection.query('SELECT * FROM carros', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para buscar um registro específico pelo ID
+router.get('/produtos/:idCarro', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM carros WHERE idCarro = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
+// Rota para criar um novo registro
+router.post('/produtos', (req, res) => {
+  const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor } = req.body;
+  connection.query('INSERT INTO carros (marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )', 
+    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor], (err, result) => {
+    if (err) {
+      console.error('Erro ao criar o registro:', err);
+      res.status(500).json({ error: 'Erro ao criar o registro' });
+      return;
+    }
+    res.status(201).json({ message: 'Registro criado com sucesso', id: result.insertId });
+  });
+});
+
+// Rota para atualizar um registro existente pelo ID
+router.put('/produtos/:idCarro', (req, res) => {
+  const { id } = req.params;
+  const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor } = req.body;
+  connection.query('UPDATE carros SET marca = ?, modelo = ?, classificacao = ?, cor = ?, anoFabricacao = ?, potencia = ?, tipoMotor = ?, tipoTransmissao = ?, numeroIdentificacao = ?, valor = ? WHERE idCarro = ?', 
+    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, id], (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar o registro:', err);
+      res.status(500).json({ error: 'Erro ao atualizar o registro' });
+      return;
+    }
+    res.json({ message: 'Registro atualizado com sucesso' });
+  });
+});
+
+// Rota para excluir um registro pelo ID
+router.delete('/produtos/:idCarro', (req, res) => {idCarro
+  const { id } = req.params;
+  connection.query('DELETE FROM carros WHERE idCarro = ?', [id], (err, result) => {
+    if (err) {
+      console.error('Erro ao excluir o registro:', err);
+      res.status(500).json({ error: 'Erro ao excluir o registro' });
+      return;
+    }
+    res.json({ message: 'Registro excluído com sucesso' });
+  });
+});
+
   
 
 module.exports = router;

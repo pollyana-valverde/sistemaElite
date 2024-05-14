@@ -14,6 +14,10 @@ import TabelaFornecedor from "./Pages/ListaFornecedores";
 import ClienteCadastro from "./Pages/CadastroClientes";
 import ListaClientes from "./Pages/ListaClientes";
 import ContasReceber from "./Pages/ContasReceber";
+import ContasPagar from "./Pages/ContasPagar";
+
+import Produtos from './Pages/Produtos';
+import ListaProdutos from "./Pages/ListaProdutos";
 
 const Rotas = () => {
   const { token } = useAuth();
