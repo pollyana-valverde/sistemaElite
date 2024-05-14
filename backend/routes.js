@@ -396,6 +396,79 @@ router.put('/contasPagar/:id', (req, res) => {
     });
   });
   
+
+  //////////////////////////////////////////////////// Produtos (carros) ////////////////////////////////////////////
+  // Rota para listar todos os registros
+router.get('/produtos', (req, res) => {
+  connection.query('SELECT * FROM carros', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para buscar um registro específico pelo ID
+router.get('/produtos/:idCarro', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM carros WHERE idCarro = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
+// Rota para criar um novo registro
+router.post('/produtos', (req, res) => {
+  const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor } = req.body;
+  connection.query('INSERT INTO carros (marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )', 
+    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor], (err, result) => {
+    if (err) {
+      console.error('Erro ao criar o registro:', err);
+      res.status(500).json({ error: 'Erro ao criar o registro' });
+      return;
+    }
+    res.status(201).json({ message: 'Registro criado com sucesso', id: result.insertId });
+  });
+});
+
+// Rota para atualizar um registro existente pelo ID
+router.put('/produtos/:idCarro', (req, res) => {
+  const { id } = req.params;
+  const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor } = req.body;
+  connection.query('UPDATE carros SET marca = ?, modelo = ?, classificacao = ?, cor = ?, anoFabricacao = ?, potencia = ?, tipoMotor = ?, tipoTransmissao = ?, numeroIdentificacao = ?, valor = ? WHERE idCarro = ?', 
+    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, id], (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar o registro:', err);
+      res.status(500).json({ error: 'Erro ao atualizar o registro' });
+      return;
+    }
+    res.json({ message: 'Registro atualizado com sucesso' });
+  });
+});
+
+// Rota para excluir um registro pelo ID
+router.delete('/produtos/:idCarro', (req, res) => {idCarro
+  const { id } = req.params;
+  connection.query('DELETE FROM carros WHERE idCarro = ?', [id], (err, result) => {
+    if (err) {
+      console.error('Erro ao excluir o registro:', err);
+      res.status(500).json({ error: 'Erro ao excluir o registro' });
+      return;
+    }
+    res.json({ message: 'Registro excluído com sucesso' });
+  });
+});
+
   
 
 module.exports = router;

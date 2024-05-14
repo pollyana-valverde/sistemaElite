@@ -44,6 +44,16 @@ const Header = () => {
             <Link to="/ContasPagar">Contas a pagar</Link>
           </li>
 
+          <li>
+            <Link to="/Produtos">Produtos</Link>
+          </li>
+
+
+          <li>
+            <Link to="/ListaProdutos">Lista de produtos</Link>
+          </li>
+
+
         </ul>
       </nav>
     </header>

@@ -16,6 +16,9 @@ import ListaClientes from "./Pages/ListaClientes";
 import ContasReceber from "./Pages/ContasReceber";
 import ContasPagar from "./Pages/ContasPagar";
 
+import Produtos from './Pages/Produtos';
+import ListaProdutos from "./Pages/ListaProdutos";
+
 const Rotas = () => {
   return (
     <>
@@ -31,8 +34,8 @@ const Rotas = () => {
         <Route path="/ListaClientes" element={<ListaClientes />} />
         <Route path="/ContasReceber" element={<ContasReceber />} />
         <Route path="/ContasPagar" element={<ContasPagar />} />
-
-
+        <Route path="/Produtos" element={<Produtos />} />
+        <Route path="/ListaProdutos" element={<ListaProdutos />} />
       </Routes>
     </>
   );
