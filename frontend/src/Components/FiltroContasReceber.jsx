@@ -8,7 +8,7 @@ function filtroReceberBtn (){
 
     const selectValue = document.getElementById("filtroReceber").value;
 
-    // console.log(selectValue)
+    console.log(selectValue)
 
         axios ({
             method:'GET',

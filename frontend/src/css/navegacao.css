@@ -1,13 +1,15 @@
 .sideBar {
-    background: linear-gradient(135deg, rgb(245, 244, 244) 50%, rgba(50, 50, 50, 0.059));
+    background: linear-gradient(135deg, rgba(234, 234, 234, 0.845) 50%, rgba(50, 50, 50, 0.142));
     margin: 15px;
     border-radius: 20px;
     padding: 20px;
     position: fixed;
     width: 22%;
     height: 95%;
-    overflow-y: scroll !important;  
-scroll-behavior: smooth;
+    overflow-y: scroll !important;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(50, 50, 50, 0.372) rgba(234, 234, 234, 0.845);
 }
 
 .sideNavContent {
@@ -45,6 +47,8 @@ scroll-behavior: smooth;
 
 .navProfileInfo h5 {
     font-size: 13px;
+    color: rgba(50, 50, 50, 0.795);
+    font-weight: 600;
 }
 
 .headerLineNav {

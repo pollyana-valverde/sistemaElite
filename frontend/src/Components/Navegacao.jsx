@@ -26,15 +26,16 @@ const Header = () => {
           <li className='lineNavLink'>
             <Link to="/contato">Contato</Link>
           </li>
-          <li className='lineNavLink'>
-            <Link to="/cadastro">Cadastro</Link>
-          </li>
+
           <li className='lineNavLink'>
             <Link to="/login">Login</Link>
           </li>
 
 
           <li className='headerLineNav'><p>Cadastrar</p></li>
+          <li className='lineNavLink'>
+            <Link to="/cadastro">Cadastrar funcionário</Link>
+          </li>
 
           <li className='lineNavLink'>
             <Link to="/CadastroClientes">Cadastrar cliente</Link>
@@ -49,7 +50,7 @@ const Header = () => {
           <li className='headerLineNav'> <p>Registros</p></li>
 
           <li className='lineNavLink'>
-            <Link to="/listaUsuarios">Lista de Usuários</Link>
+            <Link to="/listaUsuarios">Lista de Funcionários</Link>
           </li>
 
           <li className='lineNavLink'>
