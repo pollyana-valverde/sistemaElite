@@ -21,61 +21,63 @@ const Header = () => {
           <li className='headerLineNav'><p>Main</p></li>
 
           <li className='lineNavLink'>
-            <Link to="/">Home</Link>
+            <a href="/">Home</a>
           </li>
           <li className='lineNavLink'>
-            <Link to="/contato">Contato</Link>
+            <a href="/ListaClientes">Lista de Clientes</a>
           </li>
           <li className='lineNavLink'>
-            <Link to="/cadastro">Cadastro</Link>
+            <a href="/contato">Contato</a>
           </li>
           <li className='lineNavLink'>
-            <Link to="/login">Login</Link>
+            <a href="/cadastro">Cadastro</a>
+          </li>
+          <li className='lineNavLink'>
+            <a href="/login">Login</a>
           </li>
 
 
           <li className='headerLineNav'><p>Cadastrar</p></li>
 
           <li className='lineNavLink'>
-            <Link to="/CadastroClientes">Cadastrar cliente</Link>
+            <a href="/CadastroClientes">Cadastrar cliente</a>
           </li>
           <li className='lineNavLink'>
-            <Link to="/FornecedorCadastro">Cadastrar fornecedor</Link>
+            <a href="/FornecedorCadastro">Cadastrar fornecedor</a>
           </li>
           <li className='lineNavLink'>
-            <Link to="/Produtos">Cadastrar produtos</Link>
+            <a href="/Produtos">Cadastrar produtos</a>
           </li>
 
           <li className='headerLineNav'> <p>Registros</p></li>
 
           <li className='lineNavLink'>
-            <Link to="/listaUsuarios">Lista de Usuários</Link>
+            <a href="/listaUsuarios">Lista de Usuários</a>
           </li>
           
         
           <li className='lineNavLink'>
-            <Link to="/ListaFornecedores">Lista de Fornecedores</Link>
+            <a href="/ListaFornecedores">Lista de Fornecedores</a>
           </li>
 
           <li className='lineNavLink'>
-            <Link to="/ListaClientes">Lista de Clientes</Link>
+            <a href="/ListaClientes">Lista de Clientes</a>
           </li>
 
           <li className='lineNavLink'>
-            <Link to="/ListaProdutos">Lista de produtos</Link>
+            <a href="/ListaProdutos">Lista de produtos</a>
           </li>
 
 
           <li className='headerLineNav'><p>Contas</p></li>
 
           <li className='lineNavLink'>
-            <Link to="/ContasReceber">Contas a receber</Link>
+            <a href="/ContasReceber">Contas a receber</a>
           </li>
 
           <li className='lineNavLink'>
-            <Link to="/ContasPagar">Contas a pagar</Link>
+            <a href="/ContasPagar">Contas a pagar</a>
           </li>
-
         </ul>
       </nav>
     </header>

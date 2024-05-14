@@ -22,20 +22,11 @@ const App = () => {
       <AuthProvider>
       <Container fluid>
           <Row>
-            {/* <Col lg={3}><Navegacao /></Col> */}
+            <Col lg={3}><Navegacao /></Col> 
             <Col lg={8}><Rotas /></Col>
           </Row>
         </Container>
       </AuthProvider>
-
-      {/* // <Router>
-      //   <Container fluid>
-      //     <Row>
-      //       <Col lg={3}><Navegacao /></Col>
-      //       <Col lg={8}><Rotas /></Col>
-      //     </Row>
-      //   </Container>
-      // </Router> */}
 
     </>
   );
