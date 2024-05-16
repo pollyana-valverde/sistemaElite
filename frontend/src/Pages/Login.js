@@ -11,7 +11,6 @@ const Login = () => {
   const [senha, setSenha] = useState('')
 
   const handleLogin = async (e) => {
-    // setToken("Token de teste");
     e.preventDefault();
   
       try {
@@ -24,16 +23,14 @@ const Login = () => {
         });
           const data = await response.json();
           console.log("Data: ", data);
+
           setToken("Token de teste");
           console.log("jhsnisdj: ", setToken)
+          
           alert('Login realizado com sucesso!')
         // Navega para a home page quando autenticado
         navegacao("/", {replace: true});
-        // Limpar o formulário após o envio bem-sucedido
-        // setFormData({
-        //   cpf: ''
-        //   senha: ''
-        // });
+        
       } catch (error) {
         console.error('Erro ao autenticar:', error);
         alert('Erro ao entrar. Verifique o console para mais detalhes.');

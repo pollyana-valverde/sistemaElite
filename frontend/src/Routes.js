@@ -15,15 +15,17 @@ import ClienteCadastro from "./Pages/CadastroClientes";
 import ListaClientes from "./Pages/ListaClientes";
 import ContasReceber from "./Pages/ContasReceber";
 import ContasPagar from "./Pages/ContasPagar";
-
 import Produtos from './Pages/Produtos';
 import ListaProdutos from "./Pages/ListaProdutos";
+import ListaFornecedores from "./Pages/ListaFornecedores";
 
 const Rotas = () => {
   const { token } = useAuth();
 
 
   //define rotas públicas acessíveis para todos os usuários
+
+/////ou vai ser usado pra admin ou eu tiro essa parte
   const rotasPublicas = [
     {
       path: "/cadastro",
@@ -41,14 +43,41 @@ const Rotas = () => {
           path: "/",
           element: <Home />,
         },{
-          path: "/ListaClientes",
+          path: "/Contato",
+          element: <Contato />
+        },{
+          path: "/CadastroClientes",
           element: <ClienteCadastro />,
         },{
-          path: "/listaUsuarios",
+          path: "/ListaUsuarios",
           element: <TabelaUsuarios />,
         },{
-          path: "/logout",
-          element: <Logout />
+          path: "/FornecedorCadastro",
+          element: <FornecerCadastro />,
+        },{
+          path: "/TabelaFornecedor",
+          element: <TabelaFornecedor />,
+        },{
+          path: "/ListaClientes",
+          element: <ListaClientes />,
+        },{
+          path: "/ListaFornecedores",
+          element: <ListaFornecedores />,
+        },{
+          path: "/ContasReceber",
+          element: <ContasReceber />,
+        },{
+          path: "/ContasPagar",
+          element: < ContasPagar/>
+        },{
+          path: "/Produtos",
+          element: < Produtos/>
+        },{
+          path: "/listaProdutos",
+          element: < ListaProdutos/>
+        },{
+          path: "/Logout",
+          element: <Logout />,
         }
       ],
     },
@@ -73,23 +102,6 @@ const Rotas = () => {
 
 
   return <RouterProvider router={router} />;
-  // (
-  //   <>
-  //     <Routes>
-        
-  //       <Route path="/" exact element={<Home />} />
-  //       <Route path="/login" element={<Login />} />
-  //       <Route path="/contato" element={<Contato />} />
-  //       <Route path="/cadastro" element={<Cadastro />} />
-  //       <Route path="/FornecedorCadastro" element={<FornecerCadastro />} />
-  //       <Route path="/listaUsuarios" element={<TabelaUsuarios />} />
-  //       <Route path="/ListaFornecedores" element={<TabelaFornecedor />} />
-  //       <Route path="/CadastroClientes" element={<ClienteCadastro />} />
-  //       <Route path="/ListaClientes" element={<ListaClientes />} />
-  //       <Route path="/ContasReceber" element={<ContasReceber />} />
-  //     </Routes>
-  //   </>
-  // );
 };
 
 export default Rotas;
