@@ -30,7 +30,7 @@ const Header = () => {
             <a href="/contato">Contato</a>
           </li>
           <li className='lineNavLink'>
-            <Link to="/cadastro">Cadastro</Link>
+            <a href="/cadastro">Cadastro</a>
           </li>
           <li className='lineNavLink'>
             <a href="/login">Login</a>
@@ -39,7 +39,7 @@ const Header = () => {
 
           <li className='headerLineNav'><p>Cadastrar</p></li>
           <li className='lineNavLink'>
-            <Link to="/cadastro">Cadastrar funcionário</Link>
+            <a href="/cadastro">Cadastrar funcionário</a>
           </li>
 
           <li className='lineNavLink'>
@@ -55,7 +55,7 @@ const Header = () => {
           <li className='headerLineNav'> <p>Registros</p></li>
 
           <li className='lineNavLink'>
-            <Link to="/listaUsuarios">Lista de Usuários</Link>
+            <a href="/listaUsuarios">Lista de Usuários</a>
           </li>
           
         
@@ -82,10 +82,10 @@ const Header = () => {
             <a href="/ContasPagar">Contas a pagar</a>
           </li>
           <li>
-            <Link to="/Produtos">Cadastro de Produtos</Link>
+            < a href="/Produtos">Cadastro de Produtos</a>
           </li>
           <li>
-            <Link to="/TabelaProdutos">Tabela de Produtos</Link>
+            <a href="/TabelaProdutos">Tabela de Produtos</a>
           </li>
         </ul>
       </nav>
