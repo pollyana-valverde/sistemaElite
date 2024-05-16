@@ -1,6 +1,6 @@
 //Lista de Vendas
 import React from "react";
-import TabelaVendas from "../Components/TabelaCadastro";
+import TabelaVendas from "../Components/TabelaVendas";
 
 const ListaVendas = () => {
   return (

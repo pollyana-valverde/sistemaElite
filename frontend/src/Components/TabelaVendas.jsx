@@ -8,7 +8,7 @@ const TabelaVendas = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get("http://localhost:3001/vendas");
-        setFornecedores(data);
+        setVenda(data);
       } catch (error) {
         console.error("Erro ao buscar registro:", error); // Adiciona este log de erro
       }
@@ -22,7 +22,7 @@ const TabelaVendas = () => {
       await axios.delete(`http://localhost:3001/vendas/${codigoVenda}`);
       // Atualiza a lista de cadastros após a exclusão
       const { data } = await axios.get("http://localhost:3001/vendas");
-      setFornecedores(data);
+      setVenda(data);
       console.log("Registro da venda excluído com sucesso!");
     } catch (error) {
       console.error("Erro ao excluir registro da venda:", error);
@@ -34,6 +34,7 @@ const TabelaVendas = () => {
       <table border={2} cellPadding={5} cellSpacing={5}>
         <thead>
           <tr>
+          <th>Código da venda</th>
             <th>Data e hora</th>
             <th>Id do Carro</th>
             <th>Id do Cliente</th>
@@ -49,7 +50,9 @@ const TabelaVendas = () => {
         </thead>
         <tbody>
           {vendas.map((vendas) => (
-            <tr key={vendas.dataHora}>
+            <tr key={vendas.codigoVenda}>
+              <td>{vendas.codigoVenda}</td>
+              <td >{vendas.dataHora}</td>
               <td>{vendas.numeroIdentCarro}</td>
               <td>{vendas.cliente}</td>
               <td>{vendas.cpfFuncionario}</td>
