@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import DataTable from 'datatables.net-dt';
+
 
 const TabelaCliente = () => {
   const [clientes, setClientes] = useState([]);
+
+  let table = new DataTable('#tabelaClientes', {
+    retrieve: true
+  });
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +38,7 @@ const TabelaCliente = () => {
 
   return (
     <div>
-      <table border={2} cellPadding={5} cellSpacing={5}>
+      <table id="tabelaClientes" className="display" border={2} cellPadding={5} cellSpacing={5}>
         <thead>
           <tr>
             <th>ID da impresa</th>

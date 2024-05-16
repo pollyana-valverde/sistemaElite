@@ -1,83 +1,44 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import DataTable from 'datatables.net-dt';
+
 
 const TabelaContasReceber = () => {
   const [contasReceber, setContasReceber] = useState([]);
 
-  const selectValue = document.getElementById("filtroReceber").value;
+  let table = new DataTable('#tabelaContasReceber', {
+    retrieve: true
+  });
 
-  const [filtro, setFiltro] = useState(selectValue);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3001/fornecedor");
+        setFornecedores(data);
+      } catch (error) {
+        console.error("Erro ao buscar Fornecedor:", error); // Adiciona este log de erro
+      }
+    };
 
+    fetchData();
+  }, []);
 
-
-
-  function useConstruct(filtro = 0) {
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          if (filtro == 0) {
-            const { data } = await axios.get("http://localhost:3001/contasReceber");
-            setContasReceber(data);
-          } else {
-            const { data } = await axios({
-              method: 'GET',
-              url: `http://localhost:3001/filtroContasReceber/${filtro}`
-            })
-            console.log(data);
-            setContasReceber(data);
-          }
-
-
-        } catch (error) {
-          console.error("Erro ao buscar registro:", error); // Adiciona este log de erro
-        }
-      };
-
-      fetchData();
-
-    },);
-  }
-
-  useConstruct(0);
-
-  function useFiltroReceberBtn() {
-
-    const selectValue = document.getElementById("filtroReceber").value;
-
-    useConstruct(selectValue);
-
-  }
-
-
-
-  const FiltroReceberBtn = () => {
-    setFiltro(selectValue);
-  }
-
-  const handleExcluirContaReceber = async (idcontaReceber) => {
+  const handleExcluirContaReceber = async (idFornecedor) => {
     try {
-      await axios.delete(`http://localhost:3001/contasReceber/${idcontaReceber}`);
-      // Atualiza a lista de cliente após a exclusão
-      const { data } = await axios.get("http://localhost:3001/contasReceber");
-      setContasReceber(data);
-      console.log("Cliente excluído com sucesso!");
+      await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
+      // Atualiza a lista de fornecedores após a exclusão
+      const { data } = await axios.get("http://localhost:3001/fornecedor");
+      setFornecedores(data);
+      console.log("Fornecedor excluído com sucesso!");
     } catch (error) {
-      console.error("Erro ao excluir cliente:", error);
+      console.error("Erro ao excluir Fornecedor:", error);
     }
   };
 
   return (
     <>
       <div>
-        <select id="filtroReceber">
-          <option selected value="">Open this select menu</option>
-          <option value="Pendente" >Pendente</option>
-          <option value="Baixado" >Baixado</option>
-        </select>
-        <button type="submit" onClick={useFiltroReceberBtn()} id="btnFiltroReceber" value="Pesquisa">Pesquisar</button>
-      </div>
-      <div>
-        <table border={2} cellPadding={5} cellSpacing={5}>
+        <table id="tabelaContasReceber" className="display" border={2} cellPadding={5} cellSpacing={5}>
           <thead>
             <tr>
               <th>Código</th>
