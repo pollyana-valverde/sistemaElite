@@ -27,6 +27,12 @@ const Header = () => {
           <li>
             <Link to="/listaUsuarios">Lista de Fornecedores</Link>
           </li>
+          <li>
+            <Link to="/Produtos">Cadastro de Produtos</Link>
+          </li>
+          <li>
+            <Link to="/TabelaProdutos">Tabela de Produtos</Link>
+          </li>
         </ul>
       </nav>
     </header>
