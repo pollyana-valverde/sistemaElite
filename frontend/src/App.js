@@ -15,6 +15,10 @@ import AuthProvider from "./provider/AuthProvider";
 //Importar componentes aqui
 import Navegacao from "./Components/Navegacao";
 
+import '../src/css/formulario.css';
+
+import './css/index.css';
+
 const App = () => {
   return (
     <>

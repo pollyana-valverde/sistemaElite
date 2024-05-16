@@ -5,7 +5,7 @@ const Produtos = () => {
   return (
     <>
       <div>
-        <h2>Página Cadastro de Produtos</h2>
+        <h2>Cadastrar Produtos</h2>
         <ProdutosForm />
       </div>
     </>

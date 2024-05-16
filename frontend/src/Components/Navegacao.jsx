@@ -119,7 +119,6 @@ const Header = () => {
           <li className='lineNavLink'><a href="/cadastro">Cadastro</a></li>
           <li className='lineNavLink'><a href="/login">Login</a></li>
           <li className='lineNavLink'><a href="/Logout">Logout</a></li> */}
-
 {/* 
           <li className='lineNavLink'><a href="/CadastroClientes">Cadastrar cliente</a></li>
           <li className='lineNavLink'><a href="/FornecedorCadastro">Cadastrar fornecedor</a></li>
@@ -132,6 +131,7 @@ const Header = () => {
 {/* 
           <li className='lineNavLink'><a href="/ContasReceber">Contas a receber</a></li>
           <li className='lineNavLink'><a href="/ContasPagar">Contas a pagar</a></li> */}
+
         </ul>
       </nav>
     </header>

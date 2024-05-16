@@ -4,9 +4,9 @@ import axios from "axios";
 const TabelaContasReceber = () => {
   const [contasReceber, setContasReceber] = useState([]);
 
-  // const selectValue = document.getElementById("filtroReceber").value;
+  const selectValue = document.getElementById("filtroReceber").value;
 
-  // const [filtro, setFiltro] = useState(selectValue);
+  const [filtro, setFiltro] = useState(selectValue);
 
 
 
@@ -50,9 +50,9 @@ const TabelaContasReceber = () => {
 
 
 
-  // const FiltroReceberBtn = () => {
-  //   setFiltro(selectValue);
-  // }
+  const FiltroReceberBtn = () => {
+    setFiltro(selectValue);
+  }
 
   const handleExcluirContaReceber = async (idcontaReceber) => {
     try {
