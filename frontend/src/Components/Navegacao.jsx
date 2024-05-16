@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import PerfilFoto from '../imagens/perfilPhoto.jpg';
 
@@ -30,7 +29,7 @@ const Header = () => {
             <a href="/contato">Contato</a>
           </li>
           <li className='lineNavLink'>
-            <Link to="/cadastro">Cadastro</Link>
+            <a href="/cadastro">Cadastro</a>
           </li>
           <li className='lineNavLink'>
             <a href="/login">Login</a>
@@ -39,7 +38,7 @@ const Header = () => {
 
           <li className='headerLineNav'><p>Cadastrar</p></li>
           <li className='lineNavLink'>
-            <Link to="/cadastro">Cadastrar funcionário</Link>
+            <a href="/cadastro">Cadastrar funcionário</a>
           </li>
 
           <li className='lineNavLink'>
@@ -55,9 +54,11 @@ const Header = () => {
           <li className='headerLineNav'> <p>Registros</p></li>
 
           <li className='lineNavLink'>
-            <Link to="/listaUsuarios">Lista de Usuários</Link>
+            <a href="/listaUsuarios">Lista de Usuários</a>
           </li>
-          
+          <li className='lineNavLink'>
+            <a href="/listaFuncionarios">Lista de funcionários</a>
+          </li>
         
           <li className='lineNavLink'>
             <a href="/ListaFornecedores">Lista de Fornecedores</a>
