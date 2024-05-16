@@ -2,19 +2,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+
+
 const ProdutosForm = () => {
     const [formData, setFormData] = useState({
-        Marca: '',
-        Modelo: '',
-        Classificacao: '',
-        Cor: '',
-        AnoFabricacao: '',
-        Potencia: '',
-        TipoMotor: '',
-        Tipotransmissao: '',
-        NumeroIndentificacao: '',
-        Valor: '',
-
+        marca: '',
+        modelo: '',
+        classificacao: '',
+        cor: '',
+        anoFabricacao: '',
+        potencia: '',
+        tipoMotor: '',
+        tipoTransmissao: '',
+        numeroIdentificacao: '',
+        valor: '',
     });
 
     const handleChange = (e) => {
@@ -32,17 +36,16 @@ const ProdutosForm = () => {
             alert('Cadastro criado com sucesso!');
             // Limpar o formulário após o envio bem-sucedido
             setFormData({
-                Marca: '',
-                Modelo: '',
-                Classificacao: '',
-                Cor: '',
-                AnoFabricacao: '',
-                Potencia: '',   
-                TipoMotor: '',
-                Tipotransmissao: '',
-                NumeroIndentificacao: '',
-                Valor: ''
-
+                marca: '',
+                modelo: '',
+                classificacao: '',
+                cor: '',
+                anoFabricacao: '',
+                potencia: '',
+                tipoMotor: '',
+                tipoTransmissao: '',
+                numeroIdentificacao: '',
+                valor: ''
             });
         } catch (error) {
             console.error('Erro ao criar cadastro:', error);
@@ -51,20 +54,63 @@ const ProdutosForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="marca" placeholder="Marca" value={formData.Marca} onChange={handleChange} />
-            <input type="text" name="modelo" placeholder="Modelo" value={formData.Modelo} onChange={handleChange} />
-            <input type="text" name="classificacao" placeholder="Classificação" value={formData.Classificacao} onChange={handleChange} />
-            <input type="text" name="cor" placeholder="Cor" value={formData.Cor} onChange={handleChange} />
-            <input type="number" name="anoFabricacao" placeholder="Ano de Fabricaçao" value={formData.AnoFabricacao} onChange={handleChange} />
-            <input type="text" name="potencia" placeholder="Potência" value={formData.Potencia} onChange={handleChange} />
-            <input type="text" name="tipoMotor" placeholder="Tipo de Motor" value={formData.TipoMotor} onChange={handleChange} />
-            <input type="text" name="tipoTransmissao" placeholder="Tipo de Transmissão" value={formData.Tipotransmissao} onChange={handleChange} />
-            <input type="text" name="numeroIdentificacao" placeholder="Numero de Identificação" value={formData.NumeroIndentificacao} onChange={handleChange} />
-            <input type="number" name="valor" placeholder="Valor do Carro" value={formData.Valor} onChange={handleChange} />
-            <button type="submit">Salvar</button>
-        </form>
-    );
+        <Form onSubmit={handleSubmit} className='formsSistema'>
+
+            <Row>
+                <Col className="mb-3" xs={3}>
+                    <Form.Label>Marca</Form.Label>
+                    <Form.Control type="text" name="marca" placeholder="Marca" value={formData.marca} onChange={handleChange} />
+                </Col>
+                <Col>
+                    <Form.Label>Modelo</Form.Label>
+                    <Form.Control type="text" name="modelo" placeholder="Modelo" value={formData.modelo} onChange={handleChange} />
+                </Col>
+                <Col>
+                    <Form.Label>Cor</Form.Label>
+                    <Form.Control  type="text" name="cor" placeholder="Cor" value={formData.cor} onChange={handleChange} />
+                </Col>
+                <Col>
+                    <Form.Label>Ano de fabricação</Form.Label>
+                    <Form.Control type="number" name="anoFabricacao" placeholder="Ano de fabricação" value={formData.anoFabricacao} onChange={handleChange} />
+                </Col>
+            </Row>
+
+            <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Label>Classificacao</Form.Label>
+                    <Form.Control  type="text" name="classificacao" placeholder="Clssificação" value={formData.classificacao} onChange={handleChange} />
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formGridPassword">
+                    <Form.Label>Potência</Form.Label>
+                    <Form.Control type="text" name="potencia" placeholder="Potência" value={formData.potencia} onChange={handleChange} />
+                </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Label>Tipo de motor</Form.Label>
+                    <Form.Control  type="text" name="tipoMotor" placeholder="Tipo de motor" value={formData.tipoMotor} onChange={handleChange} />
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formGridPassword">
+                    <Form.Label>Tipo de transmissor</Form.Label>
+                    <Form.Control type="text" name="tipoTransmissao" placeholder="Tipo de transmissor" value={formData.tipoTransmissao} onChange={handleChange} />
+                </Form.Group>
+            </Row>
+
+            <Row>
+                <Col className="mb-3" xs={7}>
+                    <Form.Label>Número de Identificação</Form.Label>
+                    <Form.Control type="text" name="numeroIdentificacao" placeholder="Número de Identificação" value={formData.numeroIdentificacao} onChange={handleChange} />
+                </Col>
+                <Col>
+                    <Form.Label>Valor</Form.Label>
+                    <Form.Control type="text" name="valor" placeholder="Valor" value={formData.valor} onChange={handleChange} />
+                </Col>
+            </Row>
+            <button className='btnFormSistema' type="submit">Salvar</button>
+        </Form>);
 };
 
 export default ProdutosForm;

@@ -1,0 +1,80 @@
+.sideBar {
+    background: linear-gradient(135deg, rgba(234, 234, 234, 0.845) 50%, rgba(50, 50, 50, 0.142));
+    margin: 15px;
+    border-radius: 20px;
+    padding: 20px;
+    position: fixed;
+    width: 22%;
+    height: 95%;
+    overflow-y: scroll !important;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(50, 50, 50, 0.372) rgba(234, 234, 234, 0.845);
+}
+
+.sideNavContent {
+    list-style-type: none !important;
+}
+
+.sideNavContent li {
+    display: flex;
+}
+
+
+.navProfile img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 80px;
+}
+
+.navProfileInfo {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navProfileInfo p {
+    font-size: 12px;
+    background-color: rgba(50, 50, 50, 0.1);
+    padding: 2px;
+    border-radius: 4px;
+    width: 80%;
+    margin-bottom: 4px;
+    color: rgba(50, 50, 50, 0.635);
+}
+
+.navProfileInfo h5 {
+    font-size: 13px;
+    color: rgba(50, 50, 50, 0.795);
+    font-weight: 600;
+}
+
+.headerLineNav {
+    font-size: 12px;
+    margin-top: 18px;
+    margin-bottom: -17px;
+    color: rgba(50, 50, 50, 0.635);
+    border-top: 1px solid rgba(50, 50, 50, 0.1);
+}
+
+
+.lineNavLink {
+    padding: 5px;
+    margin: 4px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .3s ease;
+}
+
+.lineNavLink:hover {
+    background-color: rgba(50, 50, 50, 0.1);
+
+}
+
+.lineNavLink a {
+    text-decoration: none;
+    color: rgba(50, 50, 50, 0.635);
+}
