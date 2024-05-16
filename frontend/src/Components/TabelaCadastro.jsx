@@ -7,7 +7,7 @@ const TabelaCadastro = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/cadastroNovoUsuario");
+        const { data } = await axios.get("http://localhost:3001/cadastros");
         setCadastros(data);
       } catch (error) {
         console.error("Erro ao buscar usuários:", error); // Adiciona este log de erro
