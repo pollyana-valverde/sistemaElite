@@ -75,7 +75,7 @@ const TabelaVendas = () => {
                   Excluir
                 </button>
               </td>
-              {/* Renderizar outras colunas, se necessário */}
+              Renderizar outras colunas, se necessário
             </tr>
           ))}
         </tbody>
