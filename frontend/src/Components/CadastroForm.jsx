@@ -1,7 +1,6 @@
 // CadastroForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../provider/AuthProvider';
 import Col from 'react-bootstrap/Col';
@@ -33,7 +32,7 @@ const CadastroForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/cadastros', formData);
+      await axios.post('http://localhost:3001/cadastroNovoUsuario', formData);
       alert('Cadastro criado com sucesso!');
       // Limpar o formulário após o envio bem-sucedido
       setFormData({
@@ -45,9 +44,9 @@ const CadastroForm = () => {
         senha: ''
       });
 
-      setToken("Token de teste");
+      // setToken("Token de teste");
 
-      navegacao("/", {replace: true});
+      navegacao("/login");
     } catch (error) {
       console.error('Erro ao criar cadastro:', error);
       alert('Erro ao criar cadastro. Verifique o console para mais detalhes.');
