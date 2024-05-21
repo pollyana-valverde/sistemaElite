@@ -576,9 +576,9 @@ router.get('/funcionario/:idFuncionario', (req, res) => {
 });
 // Rota para criar um novo registro
 router.post('/funcionario', (req, res) => {
-  const { nome, email, cpf, endereco, telefone, senha } = req.body;
-  connection.query('INSERT INTO funcionarios (nome, email, cpf, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)', 
-    [nome, email, cpf, endereco, telefone, senha], (err, result) => {
+  const { nome, email, cpf, cargo, registro, endereco, telefone, senha } = req.body;
+  connection.query('INSERT INTO funcionarios (nome, email, cpf, cargo, registro, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)', 
+    [nome, email, cpf, cargo, registro, endereco, telefone, senha], (err, result) => {
     if (err) {
       console.error('Erro ao criar o registro:', err);
       res.status(500).json({ error: 'Erro ao criar o registro' });
@@ -591,9 +591,9 @@ router.post('/funcionario', (req, res) => {
 // Rota para atualizar um registro existente pelo ID
 router.put('/funcionario/:idFuncionario', (req, res) => {
   const { id } = req.params;
-  const { nome, email, cpf, endereco, telefone, senha } = req.body;
-  connection.query('UPDATE funcionarios SET nome = ?, email = ?, cpf = ?, endereco = ?, telefone = ?, senha = ? WHERE idFuncionario = ?', 
-    [nome, email, cpf, endereco, telefone, senha, id], (err, result) => {
+  const { nome, email, cpf, cargo, registro, endereco, telefone, senha } = req.body;
+  connection.query('UPDATE funcionarios SET nome = ?, email = ?, cpf = ?, cargo = ?, registro = ?, endereco = ?, telefone = ?, senha = ? WHERE idFuncionario = ?', 
+    [nome, email, cpf, cargo, registro, endereco, telefone, senha, id], (err, result) => {
     if (err) {
       console.error('Erro ao atualizar o registro:', err);
       res.status(500).json({ error: 'Erro ao atualizar o registro' });

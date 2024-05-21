@@ -10,6 +10,8 @@ const FuncionarioForm = () => {
     nome: '',
     email: '',
     cpf: '',
+    cargo: '', 
+    registro: '',
     endereco: '',
     telefone: '',
     senha: ''
@@ -55,6 +57,18 @@ const FuncionarioForm = () => {
       <Form.Group as={Col} controlId="formGridPassword">
         <Form.Label>CPF</Form.Label>
         <Form.Control type="text" name="cpf" placeholder="CPF" value={formData.cpf} onChange={handleChange} />
+      </Form.Group>
+    </Row>
+
+    <Row className="mb-3">
+      <Form.Group as={Col} controlId="formGridEmail">
+        <Form.Label>Cargo</Form.Label>
+        <Form.Control type="text" name="cargo" placeholder="Cargo" value={formData.cargo} onChange={handleChange} />
+      </Form.Group>
+
+      <Form.Group as={Col} controlId="formGridPassword">
+        <Form.Label>Registro</Form.Label>
+        <Form.Control type="text" name="registro" placeholder="Registro" value={formData.registro} onChange={handleChange} />
       </Form.Group>
     </Row>
 
