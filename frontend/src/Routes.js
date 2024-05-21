@@ -79,6 +79,7 @@ const Rotas = () => {
           path: "/listaProdutos",
           element: < ListaProdutos/>
         },{
+
           path: "/ListaFuncionario",
           element: < ListaFuncionario/>
         },{

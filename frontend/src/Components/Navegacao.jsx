@@ -56,8 +56,10 @@ const Header = ({ data }) => {
         caminho: "/ListaProdutos",
         nome: "Lista de produtos",
       },{
+
         caminho: "/ListaVendas",
         nome: "Lista de Vendas",
+
       },{
         titulo: <li className='headerLineNav'><p>Contas</p></li>,
         caminho: "/ContasReceber",
@@ -91,6 +93,7 @@ const Header = ({ data }) => {
       <nav className='sideBar'>
         <ul className='sideNavContent'>
 
+
           {token ? (
             <div>
             <li className='navProfile'>
@@ -122,6 +125,7 @@ const Header = ({ data }) => {
               ))}
             </div>
           )}
+
           
 {/* 
           <li className='lineNavLink'><a href="/">Home</a></li>
@@ -141,6 +145,7 @@ const Header = ({ data }) => {
 {/* 
           <li className='lineNavLink'><a href="/ContasReceber">Contas a receber</a></li>
           <li className='lineNavLink'><a href="/ContasPagar">Contas a pagar</a></li> */}
+
 
         </ul>
       </nav>
