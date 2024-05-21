@@ -9,11 +9,11 @@ import '../css/navegacao.css';
 
 
 
-const Header = () => {
+const Header = ({ data }) => {
+
+  console.log("Valor de data no Header:", data);
 
   const { token } = useAuth();
-
-
 
   const [links, setLink] = useState([
       {
@@ -92,17 +92,18 @@ const Header = () => {
     <header>
       <nav className='sideBar'>
         <ul className='sideNavContent'>
-          <li className='navProfile'>
-            <img src={PerfilFoto} alt='' />
-            <div className='navProfileInfo'>
-              <p>Administrador</p>
-              <h5>Pollyana Valverde</h5>
-            </div>
-            </li>
 
 
           {token ? (
             <div>
+            <li className='navProfile'>
+            <img src={PerfilFoto} alt='' />
+            <div className='navProfileInfo'>
+              <p>Administrador</p>
+              <h5>{token}</h5>
+              {/* <Nome /> */}
+            </div>
+          </li>
               {links.map((link, index) => (
                 <>
                   {link.titulo}

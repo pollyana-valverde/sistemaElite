@@ -46,6 +46,8 @@ let table = new DataTable('#tabelaFuncionarios', {
             <th>Nome</th>
             <th>Email</th>
             <th>CPF</th>
+            <th>Cargo</th>
+            <th>Registro</th>
             <th>Endereço</th>
             <th>Telefone</th>
             <th>Senha</th>
@@ -60,6 +62,8 @@ let table = new DataTable('#tabelaFuncionarios', {
               <td>{funcionarios.nome}</td>
               <td>{funcionarios.email}</td>
               <td>{funcionarios.cpf}</td>
+              <td>{funcionarios.cargo}</td>
+              <td>{funcionarios.registro}</td>
               <td>{funcionarios.endereco}</td>
               <td>{funcionarios.telefone}</td>
               <td>{funcionarios.senha}</td>
