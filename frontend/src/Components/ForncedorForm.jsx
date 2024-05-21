@@ -55,29 +55,25 @@ const FornecedorForm = () => {
     return (
         <Form onSubmit={handleSubmit} className='formsSistema'>
 
-            <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Representante da empresa</Form.Label>
-                    <Form.Control type="text" name="representanteImpresa" placeholder="Representante da impresa" value={formData.representanteImpresa} onChange={handleChange} />
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="formGridAddress1">
+                <Form.Label>Representante da empresa</Form.Label>
+                <Form.Control type="text" name="representanteImpresa" placeholder="Representante da impresa" value={formData.representanteImpresa} onChange={handleChange} />
+            </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
+
+            <Row>
+                <Col className="mb-3" xs={4}>
                     <Form.Label>Telefone do representante</Form.Label>
                     <Form.Control type="number" name="telefoneRepresentante" placeholder="Telefone do representante" value={formData.telefoneRepresentante} onChange={handleChange} />
-                </Form.Group>
-            </Row>
-
-
-            <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridEmail">
+                </Col>
+                <Col>
                     <Form.Label>Cargo do representante</Form.Label>
                     <Form.Control type="text" name="cargoRepresentante" placeholder="Cargo do representante" value={formData.cargoRepresentante} onChange={handleChange} />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridPassword">
+                </Col>
+                <Col>
                     <Form.Label>CPF do representante</Form.Label>
                     <Form.Control type="text" name="cpfRepresentante" placeholder="Cpf do representante" value={formData.cpfRepresentante} onChange={handleChange} />
-                </Form.Group>
+                </Col>
             </Row>
 
             <Row>

@@ -28,18 +28,24 @@ const Header = () => {
         nome: "Logout",
       },{
         titulo: <li className='headerLineNav'><p>Cadastrar</p></li>,
+        caminho: "/FuncionarioCadastro",
+        nome: "Cadastrar Funcionários",
+      },{
         caminho: "/CadastroClientes",
-        nome: "Cadastrar clientes",
+        nome: "Cadastrar Clientes",
       },{
         caminho: "/FornecedorCadastro",
         nome: "Cadastrar fornecedor",
       },{
-        caminho: "/Produtos",
+        caminho: "/ProdutosCadastro",
         nome: "Cadastrar produtos",
       },{
         titulo: <li className='headerLineNav'> <p>Registros</p></li>,
         caminho: "/listaUsuarios",
         nome: "Lista de Usuários",
+      },{
+        caminho: "/ListaFuncionario",
+        nome: "Lista de Funcionários",
       },{
         caminho: "/ListaFornecedores",
         nome: "Lista de Fornecedores",
@@ -50,8 +56,10 @@ const Header = () => {
         caminho: "/ListaProdutos",
         nome: "Lista de produtos",
       },{
-        caminho: "/TabelaVendas",
-        nome: "Tabela de Vendas",
+
+        caminho: "/ListaVendas",
+        nome: "Lista de Vendas",
+
       },{
         titulo: <li className='headerLineNav'><p>Contas</p></li>,
         caminho: "/ContasReceber",

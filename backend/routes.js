@@ -16,9 +16,9 @@ router.get('/cadastros', (req, res) => {
 });
 
 // Rota para buscar um registro específico pelo ID
-router.get('/cadastros/:id', (req, res) => {
+router.get('/cadastros/:idCadastro', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM cadastro WHERE id = ?', [id], (err, results) => {
+  connection.query('SELECT * FROM cadastro WHERE idCadastro = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -32,7 +32,7 @@ router.get('/cadastros/:id', (req, res) => {
   });
 });
 // Rota para criar um novo registro
-router.post('/cadastros', (req, res) => {
+router.post('/cadastroNovoUsuario', (req, res) => {
   const { nome, email, cpf, endereco, telefone, senha } = req.body;
   connection.query('INSERT INTO cadastro (nome, email, cpf, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)', 
     [nome, email, cpf, endereco, telefone, senha], (err, result) => {
@@ -41,14 +41,57 @@ router.post('/cadastros', (req, res) => {
       res.status(500).json({ error: 'Erro ao criar o registro' });
       return;
     }
-    res.status(201).json({ message: 'Registro criado com sucesso', idCarro: result.insertIdCarro }); 
+    res.status(201).json({ message: 'Registro criado com sucesso', id: result.insertId });
   });
 });
 
 // Rota para atualizar um registro existente pelo ID
-router.put('/cadastros/:id', (req, res) => {
+router.put('/cadastros/:idCadastro', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM vendas WHERE codigoVendas = ?', [id], (err, results) => {
+  const { nome, email, cpf, endereco, telefone, senha } = req.body;
+  connection.query('UPDATE cadastro SET nome = ?, email = ?, cpf = ?, endereco = ?, telefone = ?, senha = ? WHERE id = ?', 
+    [nome, email, cpf, endereco, telefone, senha, id], (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar o registro:', err);
+      res.status(500).json({ error: 'Erro ao atualizar o registro' });
+      return;
+    }
+    res.json({ message: 'Registro atualizado com sucesso' });
+  });
+});
+
+// Rota para excluir um registro pelo ID
+router.delete('/cadastros/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('DELETE FROM cadastro WHERE idCadastro = ?', [id], (err, result) => {
+    if (err) {
+      console.error('Erro ao excluir o registro:', err);
+      res.status(500).json({ error: 'Erro ao excluir o registro' });
+      return;
+    }
+    res.json({ message: 'Registro excluído com sucesso' });
+  });
+});
+
+
+///////////////////////////////////// registro de vendas /////////////////////////////
+
+// Rota para listar todos os registros
+router.get('/vendas', (req, res) => {
+  connection.query('SELECT * FROM vendas', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para buscar um registro específico pelo ID
+router.get('/vendas/:codigoVenda', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM vendas WHERE codigoVenda = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -63,6 +106,7 @@ router.put('/cadastros/:id', (req, res) => {
 });
 
 
+
 // Rota para listar todos os registros
 router.get('/vendas', (req, res) => {
   connection.query('SELECT * FROM vendas', (err, results) => {
@@ -72,6 +116,19 @@ router.get('/vendas', (req, res) => {
       return;
     }
     res.json(results);
+
+// Rota para criar um novo registro
+router.post('/vendas', (req, res) => {
+  const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status } = req.body;
+  connection.query('INSERT INTO vendas (dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+    [dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status], (err, result) => {
+    if (err) {
+      console.error('Erro ao criar o registro:', err);
+      res.status(500).json({ error: 'Erro ao criar o registro' });
+      return;
+    }
+    res.status(201).json({ message: 'Registro criado com sucesso', codigoVenda: result.insertId });
+
   });
 });
 
@@ -79,8 +136,8 @@ router.get('/vendas', (req, res) => {
 router.put('/vendas/:codigoVenda', (req, res) => {
   const { codigoVenda } = req.params;
   const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status } = req.body;
-  connection.query('UPDATE vendas SET dataHora = ?, numeroIdentCarro = ?, cliente = ?, cpfFuncionario = ?, qtdProdutos = ?, valorUnidade = ?, valorTotal = ?, metodoPagamento = ?, numeroIdentificacao = ?, endereco = ?, status = ?, WHERE codigoVenda = ?', 
-    [dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status], (err, result) => {
+  connection.query('UPDATE vendas SET dataHora = ?, numeroIdentCarro = ?, cliente = ?, cpfFuncionario = ?, qtdProdutos = ?, valorUnidade = ?, valorTotal = ?, metodoPagamento = ?, endereco = ?, status = ?, WHERE codigoVenda = ?', 
+    [dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status, codigoVenda], (err, result) => {
     if (err) {
       console.error('Erro ao atualizar o registro:', err);
       res.status(500).json({ error: 'Erro ao atualizar o registro' });
@@ -92,7 +149,7 @@ router.put('/vendas/:codigoVenda', (req, res) => {
 
 // Rota para excluir um registro pelo ID
 router.delete('/vendas/:codigoVenda', (req, res) => {
-  const { codigoVenda } = req.params;
+  const { id } = req.params;
   connection.query('DELETE FROM vendas WHERE codigoVenda = ?', [id], (err, result) => {
     if (err) {
       console.error('Erro ao excluir o registro:', err);
@@ -105,13 +162,13 @@ router.delete('/vendas/:codigoVenda', (req, res) => {
 
 
 
-/////////////////////////////////////////////login///////////////////////////////////////////////////////
+/////////////////////////////////////////////login///////////////////////////////////////////////////
 
 //Rota para buscar o cfp e senha necessários no login
-router.post('/login/:cpf', (req, res) => {
-  const { cpf } = req.params;
+router.post('/login/:cpf/:senha', (req, res) => {
+  const { cpf, senha } = req.params;
   
-  connection.query('SELECT * FROM cadastro WHERE cpf = ?', [cpf], (err, results) => {
+  connection.query('SELECT * FROM cadastro WHERE cpf = ? and senha = ?', [cpf, senha], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro do cadastro:', err);
       res.status(500).json({ error: 'Erro ao buscar o cadastro' });
@@ -125,6 +182,28 @@ router.post('/login/:cpf', (req, res) => {
   });
 });
 
+
+
+
+/////////////////////////////////////////////perfil///////////////////////////////////////////////////////
+
+// //Rota para buscar o cfp e senha necessários no login
+// router.post('/login/:cpf', (req, res) => {
+//   const { cpf } = req.params;
+  
+//   connection.query('SELECT * FROM cadastro WHERE cpf = ?', [cpf], (err, results) => {
+//     if (err) {
+//       console.error('Erro ao buscar o registro do cadastro:', err);
+//       res.status(500).json({ error: 'Erro ao buscar o cadastro' });
+//       return;
+//     }
+//     if (results.length === 0) {
+//       res.status(404).json({ error: 'Cadastro não encontrado' });
+//       return;
+//     }
+//     res.json(results);
+//   });
+// });
 
 ///////////////////////////////////////////// fornecedores /////////////////////////////////////////
 // Rota para listar todos os registros
@@ -500,6 +579,66 @@ router.delete('/produtos/:idCarro', (req, res) => {idCarro
     res.json({ message: 'Registro excluído com sucesso' });
   });
 });
+
+
+///////////////////////////////////////// cadastro do funcionário ////////////////////////////////////
+// Rota para listar todos os registros
+router.get('/funcionario', (req, res) => {
+  connection.query('SELECT * FROM funcionarios', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para buscar um registro específico pelo ID
+router.get('/funcionario/:idFuncionario', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM funcionarios WHERE idFuncionario = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+// Rota para criar um novo registro
+router.post('/funcionario', (req, res) => {
+  const { nome, email, cpf, endereco, telefone, senha } = req.body;
+  connection.query('INSERT INTO funcionarios (nome, email, cpf, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)', 
+    [nome, email, cpf, endereco, telefone, senha], (err, result) => {
+    if (err) {
+      console.error('Erro ao criar o registro:', err);
+      res.status(500).json({ error: 'Erro ao criar o registro' });
+      return;
+    }
+    res.status(201).json({ message: 'Registro criado com sucesso', id: result.insertId });
+  });
+});
+
+// Rota para atualizar um registro existente pelo ID
+router.put('/funcionario/:idFuncionario', (req, res) => {
+  const { id } = req.params;
+  const { nome, email, cpf, endereco, telefone, senha } = req.body;
+  connection.query('UPDATE funcionarios SET nome = ?, email = ?, cpf = ?, endereco = ?, telefone = ?, senha = ? WHERE idFuncionario = ?', 
+    [nome, email, cpf, endereco, telefone, senha, id], (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar o registro:', err);
+      res.status(500).json({ error: 'Erro ao atualizar o registro' });
+      return;
+    }
+    res.json({ message: 'Registro atualizado com sucesso' });
+  });
+});
+
 
   
 

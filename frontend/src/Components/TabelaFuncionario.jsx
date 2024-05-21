@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DataTable from 'datatables.net-dt';
+// import 'datatables.net-responsive-dt';
 
+const  TabelaFuncionario= () => {
+  const [funcionario, setFuncionario] = useState([]);
 
-const TabelaCadastro = () => {
-  const [cadastros, setCadastros] = useState([]);
-
-  let table = new DataTable('#tabelaCadastro', {
-    retrieve: true
-  });
+   
+let table = new DataTable('#tabelaFuncionarios', {
+  retrieve: true
+});
 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/cadastros");
-        setCadastros(data);
+        const { data } = await axios.get("http://localhost:3001/funcionario");
+        setFuncionario(data);
       } catch (error) {
         console.error("Erro ao buscar usuários:", error); // Adiciona este log de erro
       }
@@ -24,12 +25,12 @@ const TabelaCadastro = () => {
     fetchData();
   }, []);
 
-  const handleExcluirUsuario = async (idCadastro) => {
+  const handleExcluirUsuario = async (idFuncionario) => {
     try {
-      await axios.delete(`http://localhost:3001/cadastros/${idCadastro}`);
+      await axios.delete(`http://localhost:3001/funcionario/${idFuncionario}`);
       // Atualiza a lista de cadastros após a exclusão
-      const { data } = await axios.get("http://localhost:3001/cadastros");
-      setCadastros(data);
+      const { data } = await axios.get("http://localhost:3001/funcionario");
+      setFuncionario(data);
       console.log("Usuário excluído com sucesso!");
     } catch (error) {
       console.error("Erro ao excluir usuário:", error);
@@ -38,7 +39,7 @@ const TabelaCadastro = () => {
 
   return (
     <div>
-      <table id="tabelaCadastro" className="display" border={2} cellPadding={5} cellSpacing={5}>
+      <table id="tabelaFuncionarios" class="display" border={2} cellPadding={5} cellSpacing={5}>
         <thead>
           <tr>
             <th>ID</th>
@@ -53,19 +54,19 @@ const TabelaCadastro = () => {
           </tr>
         </thead>
         <tbody>
-          {cadastros.map((cadastro) => (
-            <tr key={cadastro.idCadastro}>
-              <td>{cadastro.idCadastro}</td>
-              <td>{cadastro.nome}</td>
-              <td>{cadastro.email}</td>
-              <td>{cadastro.cpf}</td>
-              <td>{cadastro.endereco}</td>
-              <td>{cadastro.telefone}</td>
-              <td>{cadastro.senha}</td>
+          {funcionario.map((funcionarios) => (
+            <tr key={funcionarios.idFuncionario}>
+              <td>{funcionarios.idFuncionario}</td>
+              <td>{funcionarios.nome}</td>
+              <td>{funcionarios.email}</td>
+              <td>{funcionarios.cpf}</td>
+              <td>{funcionarios.endereco}</td>
+              <td>{funcionarios.telefone}</td>
+              <td>{funcionarios.senha}</td>
               <td>
                 <button
                   variant="danger"
-                  onClick={() => handleExcluirUsuario(cadastro.idCadastro)}
+                  onClick={() => handleExcluirUsuario(funcionarios.idFuncionario)}
                 >
                   Excluir
                 </button>
@@ -79,4 +80,4 @@ const TabelaCadastro = () => {
   );
 };
 
-export default TabelaCadastro;
+export default TabelaFuncionario;
