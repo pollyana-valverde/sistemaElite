@@ -104,6 +104,19 @@ router.get('/vendas/:codigoVenda', (req, res) => {
     res.json(results[0]);
   });
 });
+
+
+
+// Rota para listar todos os registros
+router.get('/vendas', (req, res) => {
+  connection.query('SELECT * FROM vendas', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+
 // Rota para criar um novo registro
 router.post('/vendas', (req, res) => {
   const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status } = req.body;
@@ -115,6 +128,7 @@ router.post('/vendas', (req, res) => {
       return;
     }
     res.status(201).json({ message: 'Registro criado com sucesso', codigoVenda: result.insertId });
+
   });
 });
 
@@ -148,13 +162,13 @@ router.delete('/vendas/:codigoVenda', (req, res) => {
 
 
 
-/////////////////////////////////////////////login///////////////////////////////////////////////////////
+/////////////////////////////////////////////login///////////////////////////////////////////////////
 
 //Rota para buscar o cfp e senha necessários no login
-router.post('/login/:cpf', (req, res) => {
-  const { cpf } = req.params;
+router.post('/login/:cpf/:senha', (req, res) => {
+  const { cpf, senha } = req.params;
   
-  connection.query('SELECT * FROM cadastro WHERE cpf = ?', [cpf], (err, results) => {
+  connection.query('SELECT * FROM cadastro WHERE cpf = ? and senha = ?', [cpf, senha], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro do cadastro:', err);
       res.status(500).json({ error: 'Erro ao buscar o cadastro' });
@@ -168,6 +182,28 @@ router.post('/login/:cpf', (req, res) => {
   });
 });
 
+
+
+
+/////////////////////////////////////////////perfil///////////////////////////////////////////////////////
+
+// //Rota para buscar o cfp e senha necessários no login
+// router.post('/login/:cpf', (req, res) => {
+//   const { cpf } = req.params;
+  
+//   connection.query('SELECT * FROM cadastro WHERE cpf = ?', [cpf], (err, results) => {
+//     if (err) {
+//       console.error('Erro ao buscar o registro do cadastro:', err);
+//       res.status(500).json({ error: 'Erro ao buscar o cadastro' });
+//       return;
+//     }
+//     if (results.length === 0) {
+//       res.status(404).json({ error: 'Cadastro não encontrado' });
+//       return;
+//     }
+//     res.json(results);
+//   });
+// });
 
 ///////////////////////////////////////////// fornecedores /////////////////////////////////////////
 // Rota para listar todos os registros

@@ -9,11 +9,11 @@ import '../css/navegacao.css';
 
 
 
-const Header = () => {
+const Header = ({ data }) => {
+
+  console.log("Valor de data no Header:", data);
 
   const { token } = useAuth();
-
-
 
   const [links, setLink] = useState([
       {
@@ -56,8 +56,10 @@ const Header = () => {
         caminho: "/ListaProdutos",
         nome: "Lista de produtos",
       },{
+
         caminho: "/ListaVendas",
         nome: "Lista de Vendas",
+
       },{
         titulo: <li className='headerLineNav'><p>Contas</p></li>,
         caminho: "/ContasReceber",
@@ -90,16 +92,18 @@ const Header = () => {
     <header>
       <nav className='sideBar'>
         <ul className='sideNavContent'>
-          <li className='navProfile'>
-            <img src={PerfilFoto} alt='' />
-            <div className='navProfileInfo'>
-              <p>Administrador</p>
-              <h5>Pollyana Valverde</h5>
-            </div>
-            </li>
+
 
           {token ? (
             <div>
+            <li className='navProfile'>
+            <img src={PerfilFoto} alt='' />
+            <div className='navProfileInfo'>
+              <p>Administrador</p>
+              <h5>{token}</h5>
+              {/* <Nome /> */}
+            </div>
+          </li>
               {links.map((link, index) => (
                 <>
                   {link.titulo}
@@ -121,6 +125,7 @@ const Header = () => {
               ))}
             </div>
           )}
+
           
 {/* 
           <li className='lineNavLink'><a href="/">Home</a></li>
@@ -140,6 +145,7 @@ const Header = () => {
 {/* 
           <li className='lineNavLink'><a href="/ContasReceber">Contas a receber</a></li>
           <li className='lineNavLink'><a href="/ContasPagar">Contas a pagar</a></li> */}
+
 
         </ul>
       </nav>
