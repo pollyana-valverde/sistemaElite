@@ -63,6 +63,17 @@ router.put('/cadastros/:id', (req, res) => {
 });
 
 
+// Rota para listar todos os registros
+router.get('/vendas', (req, res) => {
+  connection.query('SELECT * FROM vendas', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
 
 // Rota para atualizar um registro existente pelo ID
 router.put('/vendas/:codigoVenda', (req, res) => {

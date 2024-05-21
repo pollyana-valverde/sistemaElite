@@ -18,6 +18,8 @@ import ContasPagar from "./Pages/ContasPagar";
 import Produtos from './Pages/Produtos';
 import ListaProdutos from "./Pages/ListaProdutos";
 import ListaFornecedores from "./Pages/ListaFornecedores";
+import TabelaVendas from "./Components/TabelaVendas";
+
 
 const Rotas = () => {
   const { token } = useAuth();
@@ -75,6 +77,9 @@ const Rotas = () => {
         },{
           path: "/listaProdutos",
           element: < ListaProdutos/>
+        },{
+          path: "/TabelaVendas",
+          element: < TabelaVendas/>
         },{
           path: "/Logout",
           element: <Logout />,

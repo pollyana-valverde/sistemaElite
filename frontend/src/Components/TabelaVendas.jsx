@@ -8,7 +8,7 @@ const TabelaVendas = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get("http://localhost:3001/vendas");
-        setFornecedores(data);
+        setVenda(data);
       } catch (error) {
         console.error("Erro ao buscar registro:", error); // Adiciona este log de erro
       }
@@ -22,7 +22,7 @@ const TabelaVendas = () => {
       await axios.delete(`http://localhost:3001/vendas/${codigoVenda}`);
       // Atualiza a lista de cadastros após a exclusão
       const { data } = await axios.get("http://localhost:3001/vendas");
-      setFornecedores(data);
+      setVenda(data);
       console.log("Registro da venda excluído com sucesso!");
     } catch (error) {
       console.error("Erro ao excluir registro da venda:", error);

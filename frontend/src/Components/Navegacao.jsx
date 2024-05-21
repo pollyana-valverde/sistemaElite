@@ -50,6 +50,9 @@ const Header = () => {
         caminho: "/ListaProdutos",
         nome: "Lista de produtos",
       },{
+        caminho: "/TabelaVendas",
+        nome: "Tabela de Vendas",
+      },{
         titulo: <li className='headerLineNav'><p>Contas</p></li>,
         caminho: "/ContasReceber",
         nome: "Contas a receber",
