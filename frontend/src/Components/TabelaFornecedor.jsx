@@ -1,10 +1,77 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Button } from 'primereact/button';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+// import { CustomerService } from './service/CustomerService';
+
+export default function PaginatorTemplateDemo() {
+  const [fornecedores, setFornecedores] = useState([]);
+
+    const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
+    const paginatorRight = <Button type="button" icon="pi pi-download" text />;
+
+    // useEffect(() => {
+    //     CustomerService.getCustomersMedium().then((dataSet) => setCustomers(dataSet));
+    // }, []);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get("http://localhost:3001/fornecedor");
+          setFornecedores(data);
+        } catch (error) {
+          console.error("Erro ao buscar Fornecedor:", error); // Adiciona este log de erro
+        }
+      };
+  
+      fetchData();
+    }, []);
+
+    // const dataSet = axios.get("http://localhost:3001/fornecedor");
+
+    return (
+        <div className="card">
+            <DataTable value={fornecedores} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}
+                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                    currentPageReportTemplate="{first} to {last} of {totalRecords}" paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}>
+
+{fornecedores.map((fornecedores) => (
+            <Column key={fornecedores.idFornecedor}>
+              <Column field="idFornecedor" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="representanteImpresa" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="telefoneRepresentante" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="cargoRepresentante" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="cpfRepresentante" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="nomeImpresa" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="email" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="cnpj" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="endereço" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="telefoneImpresa" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="siteImpresa" header="Name" style={{ width: '25%' }}></Column>
+              <Column field="excluir" header="Ação" style={{ width: '25%' }}>
+                <button
+                  variant="danger"
+                  // onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
+                >
+                  Excluir
+                </button>
+              </Column>
+            </Column>
+          ))}
+                
+            </DataTable>
+        </div>
+    );
+}
+        
+
+
 // import DataTable from 'datatables.net-dt';
 
 
-const TabelaFornecedor = () => {
-  const [fornecedores, setFornecedores] = useState([]);
+// const TabelaFornecedor = () => {
+//   const [fornecedores, setFornecedores] = useState([]);
   // const [dataTable, setDataTable] = useState([])
 
   //   function format(d) {
@@ -99,27 +166,27 @@ const TabelaFornecedor = () => {
   //   }
   // };
 
-  return (
-    <table id="fornecedorTabela" class="table table-striped compact" style={{ width: "100%" }} >
-      <thead>
-        <tr>
-          <th>ID da impresa</th>
-          <th>Representante da impresa</th>
-          <th>Telefone do representante</th>
-          <th>Cargo do representante</th>
-          <th>CPF do representante</th>
-          <th>Nome da impresa</th>
-          <th>Email</th>
-          <th>CNPJ</th>
-          <th>Endereço</th>
-          <th>Telefone da impresa</th>
-          <th>Site da impresa</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  );
-};
+//   return (
+//     <table id="fornecedorTabela" class="table table-striped compact" style={{ width: "100%" }} >
+//       <thead>
+//         <tr>
+//           <th>ID da impresa</th>
+//           <th>Representante da impresa</th>
+//           <th>Telefone do representante</th>
+//           <th>Cargo do representante</th>
+//           <th>CPF do representante</th>
+//           <th>Nome da impresa</th>
+//           <th>Email</th>
+//           <th>CNPJ</th>
+//           <th>Endereço</th>
+//           <th>Telefone da impresa</th>
+//           <th>Site da impresa</th>
+//           <th>Ação</th>
+//         </tr>
+//       </thead>
+//       <tbody></tbody>
+//     </table>
+//   );
+// };
 
-export default TabelaFornecedor;
+// export default TabelaFornecedor;
