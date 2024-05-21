@@ -1,0 +1,22 @@
+.login h2 {
+    color: blue;
+}
+
+.quadroForm {
+    height: 400px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content:center;
+    justify-items: center;
+}
+
+.login form {
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+    align-content: center;
+}
+
+.login form input {
+    margin-bottom: 10px;
+}

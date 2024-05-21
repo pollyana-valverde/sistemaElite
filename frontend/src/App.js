@@ -26,8 +26,8 @@ const App = () => {
       <AuthProvider>
       <Container fluid>
           <Row>
-            <Col lg={3}><Navegacao /></Col> 
-            <Col lg={8}><Rotas /></Col>
+            <Col lg={3} md={3} sm={4}><Navegacao /></Col> 
+            <Col lg={8} md={8} sm={8}><Rotas /></Col>
           </Row>
         </Container>
       </AuthProvider>
