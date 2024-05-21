@@ -105,18 +105,6 @@ router.get('/vendas/:codigoVenda', (req, res) => {
   });
 });
 
-
-
-// Rota para listar todos os registros
-router.get('/vendas', (req, res) => {
-  connection.query('SELECT * FROM vendas', (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar os registros:', err);
-      res.status(500).json({ error: 'Erro ao buscar os registros' });
-      return;
-    }
-    res.json(results);
-
 // Rota para criar um novo registro
 router.post('/vendas', (req, res) => {
   const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status } = req.body;
