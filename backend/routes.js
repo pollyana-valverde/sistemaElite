@@ -94,13 +94,13 @@ router.delete('/vendas/:codigoVenda', (req, res) => {
 
 
 
-/////////////////////////////////////////////login///////////////////////////////////////////////////////
+/////////////////////////////////////////////login///////////////////////////////////////////////////
 
 //Rota para buscar o cfp e senha necessários no login
-router.post('/login/:cpf', (req, res) => {
-  const { cpf } = req.params;
+router.post('/login/:cpf/:senha', (req, res) => {
+  const { cpf, senha } = req.params;
   
-  connection.query('SELECT * FROM cadastro WHERE cpf = ?', [cpf], (err, results) => {
+  connection.query('SELECT * FROM cadastro WHERE cpf = ? and senha = ?', [cpf, senha], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro do cadastro:', err);
       res.status(500).json({ error: 'Erro ao buscar o cadastro' });
@@ -114,6 +114,28 @@ router.post('/login/:cpf', (req, res) => {
   });
 });
 
+
+
+
+/////////////////////////////////////////////perfil///////////////////////////////////////////////////////
+
+// //Rota para buscar o cfp e senha necessários no login
+// router.post('/login/:cpf', (req, res) => {
+//   const { cpf } = req.params;
+  
+//   connection.query('SELECT * FROM cadastro WHERE cpf = ?', [cpf], (err, results) => {
+//     if (err) {
+//       console.error('Erro ao buscar o registro do cadastro:', err);
+//       res.status(500).json({ error: 'Erro ao buscar o cadastro' });
+//       return;
+//     }
+//     if (results.length === 0) {
+//       res.status(404).json({ error: 'Cadastro não encontrado' });
+//       return;
+//     }
+//     res.json(results);
+//   });
+// });
 
 ///////////////////////////////////////////// fornecedores /////////////////////////////////////////
 // Rota para listar todos os registros
