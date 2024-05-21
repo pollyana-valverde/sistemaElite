@@ -15,9 +15,12 @@ import ClienteCadastro from "./Pages/CadastroClientes";
 import ListaClientes from "./Pages/ListaClientes";
 import ContasReceber from "./Pages/ContasReceber";
 import ContasPagar from "./Pages/ContasPagar";
-import Produtos from './Pages/Produtos';
+import ProdutosCadastro from './Pages/ProdutosCadastro';
 import ListaProdutos from "./Pages/ListaProdutos";
 import ListaFornecedores from "./Pages/ListaFornecedores";
+import ListaFuncionario from "./Pages/ListaFuncionario";
+import FuncionarioCadastro from "./Pages/FuncionarioCadastro";
+import ListaVendas from "./Pages/ListaVendas";
 
 const Rotas = () => {
   const { token } = useAuth();
@@ -70,11 +73,23 @@ const Rotas = () => {
           path: "/ContasPagar",
           element: < ContasPagar/>
         },{
-          path: "/Produtos",
-          element: < Produtos/>
+          path: "/ProdutosCadastro",
+          element: < ProdutosCadastro/>
         },{
           path: "/listaProdutos",
           element: < ListaProdutos/>
+        },{
+          path: "/ListaFuncionario",
+          element: < ListaFuncionario/>
+        },{
+          path: "/FuncionarioCadastro",
+          element: < FuncionarioCadastro/>
+        },{
+          path: "/ListaVendas",
+          element: < ListaVendas/>
+        },{
+          path: "/FuncionarioCadastro",
+          element: < FuncionarioCadastro/>
         },{
           path: "/Logout",
           element: <Logout />,
