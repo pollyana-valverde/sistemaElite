@@ -1,45 +1,5 @@
 create database sistemaGM;
 use sistemaGM;
-CREATE TABLE `cadastro` ( 
-  `idCadastro` INT AUTO_INCREMENT NOT NULL,
-  `nome` VARCHAR(150) NOT NULL,
-  `email` VARCHAR(150) NOT NULL,
-  `telefone` VARCHAR(20) NOT NULL,
-  `cpf` VARCHAR(20) NOT NULL,
-  `endereco` VARCHAR(250) NOT NULL,
-  `senha` VARCHAR(45) NOT NULL,
-  CONSTRAINT `PRIMARY` PRIMARY KEY (`idCadastro`)
-);
-
-CREATE TABLE `fornecedores` ( 
-  `idFornecedor` INT AUTO_INCREMENT NOT NULL,
-  `representanteImpresa` varchar(70) not null,
-  `telefoneRepresentante` varchar(20) not null,
-  `cargoRepresentante`varchar(50) not null,
-  `cpfRepresentante` varchar(20) not null,
-  `nomeImpresa` VARCHAR(150) NOT NULL,
-  `email` VARCHAR(150) NOT NULL,
-  `telefoneImpresa` VARCHAR(20) NOT NULL,
-  `cnpj` VARCHAR(20) NOT NULL,
-  `endereco` VARCHAR(250) NOT NULL,
-  `siteImpresa` VARCHAR(200) ,
-  CONSTRAINT `PRIMARY` PRIMARY KEY (`idFornecedor`)
-);
-
-CREATE TABLE `clientes` ( 
-  `idCliente` INT AUTO_INCREMENT NOT NULL,
-  `representanteImpresa` varchar(70) not null,
-  `telefoneRepresentante` varchar(20) not null,
-  `cargoRepresentante`varchar(50) not null,
-  `cpfRepresentante` varchar(20) not null,
-  `nomeImpresa` VARCHAR(150) NOT NULL,
-  `email` VARCHAR(150) NOT NULL,
-  `telefoneImpresa` VARCHAR(20) NOT NULL,
-  `cnpj` VARCHAR(20) NOT NULL,
-  `endereco` VARCHAR(250) NOT NULL,
-  `siteImpresa` VARCHAR(200) ,
-  CONSTRAINT `PRIMARY` PRIMARY KEY (`idCliente`)
-);
 
 	CREATE TABLE `contasReceber` ( 
   `idcontaReceber` INT AUTO_INCREMENT NOT NULL,
@@ -72,6 +32,8 @@ values ('Receita com produto', '1345.38', '20240613', 'Indústria mecânica Pere
 ('Receita com produto', '1984.52', '20240928', 'Indústria mecânica Perez', 'E01 - Banco do Brasil', 'Documento 328 - Parcela 1 de 3', 'Pendente', '0');
 
 
+
+
 CREATE TABLE `contasPagar` ( 
   `idcontaPagar` INT AUTO_INCREMENT NOT NULL,
   `clasificacao` varchar(100) not null,
@@ -98,6 +60,9 @@ values ('Receita com produto', '1345.38', '20240613', 'Indústria mecânica Pere
 ('Receita com produto', '1541.11', '20240928', 'Indústria mecânica Perez', 'E01 - Banco do Brasil', 'Documento 328 - Parcela 3 de 4', 'Pendente', '0'),
 ('Receita com produto', '2893.78', '20240928', 'Magneti Marelli Cofap - Indústria Metalúrgica', 'E07 - Banco do Brasil', 'Documento 328 - Parcela 4 de 4', 'Pendente', '0'),
 ('Receita com produto', '1984.52', '20240928', 'Indústria mecânica Perez', 'E01 - Banco do Brasil', 'Documento 328 - Parcela 1 de 3', 'Pendente', '0');
+
+
+
 
 create table carros (
 idCarro int auto_increment primary key,
@@ -145,6 +110,8 @@ values
 ('Chevrolet', 'Trailblazer', 'Premier', 'Preto', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00545678901234568, '364900.00');
 
 
+
+
 CREATE TABLE vendas ( 
   codigoVenda INT AUTO_INCREMENT NOT NULL,
   dataHora DATETIME NOT NULL,
@@ -172,6 +139,23 @@ values
 ('2023-07-23 09:24:59', '345608901234568', 'Stellar Cars', '90123456788', 14, 364900, 5108600, 'débito', 'São Bernardo do Campo', 'concluida'),
 ('2024-07-23 10:58:42', '345678901234568', 'Quantum Motors', '01234567899', 12, 170140, 2041680, 'crédito', 'São Caetano do Sul', 'concluida'),
 ('2024-04-30 15:47:28', '23456789012399568', 'Eclipse Automobiles', '11223344556', 21, 121790, 2557590, 'débito', 'São Paulo', 'pendente');
+
+
+
+CREATE TABLE `fornecedores` ( 
+  `idFornecedor` INT AUTO_INCREMENT NOT NULL,
+  `representanteImpresa` varchar(70) not null,
+  `telefoneRepresentante` varchar(20) not null,
+  `cargoRepresentante`varchar(50) not null,
+  `cpfRepresentante` varchar(20) not null,
+  `nomeImpresa` VARCHAR(150) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `telefoneImpresa` VARCHAR(20) NOT NULL,
+  `cnpj` VARCHAR(20) NOT NULL,
+  `endereco` VARCHAR(250) NOT NULL,
+  `siteImpresa` VARCHAR(200) ,
+  CONSTRAINT `PRIMARY` PRIMARY KEY (`idFornecedor`)
+);
 
 INSERT INTO fornecedores (representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa) 
 VALUES 
@@ -217,6 +201,8 @@ VALUES
 ('Mariana Lima', '11976543210', 'Analista de Compras', '678.901.234-56', 'GlobalTech Solutions S.A.', 'mariana.lima@globaltech.com.br', '11976543210', '67.890.123/0001-65', 'Avenida das Rosas, 789, São Paulo, SP', 'http://www.globaltech.com.br'),
 ('Guilherme Santos', '11965432109', 'Coordenador de Operações', '789.012.345-67', 'TechTrade Enterprises', 'guilherme.santos@techtrade.com.br', '11965432109', '78.901.234/0001-66', 'Rua das Violetas, 234, Salvador, BA', 'http://www.techtrade.com.br');
 
+
+
 CREATE TABLE funcionarios ( 
   idFuncionario INT AUTO_INCREMENT NOT NULL,
   nome VARCHAR(150) NOT NULL,
@@ -257,6 +243,23 @@ values
 ('Rodrigo Carvalho', 'rodrigo.carvalho@example.com', '(31) 95678-9012', '654.321.098-76', 'Analista de marketing', '123465879', 'Avenida dos Girassóis, 876, Bairro Luz do Dia, Cidade da Harmonia, Estado do Amor, CEP: 21098-765', 'fvdes32fcghde');
 
 
+
+CREATE TABLE `clientes` ( 
+  `idCliente` INT AUTO_INCREMENT NOT NULL,
+  `representanteImpresa` varchar(70) not null,
+  `telefoneRepresentante` varchar(20) not null,
+  `cargoRepresentante`varchar(50) not null,
+  `cpfRepresentante` varchar(20) not null,
+  `nomeImpresa` VARCHAR(150) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `telefoneImpresa` VARCHAR(20) NOT NULL,
+  `cnpj` VARCHAR(20) NOT NULL,
+  `endereco` VARCHAR(250) NOT NULL,
+  `siteImpresa` VARCHAR(200) ,
+  CONSTRAINT `PRIMARY` PRIMARY KEY (`idCliente`)
+);
+
+
 INSERT INTO clientes (representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa) 
 VALUES 
 ('Tiago Ferreira Souza', '11987665432', 'Diretor Comercial', '890.456.123-78', 'BlueTech Solutions', 'tiago.souza@bluetech.com.br', '11987665432', '78.456.123/0001-19', 'Rua das Palmeiras, 135, São Paulo, SP', 'http://www.bluetech.com.br'),
@@ -279,6 +282,19 @@ VALUES
 ('Juliana Cristina Alves', '11910978765', 'Coordenadora de Produção', '567.123.890-45', 'Tech Vision Ltda', 'juliana.alves@techvision.com.br', '11910978765', '56.123.890/0001-36', 'Avenida das Tulipas, 678, Curitiba, PR', 'http://www.techvision.com.br'),
 ('Felipe Henrique Costa', '11909867654', 'Gerente de Vendas', '678.234.901-56', 'Future Solutions S.A.', 'felipe.costa@futuresolutions.com.br', '11909867654', '67.234.901/0001-37', 'Rua das Orquídeas, 890, Manaus, AM', 'http://www.futuresolutions.com.br'),
 ('Mariana Oliveira Mendes', '11998756543', 'Analista de Operações', '789.345.012-67', 'Bright Solutions Ltda', 'mariana.mendes@brightsolutions.com.br', '11998756543', '78.345.012/0001-38', 'Avenida das Nações, 234, São Paulo, SP', 'http://www.brightsolutions.com.br');
+
+
+
+CREATE TABLE `cadastro` ( 
+  `idCadastro` INT AUTO_INCREMENT NOT NULL,
+  `nome` VARCHAR(150) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `telefone` VARCHAR(20) NOT NULL,
+  `cpf` VARCHAR(20) NOT NULL,
+  `endereco` VARCHAR(250) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  CONSTRAINT `PRIMARY` PRIMARY KEY (`idCadastro`)
+);
 
 
 INSERT INTO cadastro (nome, email, telefone, cpf, endereco, senha)

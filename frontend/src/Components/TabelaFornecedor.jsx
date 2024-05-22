@@ -1,64 +1,171 @@
-import axios from "axios";
 import React, { useState, useEffect } from 'react';
-import { Button } from 'primereact/button';
+import axios from "axios";
+// import { classNames } from 'primereact/utils';
+// import { Dialog } from 'primereact/dialog';
+import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { InputText } from 'primereact/inputtext';
+import { IconField } from 'primereact/iconfield';
+import { InputIcon } from 'primereact/inputicon';
+// import { Dropdown } from 'primereact/dropdown';
+// import { InputNumber } from 'primereact/inputnumber';
+import { Button } from 'primereact/button';
+// import { ProgressBar } from 'primereact/progressbar';
+// import { Calendar } from 'primereact/calendar';
+// import { MultiSelect } from 'primereact/multiselect';
+// import { Slider } from 'primereact/slider';
+// import { Tag } from 'primereact/tag';
+// import { TriStateCheckbox } from 'primereact/tristatecheckbox'
+
 // import { CustomerService } from './service/CustomerService';
 
-export default function PaginatorTemplateDemo() {
+export default function TabelaFornecedor() {
+  // const [customers, setCustomers] = useState(null);
+    const [filters, setFilters] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [fornecedores, setFornecedores] = useState([]);
 
     const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
     const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
-    // useEffect(() => {
-    //     CustomerService.getCustomersMedium().then((dataSet) => setCustomers(dataSet));
-    // }, []);
 
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const { data } = await axios.get("http://localhost:3001/fornecedor");
-          setFornecedores(data);
-        } catch (error) {
-          console.error("Erro ao buscar Fornecedor:", error); // Adiciona este log de erro
-        }
-      };
-  
-      fetchData();
+      axios.get("http://localhost:3001/fornecedor").then((res) => setFornecedores(res.data))
+      setLoading(false);
+      initFilters();
     }, []);
 
-    // const dataSet = axios.get("http://localhost:3001/fornecedor");
+    const getCustomers = (data) => {
+      return [...(data || [])].map((d) => {
+          d.date = new Date(d.date);
+
+          return d;
+      });
+  };
+
+  const clearFilter = () => {
+      initFilters();
+  };
+
+  const onGlobalFilterChange = (e) => {
+    const value = e.target.value;
+    let _filters = { ...filters };
+
+    _filters['global'].value = value;
+
+    setFilters(_filters);
+    setGlobalFilterValue(value);
+};
+
+const initFilters = () => {
+  setFilters({
+      global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+
+      representanteImpresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+
+      telefoneRepresentante: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+
+      cargoRepresentante: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+
+      cpfRepresentante: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+
+      nomeImpresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+
+      email: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+
+      telefoneImpresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+
+      cnpj: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+
+      endereco: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+
+      siteImpresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+  });
+  setGlobalFilterValue('');
+};
+
+const renderHeader = () => {
+  return (
+      <div className="flex justify-content-between">
+          <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined onClick={clearFilter} />
+          <IconField iconPosition="left">
+              <InputIcon className="pi pi-search" />
+              <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
+          </IconField>
+      </div>
+  );
+};
+
+const header = renderHeader();
+
+
 
     return (
         <div className="card">
-            <DataTable value={fornecedores} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}
-                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                    currentPageReportTemplate="{first} to {last} of {totalRecords}" paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}>
+            <DataTable 
+            showGridlines 
+            stripedRows 
+            removableSort 
+            loading={loading}
+            value={fornecedores}
+            filters={filters} 
+            header={header}
+            emptyMessage="Nenhum fornecedor encontrado."
+            globalFilterFields={[
+              'idFornecedor', 
+              'representanteImpresa', 
+              'telefoneRepresentante', 
+              'cargoRepresentante', 
+              'cpfRepresentante',
+              'nomeImpresa',
+              'email',
+              'telefoneImpresa',
+              'cnpj',
+              'endereco',
+              'siteImpresa',
+            ]}
+            paginator 
+            dataKey="idFornecedor" 
+            rows={8} 
+            rowsPerPageOptions={[5, 10, 25, 50]} 
+            tableStyle={{ minWidth: '50rem' }}
+            paginatorLeft={paginatorLeft} 
+            paginatorRight={paginatorRight}>
 
-{fornecedores.map((fornecedores) => (
-            <Column key={fornecedores.idFornecedor}>
-              <Column field="idFornecedor" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="representanteImpresa" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="telefoneRepresentante" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="cargoRepresentante" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="cpfRepresentante" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="nomeImpresa" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="email" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="cnpj" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="endereço" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="telefoneImpresa" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="siteImpresa" header="Name" style={{ width: '25%' }}></Column>
-              <Column field="excluir" header="Ação" style={{ width: '25%' }}>
+              <Column field="idFornecedor" sortable  header="idFornecedor" style={{ width: '25%' }}></Column>
+
+              <Column field="representanteImpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="representanteImpresa" style={{ width: '25%' }}></Column>
+
+              <Column field="telefoneRepresentante" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="telefoneRepresentante" style={{ width: '25%' }}></Column>
+
+              <Column field="cargoRepresentante" filter filterPlaceholder="Filtre pelo cargo" sortable  header="cargoRepresentante" style={{ width: '25%' }}></Column>
+
+              <Column field="cpfRepresentante" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cpfRepresentante" style={{ width: '25%' }}></Column>
+
+              <Column field="nomeImpresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="nomeImpresa" style={{ width: '25%' }}></Column>
+
+              <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="email" style={{ width: '25%' }}></Column>
+              
+              <Column field="cnpj" filter filterPlaceholder="Filtre pelo final do cnpj" sortable  header="cnpj" style={{ width: '25%' }}></Column>
+
+              <Column field="endereço" filter filterPlaceholder="Filtre pelo endereço" sortable  header="endereço" style={{ width: '25%' }}></Column>
+
+              <Column field="telefoneImpresa" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="telefoneImpresa" style={{ width: '25%' }}></Column>
+
+              <Column field="siteImpresa" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="siteImpresa" style={{ width: '25%' }}></Column>
+
+              {/* <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column> */}
+
+              {/* <Column field="excluir" header="Ação" style={{ width: '25%' }}>
                 <button
                   variant="danger"
                   // onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
                 >
                   Excluir
                 </button>
-              </Column>
-            </Column>
-          ))}
+              </Column> */}
                 
             </DataTable>
         </div>
