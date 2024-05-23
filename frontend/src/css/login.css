@@ -5,45 +5,53 @@
 }
 
 .login {
-    background-color: antiquewhite;
+    background-color: #ffffff;
     height: 400px;
-    width: 500px;
+    width: 400px;
     align-content: center;
     align-self: center;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.208) 1px 1px 20px 1px;
 }
 
 .login h2 {
-    color: blue;
     text-align: center;
-    background-color: rgb(180, 180, 180);
     margin-bottom: 30px;
 }
 
 
 .quadroForm {
-    background-color: rgb(143, 143, 143);
     display: flex;
 }
 
 .quadroForm form {
-    background-color: rgb(93, 93, 93);
     margin-right: auto;
     margin-left: auto;
     height: 100%;
     align-content: center;
 }
 
-.quadroForm input {
-    width: 100%;
-    height: 40px;
-    border-radius: 20px;
-    border: 1.5px solid white;
-}
-
 .quadroForm button {
     width: 100%;
+    padding: 8px;
+    margin-top: 12px;
 }
+
+.login .link {
+    text-decoration: none !important;
+    font-weight: 500;
+    color: #0671d8;
+}
+
+/* .quadroForm input {
+    width: 100%;
+    padding: 5px 8px;
+    border-radius: 10px;
+    border: 1.5px solid white;
+    background-color: #ebebeb;
+}
+
 
 .login form input {
     margin-bottom: 10px;
-}
+} */
