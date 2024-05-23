@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "datatables.net-dt": "^2.0.7"
+    "datatables.net-dt": "^2.0.7",
+    "primereact": "^10.6.5"
   }
 }

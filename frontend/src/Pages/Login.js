@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from "../provider/AuthProvider";
 import axios from "axios";
-import Header from "../Components/Navegacao";
+import "../css/login.css"
 
 const Login = () => {
   const { setToken } = useAuth();
@@ -74,24 +74,20 @@ const Login = () => {
     }
   }, [data]);
 
-  
-
-  // setTimeout(() => {
-  //   handleLogin();
-  // }, 3 * 1000);
   return (
-    <>
-      <div>
-        {/* {data && <Header data={data} />} */}
+    <div className="loginContainer">
+      <div className="login">
         <h2>Login</h2>
+        <div className="quadroForm">
         <form onSubmit={handleLogin}>
-          <input type="text" name="cpf" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} />
-          <input type="password" name="senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+          <input type="text" name="cpf" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} /><br />
+          <input type="password" name="senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} /><br />
           <button type="submit">Entrar</button>
-        </form>
         <br/>Não possui uma conta? <Link to="/cadastro"> Cadastre-se</Link>
+        </form>
+        </div>
       </div>
-    </>
+    </div>
   )
 
 };
