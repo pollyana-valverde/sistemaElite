@@ -39,9 +39,6 @@ const Login = () => {
           }
         });
           
-        //Pega o dado do nome para o perfil
-          // setData(response.data[0]);
-          // console.log("resposta: ", data);
 
           if (Array.isArray(response.data) && response.data.length > 0) {
             const data = response.data[0].nome;
@@ -53,11 +50,7 @@ const Login = () => {
           } else {
             console.log("A resposta do servidor não contém os dados esperados.");
           }
-          
-          // const data = response.data[0].nome
-          // console.log("resposta: ", data)
-
-         
+                   
 
           alert('Login realizado com sucesso!')
         // Navega para a home page quando autenticado
@@ -92,9 +85,6 @@ const Login = () => {
           <Col><button className='btnFormSistema' type="submit">Entrar</button></Col>
           
         </Row>
-
-          {/* <input type="text" name="cpf" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} /><br />
-          <input type="password" name="senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} /><br /> */}
           
         <br/>Não possui uma conta? <Link className="link" to="/cadastro"> Cadastre-se</Link>
         </form>
