@@ -75,7 +75,7 @@ const Login = () => {
   }, [data]);
 
   return (
-    <>
+    <div className="loginContainer">
       <div className="login">
         <h2>Login</h2>
         <div className="quadroForm">
@@ -87,7 +87,7 @@ const Login = () => {
         </form>
         </div>
       </div>
-    </>
+    </div>
   )
 
 };

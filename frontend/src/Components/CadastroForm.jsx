@@ -1,7 +1,7 @@
 // CadastroForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../provider/AuthProvider';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -92,6 +92,7 @@ const CadastroForm = () => {
     </Row>
 
     <button className='btnFormSistema' type="submit">Salvar</button>
+    <br/>Já tem uma conta? <Link to="/login"> Login</Link>
   </Form>
   );
 };
