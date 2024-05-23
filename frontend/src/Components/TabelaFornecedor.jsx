@@ -88,8 +88,8 @@ const initFilters = () => {
 //componente para limpar o input de texto com o filtro global
 const renderHeader = () => {
   return (
-      <div className="flex justify-content-between">
-        <div className='flex mb-3 px-3'>
+      <div className="flex justify-content-between ">
+        <div className='flex mb-3 px-3 mt-3'>
         <Button
         className='mr-2 border-round-lg'
         label="Delete"
@@ -152,19 +152,17 @@ const handleExcluirVariosFornecedor = async (idFornecedor) => {
 const deleteSelectedProducts =  () => {
 
   let _products = fornecedores.filter((id) => selectedFornecedores.includes(id));
-  
-  // localStorage.setItem(setFornecedores, "_products");
-  
+    
 
   setFornecedores(_products);
   setSelectedFornecedores(null);
 
-  function printar(item, index) {
+  function excluirSelecionados(item, index) {
     handleExcluirVariosFornecedor(item.idFornecedor);
     console.log(item.idFornecedor); 
   }
 
-_products.forEach(printar);
+_products.forEach(excluirSelecionados);
 
 
 toast.current.show({
@@ -192,14 +190,6 @@ onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
 };
 
 //////////////////////////////////////////// editar e atualizar dados com inputs ////////////////////////////
-
-// const handleChange = (e) => {
-//   const { name, value } = e.target;
-//   setValues({
-//       ...values,
-//       [name]: value
-//   });
-// };
 
 //função que atualiza o dato e mostra o pop-up
 const handleAtualizarFornecedor =  (e) => {
@@ -231,6 +221,9 @@ const handleAtualizarFornecedor =  (e) => {
   let { newData, index } = e;
 
   _products[index] = newData;
+  console.log(newData.idFornecedor);
+
+  console.log(_products)
 
   setFornecedores(_products);
   toast.current.show({
