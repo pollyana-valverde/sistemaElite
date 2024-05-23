@@ -207,7 +207,7 @@ router.get('/fornecedor', (req, res) => {
 });
 
 // Rota para buscar um registro específico pelo ID
-router.get('/fornecedor/:id', (req, res) => {
+router.get('/fornecedor/:idFornecedor', (req, res) => {
   const { id } = req.params;
   connection.query('SELECT * FROM fornecedores WHERE id = ?', [id], (err, results) => {
     if (err) {
@@ -238,7 +238,7 @@ router.post('/fornecedor', (req, res) => {
 });
 
 // Rota para atualizar um registro existente pelo ID
-router.put('/fornecedor/:id', (req, res) => {
+router.put('/fornecedor/:idFornecedor', (req, res) => {
   const { id } = req.params;
   const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
   connection.query('UPDATE fornecedores SET representanteImpresa = ?, telefoneRepresentante = ?, cargoRepresentante = ?, cpfRepresentante = ?, nomeImpresa = ?, email = ?, telefoneImpresa = ?, cnpj = ?, endereco = ?, siteImpresa = ? WHERE id = ?', 
