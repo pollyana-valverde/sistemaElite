@@ -8,8 +8,6 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-// import { Toolbar } from 'primereact/toolbar';
-// import { useParams } from 'react-router-dom';
 
 
 
@@ -20,25 +18,6 @@ export default function TabelaFornecedor() {
   const [fornecedores, setFornecedores] = useState([]);
   const toast = useRef(null);
   const [selectedFornecedores, setSelectedFornecedores] = useState(null);
-  // const {id} = useParams();
-  // const [values, setValues] = useState([
-
-  // ])
-
-//   const [values, setValues] = useState({
-//     representanteImpresa: '',
-//     telefoneRepresentante: '',
-//     cargoRepresentante: '',
-//     cpfRepresentante: '',
-//     nomeImpresa: '',
-//     email: '',
-//     cnpj: '',
-//     endereco: '',
-//     telefoneImpresa: '',
-//     siteImpresa: ''
-// });
-  // const [products, setProducts] = useState(null);
-  // const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
 
 
 //paginação
@@ -53,14 +32,6 @@ export default function TabelaFornecedor() {
       setLoading(false);
       initFilters(); 
     }, []);
-
-    // const getCustomers = (data) => {
-    //   return [...(data || [])].map((d) => {
-    //       d.date = new Date(d.date);
-
-    //       return d;
-    //   });
-  // };
 
 
 
@@ -141,7 +112,7 @@ const renderHeader = () => {
 
 ///////////////////////////////// deletar linha da tabela ////////////////////////////////
 
-//pega os dados para serem excluídos pela url
+//pega os dados para serem excluídos pela url (específico)
 const handleExcluirFornecedor = async (idFornecedor) => {
   try {
     await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
@@ -161,47 +132,46 @@ const handleExcluirFornecedor = async (idFornecedor) => {
 };
 
 
+//pega os dados para serem excluídos pela url (geral)
+const handleExcluirVariosFornecedor = async (idFornecedor) => {
+  try {
+    await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
+    // Atualiza a lista de fornecedores após a exclusão
+    const { data } = await axios.get("http://localhost:3001/fornecedor");
+    setFornecedores(data);
+    console.log("Fornecedor excluído com sucesso!");
+  } catch (error) {
+    console.error("Erro ao excluir Fornecedor:", error);
+  }
+  //tipo um modal pequeno que avisa que foi bem sucedido
+};
+
+
+
 //deleta os registros que foram selecinados
-const deleteSelectedProducts = async (idFornecedor) => {
+const deleteSelectedProducts =  () => {
+
+  let _products = fornecedores.filter((id) => selectedFornecedores.includes(id));
   
-  // // setProducts(_products);
-  // // setDeleteProductsDialog(false);
-  // // setSelectedProducts(null);
-  // try {
-  //   let _products = fornecedores.filter((id) => !selectedFornecedores.includes(id));
-  //   const { data } = await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
-  //   const modifiedData = data.map(r => ({
-  //     ...r
-  //   }));
-  //   await axios.delete(`http://localhost:3001/fornecedorExcluir/${idFornecedor}`);
+  // localStorage.setItem(setFornecedores, "_products");
+  
 
-  //   console.log("idFornecedor quando deleta", idFornecedor)
-  //   // Atualiza a lista de fornecedores após a exclusão
-   
-  //   // const { data } =  axios.get("http://localhost:3001/fornecedor");
+  setFornecedores(_products);
+  setSelectedFornecedores(null);
 
-  //   setFornecedores(_products)
-  //   setSelectedFornecedores(modifiedData);
-  //   console.log("Fornecedor excluído com sucesso!");
-  // } catch (error) {
-  //   console.error("Erro ao excluir Fornecedor:", error);
-    
-  //   console.log("idFornecedor quando deleta", idFornecedor)
-  // }
+  function printar(item, index) {
+    handleExcluirVariosFornecedor(item.idFornecedor);
+    console.log(item.idFornecedor); 
+  }
 
-  const allInputs = document.getElementsByClassName('p-checkbox-input');
-  console.log("selected", allInputs)
+_products.forEach(printar);
 
-  const selectedCheckboxIds = allInputs.filter((input) => input.checked).map(input => input.data[0]);
 
-  axios.delete('http://localhost:3001/fornecedor', { selectedCheckboxIds });
-
-  toast.current.show({
-    severity: 'success',
-    summary: 'Successful',
-    detail: 'Products Deleted',
-    life: 3000,
-  });
+toast.current.show({
+  severity: 'success',
+  summary: 'Ação bem-sucedida!',
+  detail: 'Registros deletados',
+  life: 3000,});
 };
 
 const actionBodyTemplate = (fornecedores) => {
@@ -334,36 +304,36 @@ const header = renderHeader();
             dataKey="idFornecedor" 
             rows={3} 
             rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
-            tableStyle={{ minWidth: '50rem' }}
+            tableStyle={{ minWidth: '200rem' }}
             paginatorLeft={paginatorLeft} 
             paginatorRight={paginatorRight}>
               <Column selectionMode="multiple" exportable={false}></Column>
 
-              <Column field="idFornecedor" sortable   header="idFornecedor" style={{ width: '25%' }}></Column>
+              <Column field="idFornecedor" sortable   header="idFornecedor" style={{ width: 'auto' }}></Column>
 
-              <Column field="representanteImpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="representanteImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="representanteImpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="representanteImpresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="telefoneRepresentante" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="telefoneRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="telefoneRepresentante" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="telefoneRepresentante" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="cargoRepresentante" filter filterPlaceholder="Filtre pelo cargo" sortable  header="cargoRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="cargoRepresentante" filter filterPlaceholder="Filtre pelo cargo" sortable  header="cargoRepresentante" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="cpfRepresentante" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cpfRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="cpfRepresentante" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cpfRepresentante" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="nomeImpresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="nomeImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="nomeImpresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="nomeImpresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="email" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="email" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
               
-              <Column field="cnpj" filter filterPlaceholder="Filtre pelo final do cnpj" sortable  header="cnpj" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="cnpj" filter filterPlaceholder="Filtre pelo final do cnpj" sortable  header="cnpj" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="endereço" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="endereço" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="telefoneImpresa" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="telefoneImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="telefoneImpresa" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="telefoneImpresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="siteImpresa" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="siteImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="siteImpresa" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="siteImpresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column header="Editar" rowEditor={allowEdit} headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+              <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 
-              <Column header="Excluir" body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }} style={{ width: '25%' }}></Column>
+              <Column header="Excluir" body={actionBodyTemplate} headerStyle={{ Width: '8rem' }} style={{ width: 'auto' }}></Column>
 
                 
             </DataTable>

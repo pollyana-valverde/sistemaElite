@@ -265,23 +265,6 @@ router.delete('/fornecedor/:id', (req, res) => {
   });
 });
 
-
-// Rota para excluir vaários registro pelo ID
-router.delete('/fornecedorExcluir/:id', (req, res) => {
-  const { id } = req.params;
-  connection.query('DELETE FROM fornecedores WHERE idFornecedor = ?', [...id], (err, result) => {
-    if (err) {
-      console.error('Erro ao excluir o registro:', err);
-      res.status(500).json({ error: 'Erro ao excluir o registro' });
-      return;
-    }
-    res.json({ message: 'Registro excluído com sucesso' });
-  });
-});
-
-
-
-
 ////////////////////////////////////////////////// clientes /////////////////////////////////////////////
 // Rota para listar todos os registros
 router.get('/cliente', (req, res) => {
