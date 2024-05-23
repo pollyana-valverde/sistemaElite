@@ -41,3 +41,9 @@ justify-content: center;
 input {
     border-color: rgba(32, 32, 32, 0.484) !important;
 }
+
+.link {
+    text-decoration: none !important;
+    font-weight: 500;
+    color: #0671d8;
+}

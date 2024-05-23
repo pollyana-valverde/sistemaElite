@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import '../css/cadastroform.css'
+
 
 const CadastroForm = () => {
 
@@ -100,7 +100,7 @@ const CadastroForm = () => {
 <button className='btnFormSistema btnCadastro'  type="submit">Salvar</button>
 
 </div>
-      <br />Já tem uma conta? <Link to="/login"> Login</Link>
+      <br />Já tem uma conta? <Link className="link" to="/login"> Login</Link>
     
 
     </Form>

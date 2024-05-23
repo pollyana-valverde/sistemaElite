@@ -1,7 +1,7 @@
 //Cadastro
 import React from "react";
 import CadastroForm from "../Components/CadastroForm";
-import '../css/cadastroForm.css'
+import '../css/cadastroform.css'
 
 const Cadastro = () => {
   return (
