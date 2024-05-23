@@ -6,6 +6,8 @@ import { useAuth } from '../provider/AuthProvider';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+
 
 const CadastroForm = () => {
 
@@ -54,46 +56,58 @@ const CadastroForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className='formsSistema'>
+  <Container className="formu" >
+    <Row className='rowForms'>
+      <Col lg={8}>
+      <Form onSubmit={handleSubmit} className='formsSistema'>
+      
+        <Row className="mb-2">
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>Nome</Form.Label>
+            <Form.Control type="text" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} />
+          </Form.Group>
 
-    <Row className="mb-3">
-      <Form.Group as={Col} controlId="formGridEmail">
-        <Form.Label>Nome</Form.Label>
-        <Form.Control type="text" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} />
-      </Form.Group>
+          <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Label>CPF</Form.Label>
+            <Form.Control type="text" name="cpf" placeholder="CPF" value={formData.cpf} onChange={handleChange} />
+          </Form.Group>
+        </Row>
 
-      <Form.Group as={Col} controlId="formGridPassword">
-        <Form.Label>CPF</Form.Label>
-        <Form.Control type="text" name="cpf" placeholder="CPF" value={formData.cpf} onChange={handleChange} />
-      </Form.Group>
-    </Row>
+        <Row>
+          <Col className="mb-2" xs={8}>
+            <Form.Label>Endereço</Form.Label>
+            <Form.Control type="text" name="endereco" placeholder="Endereço" value={formData.endereco} onChange={handleChange} />
+          </Col>
+          <Col>
+            <Form.Label>Telefone</Form.Label>
+            <Form.Control type="number" name="telefone" placeholder="Telefone" value={formData.telefone} onChange={handleChange} />
+          </Col>
+        </Row>
 
-    <Row>
-      <Col className="mb-3" xs={8}>
-        <Form.Label>Endereço</Form.Label>
-        <Form.Control type="text" name="endereco" placeholder="Endereço" value={formData.endereco} onChange={handleChange} />
+        <Row className="mb-2">
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Label>Senha</Form.Label>
+            <Form.Control type="password" name="senha" placeholder="Senha" value={formData.senha} onChange={handleChange} />
+          </Form.Group>
+        </Row>
+      
+<div className='btnCadastroPai'>
+<button className='btnFormSistema btnCadastro'  type="submit">Salvar</button>
+
+</div>
+      <br />Já tem uma conta? <Link className="link" to="/login"> Login</Link>
+    
+
+    </Form>
       </Col>
-      <Col>
-        <Form.Label>Telefone</Form.Label>
-        <Form.Control type="number" name="telefone" placeholder="Telefone" value={formData.telefone} onChange={handleChange} />
-      </Col>
     </Row>
+ </Container>
 
-    <Row className="mb-3">
-      <Form.Group as={Col} controlId="formGridEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
-      </Form.Group>
-
-      <Form.Group as={Col} controlId="formGridPassword">
-        <Form.Label>Senha</Form.Label>
-        <Form.Control type="password" name="senha" placeholder="Senha" value={formData.senha} onChange={handleChange} />
-      </Form.Group>
-    </Row>
-
-    <button className='btnFormSistema' type="submit">Salvar</button>
-    <br/>Já tem uma conta? <Link to="/login"> Login</Link>
-  </Form>
   );
 };
 

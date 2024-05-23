@@ -265,6 +265,7 @@ router.delete('/fornecedor/:id', (req, res) => {
   });
 });
 
+
 ////////////////////////////////////////////////// clientes /////////////////////////////////////////////
 // Rota para listar todos os registros
 router.get('/cliente', (req, res) => {

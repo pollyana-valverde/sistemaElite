@@ -5,6 +5,8 @@ import { useAuth } from "../provider/AuthProvider";
 import axios from "axios";
 import "../css/login.css"
 
+import {Col, Form, Row} from 'react-bootstrap';
+
 const Login = () => {
   const { setToken } = useAuth();
   const navegacao = useNavigate();
@@ -37,25 +39,18 @@ const Login = () => {
           }
         });
           
-        //Pega o dado do nome para o perfil
-          // setData(response.data[0]);
-          // console.log("resposta: ", data);
 
           if (Array.isArray(response.data) && response.data.length > 0) {
             const data = response.data[0].nome;
             
-            console.log("Dados recebidos do servidor:", response.data[0]);
+            console.log("Dados recebidos do servidor:", response);
 
             console.log("data :", data);
             setToken(`${data}`);
           } else {
             console.log("A resposta do servidor não contém os dados esperados.");
           }
-          
-          // const data = response.data[0].nome
-          // console.log("resposta: ", data)
-
-         
+                   
 
           alert('Login realizado com sucesso!')
         // Navega para a home page quando autenticado
@@ -80,10 +75,18 @@ const Login = () => {
         <h2>Login</h2>
         <div className="quadroForm">
         <form onSubmit={handleLogin}>
-          <input type="text" name="cpf" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} /><br />
-          <input type="password" name="senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} /><br />
-          <button type="submit">Entrar</button>
-        <br/>Não possui uma conta? <Link to="/cadastro"> Cadastre-se</Link>
+        <Row className="mb-3 d-block">
+          <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Control type="text" name="cpf" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)}  />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Control  type="password" name="senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)}/>
+          </Form.Group>
+          <Col><button className='btnFormSistema' type="submit">Entrar</button></Col>
+          
+        </Row>
+          
+        <br/>Não possui uma conta? <Link className="link" to="/cadastro"> Cadastre-se</Link>
         </form>
         </div>
       </div>
