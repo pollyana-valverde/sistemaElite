@@ -43,15 +43,6 @@
     color: #0671d8;
 }
 
-/* .quadroForm input {
-    width: 100%;
-    padding: 5px 8px;
-    border-radius: 10px;
-    border: 1.5px solid white;
-    background-color: #ebebeb;
+.quadroForm input {
+    border-color: rgba(32, 32, 32, 0.484);
 }
-
-
-.login form input {
-    margin-bottom: 10px;
-} */

@@ -21,9 +21,6 @@ const Header = () => {
         caminho: "/",
         nome: "Home",
       },{
-        caminho: "/contato",
-        nome: "Contato",
-      },{
         caminho: "/logout",
         nome: "Logout",
       },{
@@ -70,23 +67,6 @@ const Header = () => {
       }
   ]);
 
-  // const [linksNaoAuth, setLinkNaoAuth] = useState([
-  //     {
-  //       titulo: <li className='headerLineNav'><p>Main</p></li>,
-  //       caminho: "/cadastro",
-  //       nome: "Cadastro",
-  //     },{
-  //       caminho: "/login",
-  //       nome: "Login",
-  //     }
-  // ])
-
-
-  if (!token) {
-    
-  } else {
-    
-  }
 
   return (
     <>
@@ -120,19 +100,9 @@ const Header = () => {
                 </nav>
               </header>
             </Col>
-            <Col lg={9} md={9} sm={9}><Rotas /></Col></>
+            <Col lg={8} md={8} sm={8}><Rotas /></Col></>
              ) : (
             <Rotas />
-            // <div>
-            //   {linksNaoAuth.map((linkNaoAuth, index) => (
-            //     <>
-            //       {linkNaoAuth.titulo}
-            //       <li className='lineNavLink'>
-            //         <a href={linkNaoAuth.caminho} className='navProfile' >{linkNaoAuth.nome}</a>
-            //       </li>
-            //     </>
-            //   ))}
-            // </div>
           )}
           
           </Row>

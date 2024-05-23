@@ -8,8 +8,8 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-// import { Toolbar } from 'primereact/toolbar';
-// import { useParams } from 'react-router-dom';
+import { Toolbar } from 'primereact/toolbar';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -19,26 +19,30 @@ export default function TabelaFornecedor() {
     const [loading, setLoading] = useState(false);
   const [fornecedores, setFornecedores] = useState([]);
   const toast = useRef(null);
-  const [selectedFornecedores, setSelectedFornecedores] = useState(null);
+  const [selectedProducts, setSelectedProducts] = useState(null);
   // const {id} = useParams();
   // const [values, setValues] = useState([
 
   // ])
 
-//   const [values, setValues] = useState({
-//     representanteImpresa: '',
-//     telefoneRepresentante: '',
-//     cargoRepresentante: '',
-//     cpfRepresentante: '',
-//     nomeImpresa: '',
-//     email: '',
-//     cnpj: '',
-//     endereco: '',
-//     telefoneImpresa: '',
-//     siteImpresa: ''
-// });
+  const [values, setValues] = useState({
+    representanteImpresa: '',
+    telefoneRepresentante: '',
+    cargoRepresentante: '',
+    cpfRepresentante: '',
+    nomeImpresa: '',
+    email: '',
+    cnpj: '',
+    endereco: '',
+    telefoneImpresa: '',
+    siteImpresa: ''
+});
   // const [products, setProducts] = useState(null);
   // const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
+
+
+
+
 
 
 //paginação
@@ -118,20 +122,10 @@ const initFilters = () => {
 const renderHeader = () => {
   return (
       <div className="flex justify-content-between">
-        <div className='flex mb-3 px-3'>
-        <Button
-        className='mr-2 border-round-lg'
-        label="Delete"
-        icon="pi pi-trash"
-        severity="danger"
-        onClick={deleteSelectedProducts}
-        disabled={!selectedFornecedores || !selectedFornecedores.length}
-      />
-          <Button className='border-round-lg' type="button" icon="pi pi-filter-slash" label="Clear" outlined onClick={clearFilter} />
-        </div>
-          <IconField iconPosition="left" className=' align-content-center'>
+          <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined onClick={clearFilter} />
+          <IconField iconPosition="left">
               <InputIcon className="pi pi-search" />
-              <InputText className='border-round-lg' value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
+              <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
           </IconField>
       </div>
   );
@@ -162,46 +156,32 @@ const handleExcluirFornecedor = async (idFornecedor) => {
 
 
 //deleta os registros que foram selecinados
-const deleteSelectedProducts = async (idFornecedor) => {
-  
-  // // setProducts(_products);
-  // // setDeleteProductsDialog(false);
-  // // setSelectedProducts(null);
-  // try {
-  //   let _products = fornecedores.filter((id) => !selectedFornecedores.includes(id));
-  //   const { data } = await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
-  //   const modifiedData = data.map(r => ({
-  //     ...r
-  //   }));
-  //   await axios.delete(`http://localhost:3001/fornecedorExcluir/${idFornecedor}`);
+const deleteSelectedProducts = () => {
+  // let _products = products.filter((val) => !selectedProducts.includes(val));
 
-  //   console.log("idFornecedor quando deleta", idFornecedor)
-  //   // Atualiza a lista de fornecedores após a exclusão
-   
-  //   // const { data } =  axios.get("http://localhost:3001/fornecedor");
-
-  //   setFornecedores(_products)
-  //   setSelectedFornecedores(modifiedData);
-  //   console.log("Fornecedor excluído com sucesso!");
-  // } catch (error) {
-  //   console.error("Erro ao excluir Fornecedor:", error);
-    
-  //   console.log("idFornecedor quando deleta", idFornecedor)
-  // }
-
-  const allInputs = document.getElementsByClassName('p-checkbox-input');
-  console.log("selected", allInputs)
-
-  const selectedCheckboxIds = allInputs.filter((input) => input.checked).map(input => input.data[0]);
-
-  axios.delete('http://localhost:3001/fornecedor', { selectedCheckboxIds });
-
+  // setProducts(_products);
+  // setDeleteProductsDialog(false);
+  // setSelectedProducts(null);
   toast.current.show({
     severity: 'success',
     summary: 'Successful',
     detail: 'Products Deleted',
     life: 3000,
   });
+};
+
+const leftToolbarTemplate = () => {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button
+        label="Delete"
+        icon="pi pi-trash"
+        severity="danger"
+        onClick={deleteSelectedProducts}
+        disabled={!selectedProducts || !selectedProducts.length}
+      />
+    </div>
+  );
 };
 
 const actionBodyTemplate = (fornecedores) => {
@@ -213,7 +193,6 @@ icon="pi pi-trash"
 rounded
 outlined
 severity="danger"
-className='border-round-lg '
 onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
 />
                   
@@ -298,17 +277,15 @@ const header = renderHeader();
         <>
         <Toast ref={toast} />
         <div className="card">
-        {/* <Toolbar
+        <Toolbar
           className="mb-4"
           left={leftToolbarTemplate}
-        ></Toolbar> */}
-        
+        ></Toolbar>
             <DataTable 
-            size='small'
             editMode="row" //modo de edição, no caso, a row toda
             onRowEditComplete={handleAtualizarFornecedor} //executa quando terminar de fazer a edição
-            selection={selectedFornecedores}
-            onSelectionChange={(e) => setSelectedFornecedores(e.value)}
+            selection={selectedProducts}
+            onSelectionChange={(e) => setSelectedProducts(e.value)}
             showGridlines //mostrar linhas da tabela
             stripedRows //linhas de cores diferentes
             removableSort //a partir do 3° click na ordenação volta ao estado inicial (sem ordenação)
@@ -332,7 +309,7 @@ const header = renderHeader();
             ]} //indicando as células que serão filtradas
             paginator //paginação
             dataKey="idFornecedor" 
-            rows={3} 
+            rows={5} 
             rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
             tableStyle={{ minWidth: '50rem' }}
             paginatorLeft={paginatorLeft} 

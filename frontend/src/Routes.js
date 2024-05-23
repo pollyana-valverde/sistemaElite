@@ -4,7 +4,6 @@ import { useAuth } from "./provider/AuthProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 import Home from "./Pages/Home";
-import Contato from "./Pages/Contato";
 import Cadastro from "./Pages/Cadastro";
 import Login from "./Pages/Login";
 import Logout from "./Pages/Logout";
@@ -46,9 +45,6 @@ const Rotas = () => {
           path: "/",
           element: <Home />,
         },{
-          path: "/Contato",
-          element: <Contato />
-        },{
           path: "/CadastroClientes",
           element: <ClienteCadastro />,
         },{
@@ -79,7 +75,6 @@ const Rotas = () => {
           path: "/listaProdutos",
           element: < ListaProdutos/>
         },{
-
           path: "/ListaFuncionario",
           element: < ListaFuncionario/>
         },{
