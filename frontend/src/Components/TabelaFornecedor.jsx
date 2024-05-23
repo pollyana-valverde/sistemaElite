@@ -1,54 +1,82 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
-// import { classNames } from 'primereact/utils';
-// import { Dialog } from 'primereact/dialog';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
-// import { Dropdown } from 'primereact/dropdown';
-// import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
-// import { ProgressBar } from 'primereact/progressbar';
-// import { Calendar } from 'primereact/calendar';
-// import { MultiSelect } from 'primereact/multiselect';
-// import { Slider } from 'primereact/slider';
-// import { Tag } from 'primereact/tag';
-// import { TriStateCheckbox } from 'primereact/tristatecheckbox'
+import { Toast } from 'primereact/toast';
+import { Toolbar } from 'primereact/toolbar';
+import { useParams } from 'react-router-dom';
 
-// import { CustomerService } from './service/CustomerService';
+
 
 export default function TabelaFornecedor() {
-  // const [customers, setCustomers] = useState(null);
-    const [filters, setFilters] = useState(null);
+    const [filters, setFilters] = useState(null); //filtro
+    const [globalFilterValue, setGlobalFilterValue] = useState(''); //filtro global
     const [loading, setLoading] = useState(false);
-    const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [fornecedores, setFornecedores] = useState([]);
+  const toast = useRef(null);
+  const [selectedProducts, setSelectedProducts] = useState(null);
+  // const {id} = useParams();
+  // const [values, setValues] = useState([
 
+  // ])
+
+  const [values, setValues] = useState({
+    representanteImpresa: '',
+    telefoneRepresentante: '',
+    cargoRepresentante: '',
+    cpfRepresentante: '',
+    nomeImpresa: '',
+    email: '',
+    cnpj: '',
+    endereco: '',
+    telefoneImpresa: '',
+    siteImpresa: ''
+});
+  // const [products, setProducts] = useState(null);
+  // const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
+
+
+
+
+
+
+//paginação
     const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
     const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
 
+
+    //link para pegar os dados
     useEffect(() => {
       axios.get("http://localhost:3001/fornecedor").then((res) => setFornecedores(res.data))
       setLoading(false);
-      initFilters();
+      initFilters(); 
     }, []);
 
-    const getCustomers = (data) => {
-      return [...(data || [])].map((d) => {
-          d.date = new Date(d.date);
+    // const getCustomers = (data) => {
+    //   return [...(data || [])].map((d) => {
+    //       d.date = new Date(d.date);
 
-          return d;
-      });
-  };
+    //       return d;
+    //   });
+  // };
 
+
+
+  ////////////////////////////////// filtro //////////////////////////
+
+  //limpar filtro
   const clearFilter = () => {
       initFilters();
   };
 
+
+  //filtro global (filtra tudo)
   const onGlobalFilterChange = (e) => {
     const value = e.target.value;
     let _filters = { ...filters };
@@ -59,6 +87,8 @@ export default function TabelaFornecedor() {
     setGlobalFilterValue(value);
 };
 
+
+//função com o que será filtrado (filtro específico)
 const initFilters = () => {
   setFilters({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -86,6 +116,9 @@ const initFilters = () => {
   setGlobalFilterValue('');
 };
 
+
+
+//componente para limpar o input de texto com o filtro global
 const renderHeader = () => {
   return (
       <div className="flex justify-content-between">
@@ -98,20 +131,168 @@ const renderHeader = () => {
   );
 };
 
+
+
+///////////////////////////////// deletar linha da tabela ////////////////////////////////
+
+//pega os dados para serem excluídos pela url
+const handleExcluirFornecedor = async (idFornecedor) => {
+  try {
+    await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
+    // Atualiza a lista de fornecedores após a exclusão
+    const { data } = await axios.get("http://localhost:3001/fornecedor");
+    setFornecedores(data);
+    console.log("Fornecedor excluído com sucesso!");
+  } catch (error) {
+    console.error("Erro ao excluir Fornecedor:", error);
+  }
+  //tipo um modal pequeno que avisa que foi bem sucedido
+  toast.current.show({
+    severity: 'success',
+    summary: 'Ação bem-sucedida!',
+    detail: 'Registro deletado',
+    life: 3000,});
+};
+
+
+//deleta os registros que foram selecinados
+const deleteSelectedProducts = () => {
+  // let _products = products.filter((val) => !selectedProducts.includes(val));
+
+  // setProducts(_products);
+  // setDeleteProductsDialog(false);
+  // setSelectedProducts(null);
+  toast.current.show({
+    severity: 'success',
+    summary: 'Successful',
+    detail: 'Products Deleted',
+    life: 3000,
+  });
+};
+
+const leftToolbarTemplate = () => {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button
+        label="Delete"
+        icon="pi pi-trash"
+        severity="danger"
+        onClick={deleteSelectedProducts}
+        disabled={!selectedProducts || !selectedProducts.length}
+      />
+    </div>
+  );
+};
+
+const actionBodyTemplate = (fornecedores) => {
+  return (
+    <React.Fragment>
+
+<Button
+icon="pi pi-trash"
+rounded
+outlined
+severity="danger"
+onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
+/>
+                  
+    </React.Fragment>
+  );
+};
+
+//////////////////////////////////////////// editar e atualizar dados com inputs ////////////////////////////
+
+// const handleChange = (e) => {
+//   const { name, value } = e.target;
+//   setValues({
+//       ...values,
+//       [name]: value
+//   });
+// };
+
+//função que atualiza o dato e mostra o pop-up
+const handleAtualizarFornecedor =  (e) => {
+  // e.preventDefault();
+  // try {
+  //      axios.put('http://localhost:3001/fornecedor', values).then(res => {
+  //       setValues({
+  //         representanteImpresa: res.data.representanteImpresa,
+  //         telefoneRepresentante: '',
+  //         cargoRepresentante: '',
+  //         cpfRepresentante: '',
+  //         nomeImpresa: '',
+  //         email: '',
+  //         cnpj: '',
+  //         endereco: '',
+  //         telefoneImpresa: '',
+  //         siteImpresa: ''
+  //     });
+  //     });
+      
+  //     // Limpar o formulário após o envio bem-sucedido
+  //     alert('Fornecedor cadastrado com sucesso!');
+  // } catch (error) {
+  //     console.error('Erro ao cadastrar fornecedor:', error);
+  //     alert('Erro ao cadastrar fornecedor. Verifique o console para mais detalhes.');
+  // }
+  
+  let _products = [...fornecedores];
+  let { newData, index } = e;
+
+  _products[index] = newData;
+
+  setFornecedores(_products);
+  toast.current.show({
+        severity: 'success',
+        summary: 'Ação bem-sucedida!',
+        detail: 'Registro atualizado',
+        life: 3000,});
+
+};
+
+
+//input para editar
+const textEditor = (options) => {
+    // <InputText type="text" value={values.value} onChange={handleChange} />;
+  return <InputText
+        type="text"
+        value={options.value}
+        onChange={(e) => options.editorCallback(e.target.value)}
+      />
+};
+
+
+//o que, de fato, possibilita a edição (enable)
+const allowEdit = (rowData) => {
+  return rowData.name !== 'Blue Band';
+};
+
+
+
 const header = renderHeader();
 
 
 
     return (
+        <>
+        <Toast ref={toast} />
         <div className="card">
+        <Toolbar
+          className="mb-4"
+          left={leftToolbarTemplate}
+        ></Toolbar>
             <DataTable 
-            showGridlines 
-            stripedRows 
-            removableSort 
+            editMode="row" //modo de edição, no caso, a row toda
+            onRowEditComplete={handleAtualizarFornecedor} //executa quando terminar de fazer a edição
+            selection={selectedProducts}
+            onSelectionChange={(e) => setSelectedProducts(e.value)}
+            showGridlines //mostrar linhas da tabela
+            stripedRows //linhas de cores diferentes
+            removableSort //a partir do 3° click na ordenação volta ao estado inicial (sem ordenação)
             loading={loading}
-            value={fornecedores}
-            filters={filters} 
-            header={header}
+            value={fornecedores} //dados que serão pegos
+            filters={filters} //renderizando o filtro
+            header={header} //cabeçalho da tabela com o filtro global e o limpador
             emptyMessage="Nenhum fornecedor encontrado."
             globalFilterFields={[
               'idFornecedor', 
@@ -125,50 +306,47 @@ const header = renderHeader();
               'cnpj',
               'endereco',
               'siteImpresa',
-            ]}
-            paginator 
+            ]} //indicando as células que serão filtradas
+            paginator //paginação
             dataKey="idFornecedor" 
-            rows={8} 
-            rowsPerPageOptions={[5, 10, 25, 50]} 
+            rows={5} 
+            rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
             tableStyle={{ minWidth: '50rem' }}
             paginatorLeft={paginatorLeft} 
             paginatorRight={paginatorRight}>
+              <Column selectionMode="multiple" exportable={false}></Column>
 
-              <Column field="idFornecedor" sortable  header="idFornecedor" style={{ width: '25%' }}></Column>
+              <Column field="idFornecedor" sortable   header="idFornecedor" style={{ width: '25%' }}></Column>
 
-              <Column field="representanteImpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="representanteImpresa" style={{ width: '25%' }}></Column>
+              <Column field="representanteImpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="representanteImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              <Column field="telefoneRepresentante" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="telefoneRepresentante" style={{ width: '25%' }}></Column>
+              <Column field="telefoneRepresentante" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="telefoneRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              <Column field="cargoRepresentante" filter filterPlaceholder="Filtre pelo cargo" sortable  header="cargoRepresentante" style={{ width: '25%' }}></Column>
+              <Column field="cargoRepresentante" filter filterPlaceholder="Filtre pelo cargo" sortable  header="cargoRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              <Column field="cpfRepresentante" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cpfRepresentante" style={{ width: '25%' }}></Column>
+              <Column field="cpfRepresentante" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cpfRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              <Column field="nomeImpresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="nomeImpresa" style={{ width: '25%' }}></Column>
+              <Column field="nomeImpresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="nomeImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="email" style={{ width: '25%' }}></Column>
+              <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="email" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
               
-              <Column field="cnpj" filter filterPlaceholder="Filtre pelo final do cnpj" sortable  header="cnpj" style={{ width: '25%' }}></Column>
+              <Column field="cnpj" filter filterPlaceholder="Filtre pelo final do cnpj" sortable  header="cnpj" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              <Column field="endereço" filter filterPlaceholder="Filtre pelo endereço" sortable  header="endereço" style={{ width: '25%' }}></Column>
+              <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="endereço" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              <Column field="telefoneImpresa" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="telefoneImpresa" style={{ width: '25%' }}></Column>
+              <Column field="telefoneImpresa" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="telefoneImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              <Column field="siteImpresa" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="siteImpresa" style={{ width: '25%' }}></Column>
+              <Column field="siteImpresa" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="siteImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
 
-              {/* <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column> */}
+              <Column header="Editar" rowEditor={allowEdit} headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 
-              {/* <Column field="excluir" header="Ação" style={{ width: '25%' }}>
-                <button
-                  variant="danger"
-                  // onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
-                >
-                  Excluir
-                </button>
-              </Column> */}
+              <Column header="Excluir" body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }} style={{ width: '25%' }}></Column>
+
                 
             </DataTable>
         </div>
+
+        </>
     );
 }
         
