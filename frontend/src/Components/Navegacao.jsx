@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useAuth } from '../provider/AuthProvider';
 
-import PerfilFoto from '../imagens/perfilPhoto.jpg';
+import PerfilFoto from '../imagens/logoGeneralMotors.png';
 
 import '../css/navegacao.css';
 
@@ -100,7 +100,7 @@ const Header = () => {
                   <ul className='sideNavContent'>
                       <div>
                       <li className='navProfile'>
-                      <img src={PerfilFoto} alt='' />
+                      <img src={PerfilFoto} alt='logo da GM' />
                       <div className='navProfileInfo'>
                         <p>Administrador</p>
                         <h5>{token}</h5>

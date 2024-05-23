@@ -170,29 +170,6 @@ router.post('/login/:cpf/:senha', (req, res) => {
   });
 });
 
-
-
-
-/////////////////////////////////////////////perfil///////////////////////////////////////////////////////
-
-// //Rota para buscar o cfp e senha necessários no login
-// router.post('/login/:cpf', (req, res) => {
-//   const { cpf } = req.params;
-  
-//   connection.query('SELECT * FROM cadastro WHERE cpf = ?', [cpf], (err, results) => {
-//     if (err) {
-//       console.error('Erro ao buscar o registro do cadastro:', err);
-//       res.status(500).json({ error: 'Erro ao buscar o cadastro' });
-//       return;
-//     }
-//     if (results.length === 0) {
-//       res.status(404).json({ error: 'Cadastro não encontrado' });
-//       return;
-//     }
-//     res.json(results);
-//   });
-// });
-
 ///////////////////////////////////////////// fornecedores /////////////////////////////////////////
 // Rota para listar todos os registros
 router.get('/fornecedor', (req, res) => {
@@ -264,6 +241,21 @@ router.delete('/fornecedor/:id', (req, res) => {
     res.json({ message: 'Registro excluído com sucesso' });
   });
 });
+
+
+// Rota para excluir vaários registro pelo ID
+router.delete('/fornecedorExcluir/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('DELETE FROM fornecedores WHERE idFornecedor = ?', [...id], (err, result) => {
+    if (err) {
+      console.error('Erro ao excluir o registro:', err);
+      res.status(500).json({ error: 'Erro ao excluir o registro' });
+      return;
+    }
+    res.json({ message: 'Registro excluído com sucesso' });
+  });
+});
+
 
 
 
