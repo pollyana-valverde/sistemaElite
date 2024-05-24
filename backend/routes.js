@@ -107,9 +107,9 @@ router.get('/vendas/:codigoVenda', (req, res) => {
 
 // Rota para criar um novo registro
 router.post('/vendas', (req, res) => {
-  const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status } = req.body;
+  const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status, id } = req.body;
   connection.query('INSERT INTO vendas (dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-    [dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status], (err, result) => {
+    [dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, valorTotal, metodoPagamento, endereco, status, id], (err, result) => {
       if (err) {
         console.error('Erro ao criar o registro:', err);
         res.status(500).json({ error: 'Erro ao criar o registro' });
@@ -136,7 +136,7 @@ router.put('/vendas/:codigoVenda', (req, res) => {
 });
 
 // Rota para excluir um registro pelo ID
-router.delete('/vendas/:codigoVenda', (req, res) => {
+router.delete('/vendas/:id', (req, res) => {
   const { id } = req.params;
   connection.query('DELETE FROM vendas WHERE codigoVenda = ?', [id], (err, result) => {
     if (err) {
@@ -541,9 +541,9 @@ router.get('/produtos/:idCarro', (req, res) => {
 
 // Rota para criar um novo registro
 router.post('/produtos', (req, res) => {
-  const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor } = req.body;
+  const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, id } = req.body;
   connection.query('INSERT INTO carros (marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )',
-    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor], (err, result) => {
+    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, id], (err, result) => {
       if (err) {
         console.error('Erro ao criar o registro:', err);
         res.status(500).json({ error: 'Erro ao criar o registro' });
@@ -569,8 +569,7 @@ router.put('/produtos/:idCarro', (req, res) => {
 });
 
 // Rota para excluir um registro pelo ID
-router.delete('/produtos/:idCarro', (req, res) => {
-  idCarro
+router.delete('/produtos/:id', (req, res) => {
   const { id } = req.params;
   connection.query('DELETE FROM carros WHERE idCarro = ?', [id], (err, result) => {
     if (err) {
@@ -614,9 +613,9 @@ router.get('/funcionario/:idFuncionario', (req, res) => {
 });
 // Rota para criar um novo registro
 router.post('/funcionario', (req, res) => {
-  const { nome, email, cpf, cargo, registro, endereco, telefone, senha } = req.body;
-  connection.query('INSERT INTO funcionarios (nome, email, cpf, cargo, registro, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)',
-    [nome, email, cpf, cargo, registro, endereco, telefone, senha], (err, result) => {
+  const { nome, email, cpf, cargo, registro, endereco, telefone, senha, id } = req.body;
+  connection.query('INSERT INTO funcionarios (nome, email, cpf, cargo, registro, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [nome, email, cpf, cargo, registro, endereco, telefone, senha, id], (err, result) => {
       if (err) {
         console.error('Erro ao criar o registro:', err);
         res.status(500).json({ error: 'Erro ao criar o registro' });
@@ -629,7 +628,7 @@ router.post('/funcionario', (req, res) => {
 // Rota para atualizar um registro existente pelo ID
 router.put('/funcionario/:idFuncionario', (req, res) => {
   const { id } = req.params;
-  const { nome, email, cpf, cargo, registro, endereco, telefone, senha } = req.body;
+  const { nome, email, cpf, cargo, registro, endereco, telefone, senha, } = req.body;
   connection.query('UPDATE funcionarios SET nome = ?, email = ?, cpf = ?, cargo = ?, registro = ?, endereco = ?, telefone = ?, senha = ? WHERE idFuncionario = ?',
     [nome, email, cpf, cargo, registro, endereco, telefone, senha, id], (err, result) => {
       if (err) {
@@ -641,6 +640,17 @@ router.put('/funcionario/:idFuncionario', (req, res) => {
     });
 });
 
+router.delete('/funcionario/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('DELETE FROM funcionarios WHERE idFuncionario = ?', [id], (err, result) => {
+    if (err) {
+      console.error('Erro ao excluir o registro:', err);
+      res.status(500).json({ error: 'Erro ao excluir o registro' });
+      return;
+    }
+    res.json({ message: 'Registro excluído com sucesso' });
+  });
+});
 
 
 

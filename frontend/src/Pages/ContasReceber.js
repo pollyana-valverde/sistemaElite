@@ -1,6 +1,6 @@
 //Lista de Usuarios
 import React from "react";
-// import TabelaContasReceber from "../Components/TabelaContasReceber";
+import TabelaContasReceber from "../Components/TabelaContasReceber";
 
 
 const ContasReceber = () => {
@@ -8,7 +8,7 @@ const ContasReceber = () => {
     <>
       <div>
         <h2>Contas a receber</h2>
-        {/* < TabelaContasReceber/> */}
+        < TabelaContasReceber/>
       </div>
     </>
   );

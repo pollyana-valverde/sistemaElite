@@ -1,37 +1,27 @@
 
-/* .formu {
-display: flex ;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-} */
-
-.formsSistema {
-    width: 100%;
-    
-}
-
-.titulocad h2 {
-    padding-top: 65px;
-   font-size: 40px; 
-   text-align: center;
-   
-}
 
 .rowForms {
+
+height: 100vh;
+display: flex;
+justify-content: center !important;
+width: 100%;
+    align-content: center;
+    align-self: center;
     
-    display: flex ;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding-top: 10px;
 }
 
-/* .btnCadastroPai{
-    display: flex !important;
-    align-items: center !important;
-justify-content: center;
-} */
+.rowForms h2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.formsSistemaCadastro {
+    width: 100%;
+    padding: 70px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.208) 1px 1px 20px 1px;
+}
 
 .btnCadastro {
     margin-top: 10px;

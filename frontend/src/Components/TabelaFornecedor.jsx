@@ -12,15 +12,15 @@ import { Toast } from 'primereact/toast';
 
 
 export default function TabelaFornecedor() {
-    const [filters, setFilters] = useState(null); //filtro
-    const [globalFilterValue, setGlobalFilterValue] = useState(''); //filtro global
-    const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState(null); //filtro
+  const [globalFilterValue, setGlobalFilterValue] = useState(''); //filtro global
+  const [loading, setLoading] = useState(false);
   const [fornecedores, setFornecedores] = useState([]);
   const toast = useRef(null);
   const [selectedFornecedores, setSelectedFornecedores] = useState(null);
 
 
-//paginação
+    //paginação
     const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
     const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
@@ -92,17 +92,17 @@ const renderHeader = () => {
         <div className='flex mb-3 px-3 mt-3'>
         <Button
         className='mr-2 border-round-lg'
-        label="Delete"
+        label="Excluir"
         icon="pi pi-trash"
         severity="danger"
         onClick={deleteSelectedProducts}
         disabled={!selectedFornecedores || !selectedFornecedores.length}
       />
-          <Button className='border-round-lg' type="button" icon="pi pi-filter-slash" label="Clear" outlined onClick={clearFilter} />
+          <Button className='border-round-lg' type="button" icon="pi pi-filter-slash" label="Limpar" outlined onClick={clearFilter} />
         </div>
           <IconField iconPosition="left" className=' align-content-center'>
               <InputIcon className="pi pi-search" />
-              <InputText className='border-round-lg' value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
+              <InputText className='border-round-lg' value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Pesquisar registro..." />
           </IconField>
       </div>
   );
@@ -193,29 +193,6 @@ onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
 
 //função que atualiza o dato e mostra o pop-up
 const handleAtualizarFornecedor =  (e) => {
-  // e.preventDefault();
-  // try {
-  //      axios.put('http://localhost:3001/fornecedor', values).then(res => {
-  //       setValues({
-  //         representanteImpresa: res.data.representanteImpresa,
-  //         telefoneRepresentante: '',
-  //         cargoRepresentante: '',
-  //         cpfRepresentante: '',
-  //         nomeImpresa: '',
-  //         email: '',
-  //         cnpj: '',
-  //         endereco: '',
-  //         telefoneImpresa: '',
-  //         siteImpresa: ''
-  //     });
-  //     });
-      
-  //     // Limpar o formulário após o envio bem-sucedido
-  //     alert('Fornecedor cadastrado com sucesso!');
-  // } catch (error) {
-  //     console.error('Erro ao cadastrar fornecedor:', error);
-  //     alert('Erro ao cadastrar fornecedor. Verifique o console para mais detalhes.');
-  // }
   
   let _products = [...fornecedores];
   let { newData, index } = e;
@@ -261,11 +238,7 @@ const header = renderHeader();
         <>
         <Toast ref={toast} />
         <div className="card">
-        {/* <Toolbar
-          className="mb-4"
-          left={leftToolbarTemplate}
-        ></Toolbar> */}
-        
+
             <DataTable 
             size='small'
             editMode="row" //modo de edição, no caso, a row toda
@@ -279,7 +252,7 @@ const header = renderHeader();
             value={fornecedores} //dados que serão pegos
             filters={filters} //renderizando o filtro
             header={header} //cabeçalho da tabela com o filtro global e o limpador
-            emptyMessage="Nenhum fornecedor encontrado."
+            emptyMessage="Nenhum Registro encontrado."
             globalFilterFields={[
               'idFornecedor', 
               'representanteImpresa', 
@@ -295,7 +268,7 @@ const header = renderHeader();
             ]} //indicando as células que serão filtradas
             paginator //paginação
             dataKey="idFornecedor" 
-            rows={3} 
+            rows={12} 
             rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
             tableStyle={{ minWidth: '200rem' }}
             paginatorLeft={paginatorLeft} 
@@ -334,130 +307,50 @@ const header = renderHeader();
 
         </>
     );
-}
+};
         
 
 
-// import DataTable from 'datatables.net-dt';
 
 
-// const TabelaFornecedor = () => {
-//   const [fornecedores, setFornecedores] = useState([]);
-  // const [dataTable, setDataTable] = useState([])
-
-  //   function format(d) {
-  //     // `d` is the original data object for the row
-  //     return (
-  //         '<dl>' +
-  //         '<dt>Full name:</dt>' +
-  //         '<dd>' +
-  //         d.name +
-  //         '</dd>' +
-  //         '<dt>Extension number:</dt>' +
-  //         '<dd>' +
-  //         d.extn +
-  //         '</dd>' +
-  //         '<dt>Extra info:</dt>' +
-  //         '<dd>And any further details here (images etc)...</dd>' +
-  //         '</dl>'
-  //     );
-  // }
-
-
-
-  // const dataSet = "http://localhost:3001/fornecedor";
-
-
-//   const dataSet = "http://localhost:3001/fornecedor";
-
-//   useEffect(() => {
- 
-//   const fetchData = async () => {
-//     console.log('fetchData: ');
-//     try {
-//       const { data } = await axios.get(dataSet);
-//       const modifiedData = data.map(r => ({
-//         ...r
-//       }));
-
-//       console.log('asdfasdfpppp: ', modifiedData)
-
-//       if (modifiedData.length === 0) {
-//         console.error('Erro: Nenhum dado retornado.');
-//         return;
-//       }
-
-//       const targetElement = document.querySelector('#fornecedorTabela');
-//       if (!targetElement) {
-//         console.error('Erro: Elemento de destino não encontrado.');
-//         return;
-//       }
-
-//       console.log('Initializing DataTable...');
-//       new setDataTable(targetElement, {
-       
-//         columns: [
-//           { data: 'idFornecedor' },
-//           { data: 'representanteImpresa' },
-//           { data: 'telefoneRepresentante' },
-//           { data: 'cargoRepresentante' },
-//           { data: 'cpfRepresentante' },
-//           { data: 'nomeImpresa' },
-//           { data: 'email' },
-//           { data: 'telefoneImpresa' },
-//           { data: 'cnpj' },
-//           { data: 'endereco' },
-//           { data: 'siteImpresa' },
-//         ],
-//         dataTable: modifiedData,
-//          destroy: true,
-//       });
-//       setFornecedores(modifiedData);
-      
-      
-//     } catch (error) {
-//       console.error("Erro ao buscar Fornecedor:", error);
-//     }
-//   };
-
-//   fetchData();
-// }, []);
-
-
-
-  // const handleExcluirFornecedor = async (idFornecedor) => {
-  //   try {
-  //     await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
-  //     // Atualiza a lista de fornecedores após a exclusão
-  //     const { data } = await axios.get("http://localhost:3001/fornecedor");
-  //     // setFornecedores(data);
-  //     console.log("Fornecedor excluído com sucesso!");
-  //   } catch (error) {
-  //     console.error("Erro ao excluir Fornecedor:", error);
-  //   }
+// const handleAtualizarFornecedor =  (e) => {
+  //   // e.preventDefault();
+  //   // try {
+  //   //      axios.put('http://localhost:3001/fornecedor', values).then(res => {
+  //   //       setValues({
+  //   //         representanteImpresa: res.data.representanteImpresa,
+  //   //         telefoneRepresentante: '',
+  //   //         cargoRepresentante: '',
+  //   //         cpfRepresentante: '',
+  //   //         nomeImpresa: '',
+  //   //         email: '',
+  //   //         cnpj: '',
+  //   //         endereco: '',
+  //   //         telefoneImpresa: '',
+  //   //         siteImpresa: ''
+  //   //     });
+  //   //     });
+        
+  //   //     // Limpar o formulário após o envio bem-sucedido
+  //   //     alert('Fornecedor cadastrado com sucesso!');
+  //   // } catch (error) {
+  //   //     console.error('Erro ao cadastrar fornecedor:', error);
+  //   //     alert('Erro ao cadastrar fornecedor. Verifique o console para mais detalhes.');
+  //   // }
+    
+  //   let _products = [...fornecedores];
+  //   let { newData, index } = e;
+  
+  //   _products[index] = newData;
+  //   console.log(newData.idFornecedor);
+  
+  //   console.log(_products)
+  
+  //   setFornecedores(_products);
+  //   toast.current.show({
+  //         severity: 'success',
+  //         summary: 'Ação bem-sucedida!',
+  //         detail: 'Registro atualizado',
+  //         life: 3000,});
+  
   // };
-
-//   return (
-//     <table id="fornecedorTabela" class="table table-striped compact" style={{ width: "100%" }} >
-//       <thead>
-//         <tr>
-//           <th>ID da impresa</th>
-//           <th>Representante da impresa</th>
-//           <th>Telefone do representante</th>
-//           <th>Cargo do representante</th>
-//           <th>CPF do representante</th>
-//           <th>Nome da impresa</th>
-//           <th>Email</th>
-//           <th>CNPJ</th>
-//           <th>Endereço</th>
-//           <th>Telefone da impresa</th>
-//           <th>Site da impresa</th>
-//           <th>Ação</th>
-//         </tr>
-//       </thead>
-//       <tbody></tbody>
-//     </table>
-//   );
-// };
-
-// export default TabelaFornecedor;
