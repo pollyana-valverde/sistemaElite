@@ -5,7 +5,7 @@ import ClienteForm from "../Components/ClienteForm";
 const ClienteCadastro = () => {
   return (
     <>
-      <div>
+      <div className="formsSistemaGeral">
         <h2>Cadastrar cliente</h2>
         <ClienteForm />
         {/* Conteúdo da página Contato */}

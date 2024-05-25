@@ -4,7 +4,7 @@ import ProdutosForm from "../Components/ProdutosForm";
 const Produtos = () => {
   return (
     <>
-      <div>
+      <div className="formsSistemaGeral">
         <h2>Cadastrar Produtos</h2>
         <ProdutosForm />
       </div>

@@ -94,7 +94,7 @@ const CadastroForm = () => {
               <button className='btnFormSistema btnCadastro' type="submit">Salvar</button>
 
             </div>
-            <br />Já tem uma conta? <Link className="link" to="/login"> Login</Link>
+            <br />Já tem uma conta? Faça<Link className="link" to="/login"> Login</Link>
 
 
           </Form>

@@ -23,13 +23,26 @@ width: 100%;
     box-shadow: rgba(0, 0, 0, 0.208) 1px 1px 20px 1px;
 }
 
+.formsSistemaCadastro input{
+    border-color: rgba(32, 32, 32, 0.484) !important;
+        padding: 10px  !important;
+}
+
+.formsSistemaCadastro input:hover{
+     border: 1px solid rgba(50, 50, 50, 0.484);
+     background-color:  rgba(50, 50, 50, 0.052);
+}
+
+.formsSistemaCadastro input:focus-visible{
+    box-shadow: none !important;
+    background-color:  rgba(50, 50, 50, 0.052);
+    border-color: rgba(32, 32, 32, 0.484) !important;
+}
+
+
 .btnCadastro {
     margin-top: 10px;
     padding: 5px 50px !important;
-}
-
-input {
-    border-color: rgba(32, 32, 32, 0.484) !important;
 }
 
 .link {

@@ -1,3 +1,45 @@
+.formsSistemaGeral{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+margin: 50px 20px;
+}
+
+.formsSistemaGeral h2{
+ margin-bottom: 40px;
+ color: rgba(50, 50, 50, 0.797);
+}
+
+.formsSistemaGeral h2::after{
+    content: '';
+    margin-top: 13px;
+    position: absolute;
+    width: 64%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 2px;
+    background-color:  rgba(50, 50, 50, 0.232);
+    border-radius: 70px;
+}
+
+.formsSistema input{
+    border: 1px solid rgba(50, 50, 50, 0.266);
+    padding: 12px  !important;
+    transition: ease .3s !important;
+}
+
+.formsSistema input:hover{
+     border: 1px solid rgba(50, 50, 50, 0.484);
+     background-color:  rgba(50, 50, 50, 0.052);
+}
+
+.formsSistema input:focus-visible{
+    box-shadow: none !important;
+    padding: 17px  !important;
+    background-color:  rgba(50, 50, 50, 0.052);
+    border: 1px solid rgba(50, 50, 50, 0.484);
+}
+
 .btnFormSistema {
     background-color: rgba(234, 234, 234, 0.845);
     border-radius: 10px;
