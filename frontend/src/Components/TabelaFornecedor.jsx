@@ -8,7 +8,7 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 
 export default function TabelaFornecedor() {
@@ -16,6 +16,7 @@ export default function TabelaFornecedor() {
   const [globalFilterValue, setGlobalFilterValue] = useState(''); //filtro global
   const [loading, setLoading] = useState(false);
   const [fornecedores, setFornecedores] = useState([]);
+  const [visible, setVisible] = useState(false);
   const toast = useRef(null);
   const [selectedFornecedores, setSelectedFornecedores] = useState(null);
 
@@ -95,7 +96,7 @@ const renderHeader = () => {
         label="Excluir"
         icon="pi pi-trash"
         severity="danger"
-        onClick={deleteSelectedProducts}
+        onClick={() => setVisible(true)}
         disabled={!selectedFornecedores || !selectedFornecedores.length}
       />
           <Button className='border-round-lg' type="button" icon="pi pi-filter-slash" label="Limpar" outlined onClick={clearFilter} />
@@ -164,13 +165,26 @@ const deleteSelectedProducts =  () => {
 
 _products.forEach(excluirSelecionados);
 
-
+setVisible(false)
 toast.current.show({
   severity: 'success',
   summary: 'Ação bem-sucedida!',
   detail: 'Registros deletados',
   life: 3000,});
 };
+
+const reject = () => {
+  setVisible(false)
+  toast.current.show({ severity: 'warn', summary: 'Ação não realizada', detail: 'Os registros selecionados não foram excluídos.', life: 3000 });
+  
+}
+
+const footerContent = (
+  <div>
+      <Button label="Não" icon="pi pi-times" onClick={reject} className="p-button-text border-round-lg" />
+      <Button label="Sim" icon="pi pi-check" onClick={deleteSelectedProducts} autoFocus  className='border-round-lg '/>
+  </div>
+);
 
 const actionBodyTemplate = (fornecedores) => {
   return (
@@ -236,7 +250,9 @@ const header = renderHeader();
 
     return (
         <>
-        <Toast ref={toast} />
+        <Toast ref={toast} style={{zIndex: '99999'}} />
+  <ConfirmDialog group="declarative"  visible={visible} onHide={() => setVisible(false)} message="Tem certeza que quer excluír esses registros?" 
+                header="Confirmação" icon="pi pi-exclamation-triangle"   footer={footerContent}/>
         <div className="card">
 
             <DataTable 
