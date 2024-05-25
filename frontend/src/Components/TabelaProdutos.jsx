@@ -8,6 +8,8 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
+import { Tag } from 'primereact/tag';
+import { Dropdown } from 'primereact/dropdown';
 
 
 const TabelaProdutos = () => {
@@ -17,6 +19,31 @@ const TabelaProdutos = () => {
   const [produtos, setProdutos] = useState([]);
   const toast = useRef(null);
   const [selectedProdutos, setSelectedProdutos] = useState(null);
+
+  const [colores] = useState(['Vermelho', 'Cinza', 'Preto', 'Azul', 'Branco', 'Verde Militar']);
+
+  const getColors = (colors) => {
+      switch (colors) {
+          case 'Vermelho':
+              return 'danger';
+
+          case 'Cinza':
+              return 'var(--gray-500)';
+
+          case 'Preto':
+              return 'secondary';
+              
+          case 'Azul':
+              return 'info';
+              
+          case 'Branco':
+              return null;    
+          
+          case 'Verde Militar':
+              return 'success';      
+      }
+  };
+
 
 
 //paginação
@@ -64,7 +91,7 @@ setFilters({
 
     classificacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
 
-    cor: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    cor: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
 
     anoFabricacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
 
@@ -104,6 +131,20 @@ return (
         </IconField>
     </div>
 );
+};
+
+
+//filtro de status
+const colorBodyTemplate = (rowData) => {
+  return <Tag value={rowData.cor} severity={getColors(rowData.cor)} />;
+};
+
+const colorFilterTemplate = (options) => {
+  return <Dropdown value={options.value} options={colores} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={colorItemTemplate} placeholder="Selecione uma cor" className="p-column-filter" showClear />;
+};
+
+const colorItemTemplate = (option) => {
+  return <Tag value={option} severity={getColors(option)} />;
 };
 
 ///////////////////////////////// deletar linha da tabela ////////////////////////////////
@@ -219,6 +260,22 @@ const textEditor = (options) => {
 };
 
 
+//editor em select para o status (o template do editor usa o mesmo que o do filtro do status)
+const colorEditor = (options) => {
+  return (
+      <Dropdown
+          value={options.value}
+          options={colores}
+          onChange={(e) => options.editorCallback(e.value)}
+          placeholder="Selecione uma cor"
+          itemTemplate={(option) => {
+              return <Tag value={option} severity={getColors(option)}></Tag>;
+          }}
+      />
+  );
+};
+
+
 //o que, de fato, possibilita a edição (enable)
 const allowEdit = (rowData) => {
   return rowData.name !== 'Blue Band';
@@ -266,32 +323,32 @@ return (
       dataKey="idCarro" 
       rows={12} 
       rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
-      tableStyle={{ minWidth: '200rem' }}
+      tableStyle={{ minWidth: '130rem' }}
       paginatorLeft={paginatorLeft} 
       paginatorRight={paginatorRight}>
         <Column selectionMode="multiple" exportable={false}></Column>
 
-        <Column field="idCarro" sortable   header="idCarro" style={{ width: 'auto' }}></Column>
+        <Column field="idCarro" sortable   header="Identificação" style={{ width: 'auto', textAlign:'center' }}></Column>
 
-        <Column field="marca" filter filterPlaceholder="Filtre pelo nome" sortable  header="marca" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="marca" filter filterPlaceholder="Filtre pelo marca" sortable  header="Marca" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="modelo" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="modelo" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="modelo" filter filterPlaceholder="Filtre pelo modelo" sortable  header="Modelo" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="classificacao" filter filterPlaceholder="Filtre pelo cargo" sortable  header="classificacao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="classificacao" filter filterPlaceholder="Filtre pela classificação" sortable  header="Classificação" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="cor" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cor" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="cor" filter  filterMenuStyle={{ width: '14rem' }} body={colorBodyTemplate} filterElement={colorFilterTemplate}   sortable  header="Cor" editor={(options) => colorEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="anoFabricacao" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="anoFabricacao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="anoFabricacao" filter filterPlaceholder="Filtre pelo ano" sortable  header="Ano de fabricação" editor={(options) => textEditor(options)} style={{ width: 'auto', textAlign:'center' }}></Column>
 
-        <Column field="potencia" filter filterPlaceholder="Filtre pelo potencia" sortable  header="potencia" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="potencia" filter filterPlaceholder="Filtre pelo potência" sortable  header="Potência" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
         
-        <Column field="tipoTransmissao" filter filterPlaceholder="Filtre pelo final do tipoTransmissao" sortable  header="tipoTransmissao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="tipoTransmissao" filter filterPlaceholder="Filtre pelo final do tipo de transmissão" sortable  header="Tipo de transmissão" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="numeroIdentificacao" filter filterPlaceholder="Filtre pelo endereço" sortable  header="numeroIdentificacao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="numeroIdentificacao" filter filterPlaceholder="Filtre pelo número" sortable  header="Número de identificacao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="tipoMotor" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="tipoMotor" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="tipoMotor" filter filterPlaceholder="Filtre pelo tipo de motor" sortable  header="Tip de motor" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="valor" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="valor" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="valor" filter filterPlaceholder="Filtre pelo valor" sortable  header="Valor" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
         <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 

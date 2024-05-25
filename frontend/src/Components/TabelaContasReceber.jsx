@@ -8,6 +8,8 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
+import { Tag } from 'primereact/tag';
+import { Dropdown } from 'primereact/dropdown';
 
 
 const TabelaContasReceber = () => {
@@ -19,6 +21,19 @@ const TabelaContasReceber = () => {
     const [selectedContasReceber, setSelectedContasReceber] = useState(null);
   
     
+    const [statuses] = useState(['Baixado', 'Pendente']);
+
+    const getStatus = (status) => {
+        switch (status) {
+            case 'Baixado':
+                return 'success';
+  
+            case 'Pendente':
+                return 'danger';
+        }
+    };
+  
+
         //paginação
         const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
         const paginatorRight = <Button type="button" icon="pi pi-download" text />;
@@ -57,21 +72,21 @@ const TabelaContasReceber = () => {
   setFilters({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   
-      clasificacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+      clasificacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
-      valorReceber: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+      valorReceber: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
-      vencimento: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+      vencimento: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
-      empresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+      empresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
       contaBancaria: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
   
-      descricao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+      descricao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
-      status: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+      status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
   
-      valorRecebido: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+      valorRecebido: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
   });
   setGlobalFilterValue('');
@@ -102,6 +117,19 @@ const TabelaContasReceber = () => {
   );
   };
   
+  //filtro de status
+const statusBodyTemplate = (rowData) => {
+  return <Tag value={rowData.status} severity={getStatus(rowData.status)} />;
+};
+
+const statusFilterTemplate = (options) => {
+  return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Selecione um" className="p-column-filter" showClear />;
+};
+
+const statusItemTemplate = (option) => {
+  return <Tag value={option} severity={getStatus(option)} />;
+};
+
   
   ///////////////////////////////// deletar linha da tabela ////////////////////////////////
   
@@ -215,6 +243,23 @@ const handleAtualizarContasReceber =  (e) => {
         />
   };
   
+
+  //editor em select para o status (o template do editor usa o mesmo que o do filtro do status)
+const statusEditor = (options) => {
+  return (
+      <Dropdown
+          value={options.value}
+          options={statuses}
+          onChange={(e) => options.editorCallback(e.value)}
+          placeholder="Selecione um status"
+          itemTemplate={(option) => {
+              return <Tag value={option} severity={getStatus(option)}></Tag>;
+          }}
+      />
+  );
+};
+
+
   
   //o que, de fato, possibilita a edição (enable)
   const allowEdit = (rowData) => {
@@ -259,30 +304,30 @@ const handleAtualizarContasReceber =  (e) => {
         dataKey="idcontaReceber" 
         rows={12} 
         rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
-        tableStyle={{ minWidth: '200rem' }}
+        tableStyle={{ minWidth: '150rem' }}
         paginatorLeft={paginatorLeft} 
         paginatorRight={paginatorRight}>
           <Column selectionMode="multiple" exportable={false}></Column>
 
-          <Column field="idcontaReceber" sortable   header="idcontaReceber" style={{ width: 'auto' }}></Column>
+          <Column field="idcontaReceber" sortable   header="Identificação" style={{ width: 'auto', textAlign: 'center' }}></Column>
 
-          <Column field="clasificacao" filter filterPlaceholder="Filtre pelo nome" sortable  header="clasificacao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="clasificacao" filter filterPlaceholder="Filtre pelo classificação" sortable  header="Classificação" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="valorReceber" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="valorReceber" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="valorReceber" filter filterPlaceholder="Filtre pelo valor" sortable  header="Valor a receber" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="vencimento" filter filterPlaceholder="Filtre pelo cargo" sortable  header="vencimento" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="vencimento" filter filterPlaceholder="Filtre pela data de vencimento" sortable  header="Vencimento" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="empresa" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="empresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="empresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="Impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="contaBancaria" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="contaBancaria" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="contaBancaria" filter filterPlaceholder="Filtre pelo conta" sortable  header="Conta bancaria" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="descricao" filter filterPlaceholder="Filtre pelo descricao" sortable  header="descricao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="descricao" filter filterPlaceholder="Filtre pelo descrição" sortable  header="Descrição" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
           
-          <Column field="valorRecebido" filter filterPlaceholder="Filtre pelo final do valorRecebido" sortable  header="valorRecebido" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="valorRecebido" filter filterPlaceholder="Filtre pelo final do valor" sortable  header="Valor recebido" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="status" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="status" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="status" filter filterMenuStyle={{ width: '14rem' }} body={statusBodyTemplate} filterElement={statusFilterTemplate}   sortable  header="Status" editor={(options) => statusEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+          <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ alignItems: 'center' }}></Column>
 
           <Column header="Excluir" body={actionBodyTemplate} headerStyle={{ Width: '8rem' }} style={{ width: 'auto' }}></Column>
 

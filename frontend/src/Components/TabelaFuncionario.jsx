@@ -61,21 +61,19 @@ setFilters({
 
     nome: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
 
-    email: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    email: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH  }] },
 
-    telefone: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    telefone: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
 
     cpf: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
 
     cargo: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
 
-    cargo: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-
     registro: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
 
-    endereco: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    endereco: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH  }] },
 
-    senha: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    senha: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
 });
 setGlobalFilterValue('');
@@ -264,28 +262,28 @@ return (
       dataKey="idFuncionario" 
       rows={12} 
       rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
-      tableStyle={{ minWidth: '200rem' }}
+      tableStyle={{ minWidth: '150rem' }}
       paginatorLeft={paginatorLeft} 
       paginatorRight={paginatorRight}>
         <Column selectionMode="multiple" exportable={false}></Column>
 
-        <Column field="idFuncionario" sortable   header="idFuncionario" style={{ width: 'auto' }}></Column>
+        <Column field="idFuncionario" sortable   header="Identificação" style={{ width: 'auto', textAlign:'center' }}></Column>
 
-        <Column field="nome" filter filterPlaceholder="Filtre pelo nome" sortable  header="nome" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="nome" filter filterPlaceholder="Filtre pelo nome" sortable  header="Nome" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="email" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="Email" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="telefone" filter filterPlaceholder="Filtre pelo telefone" sortable  header="telefone" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="telefone" filter filterPlaceholder="Filtre pelo telefone" sortable  header="Telefone" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="cpf" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cpf" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="cpf" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="CPF" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="cargo" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="cargo" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="cargo" filter filterPlaceholder="Filtre pelo cargo" sortable  header="Cargo" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="registro" filter filterPlaceholder="Filtre pelo registro" sortable  header="registro" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="registro" filter filterPlaceholder="Filtre pelo registro" sortable  header="Registro" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="endereço" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="Endereço" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="senha" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="senha" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="senha" filter filterPlaceholder="Filtre pela senha" sortable  header="Senha" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
         <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 

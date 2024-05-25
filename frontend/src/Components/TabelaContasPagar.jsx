@@ -8,6 +8,8 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
+import { Tag } from 'primereact/tag';
+import { Dropdown } from 'primereact/dropdown';
 
 
 const TabelaContasPagar = () => {
@@ -18,6 +20,17 @@ const TabelaContasPagar = () => {
   const toast = useRef(null);
   const [selectedContasPagar, setSelectedContasPagar] = useState(null);
 
+  const [statuses] = useState(['Baixado', 'Pendente']);
+
+  const getStatus = (status) => {
+      switch (status) {
+          case 'Baixado':
+              return 'success';
+
+          case 'Pendente':
+              return 'danger';
+      }
+  };
 
 
 //paginação
@@ -59,21 +72,21 @@ const initFilters = () => {
 setFilters({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 
-    clasificacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    clasificacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    valorPagar: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    valorPagar: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    vencimento: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    vencimento: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    empresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    empresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
     contaBancaria: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
 
-    descricao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    descricao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    status: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
 
-    valorPago: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    valorPago: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
 });
 setGlobalFilterValue('');
@@ -104,6 +117,18 @@ return (
 );
 };
 
+//filtro de status
+const statusBodyTemplate = (rowData) => {
+  return <Tag value={rowData.status} severity={getStatus(rowData.status)} />;
+};
+
+const statusFilterTemplate = (options) => {
+  return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Selecione um" className="p-column-filter" showClear />;
+};
+
+const statusItemTemplate = (option) => {
+  return <Tag value={option} severity={getStatus(option)} />;
+};
 
 ///////////////////////////////// deletar linha da tabela ////////////////////////////////
 
@@ -218,6 +243,23 @@ const textEditor = (options) => {
 };
 
 
+//editor em select para o status (o template do editor usa o mesmo que o do filtro do status)
+const statusEditor = (options) => {
+  return (
+      <Dropdown
+          value={options.value}
+          options={statuses}
+          onChange={(e) => options.editorCallback(e.value)}
+          placeholder="Selecione um status"
+          itemTemplate={(option) => {
+              return <Tag value={option} severity={getStatus(option)}></Tag>;
+          }}
+      />
+  );
+};
+
+
+
 //o que, de fato, possibilita a edição (enable)
 const allowEdit = (rowData) => {
   return rowData.name !== 'Blue Band';
@@ -261,29 +303,29 @@ return (
       dataKey="idcontaPagar" 
       rows={12} 
       rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
-      tableStyle={{ minWidth: '200rem' }}
+      tableStyle={{ minWidth: '140rem' }}
       paginatorLeft={paginatorLeft} 
       paginatorRight={paginatorRight}>
         <Column selectionMode="multiple" exportable={false}></Column>
 
-        <Column field="idcontaPagar" sortable   header="idcontaPagar" style={{ width: 'auto' }}></Column>
+        <Column field="idcontaPagar" sortable   header="idcontaPagar" style={{ width: 'auto', textAlign: 'center' }}></Column>
 
-        <Column field="clasificacao" filter filterPlaceholder="Filtre pelo nome" sortable  header="clasificacao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="clasificacao" filter filterPlaceholder="Filtre pelo classifição" sortable  header="Classifição" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="valorPagar" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="valorPagar" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="valorPagar" filter filterPlaceholder="Filtre pelo valor" sortable  header="Valor a pagar" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="vencimento" filter filterPlaceholder="Filtre pelo cargo" sortable  header="vencimento" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="vencimento" filter filterPlaceholder="Filtre pelo data de vencimento" sortable  header="Vencimento" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="empresa" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="empresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="empresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="Impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="contaBancaria" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="contaBancaria" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="contaBancaria" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="Conta bancaria" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="descricao" filter filterPlaceholder="Filtre pelo descricao" sortable  header="descricao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="descricao" filter filterPlaceholder="Filtre pelo descrição" sortable  header="Descrição" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
         
-        <Column field="valorPago" filter filterPlaceholder="Filtre pelo final do valorPago" sortable  header="valorPago" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="valorPago" filter filterPlaceholder="Filtre pelo valor" sortable  header="Valor pago" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
 
-        <Column field="status" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="status" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="status" filter  filterMenuStyle={{ width: '14rem' }} body={statusBodyTemplate} filterElement={statusFilterTemplate}   sortable  header="Status" editor={(options) => statusEditor(options)} style={{ width: 'auto' }}></Column>
 
         <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 

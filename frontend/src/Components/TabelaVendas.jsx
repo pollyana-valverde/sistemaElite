@@ -8,6 +8,8 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
+import { Tag } from 'primereact/tag';
+import { Dropdown } from 'primereact/dropdown';
 
 
 
@@ -18,6 +20,29 @@ const TabelaVendas = () => {
   const [vendas, setVendas] = useState([]);
   const toast = useRef(null);
   const [selectedVendas, setSelectedVendas] = useState(null);
+
+  const [metodes] = useState(['Débito', 'Crédito']);
+  const [statuses] = useState(['Concluída', 'Pendente']);
+
+  const getStatus = (status) => {
+      switch (status) {
+          case 'Concluída':
+              return 'success';
+
+          case 'Pendente':
+              return 'danger';
+      }
+  };
+
+  const getMetodos = (metods) => {
+    switch (metods) {
+        case 'Débito':
+            return 'info';
+
+        case 'Crédito':
+            return null;
+    }
+};
 
 
 //paginação
@@ -59,25 +84,23 @@ const initFilters = () => {
 setFilters({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 
-    dataHora: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    dataHora: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    numeroIdentCarro: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    numeroIdentCarro: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
     cliente: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
 
     cpfFuncionario: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
 
-    qtdProdutos: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    qtdProdutos: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    valorUnidade: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    valorUnidade: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    valorTotal: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    metodoPagamento:{ operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
 
-    metodoPagamento: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.ENDS_WITH }] },
+    endereco: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    endereco: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-
-    status: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+    status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
 });
 setGlobalFilterValue('');
 };
@@ -107,6 +130,34 @@ return (
 );
 };
 
+
+
+//filtro de status
+const statusBodyTemplate = (rowData) => {
+  return <Tag value={rowData.status} severity={getStatus(rowData.status)} />;
+};
+
+const statusFilterTemplate = (options) => {
+  return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Selecione um" className="p-column-filter" showClear />;
+};
+
+const statusItemTemplate = (option) => {
+  return <Tag value={option} severity={getStatus(option)} />;
+};
+
+
+//filtro de método de pagamento
+const metodosBodyTemplate = (rowData) => {
+  return <Tag value={rowData.metodoPagamento} severity={getMetodos(rowData.metodoPagamento)} />;
+};
+
+const metodosFilterTemplate = (options) => {
+  return <Dropdown value={options.value} options={metodes} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={metodosItemTemplate} placeholder="Selecione um" className="p-column-filter" showClear />;
+};
+
+const metodosItemTemplate = (option) => {
+  return <Tag value={option} severity={getMetodos(option)} />;
+};
 
 ///////////////////////////////// deletar linha da tabela ////////////////////////////////
 
@@ -218,6 +269,36 @@ const textEditor = (options) => {
       />
 };
 
+//editor em select para o status (o template do editor usa o mesmo que o do filtro do status)
+const statusEditor = (options) => {
+  return (
+      <Dropdown
+          value={options.value}
+          options={statuses}
+          onChange={(e) => options.editorCallback(e.value)}
+          placeholder="Selecione um status"
+          itemTemplate={(option) => {
+              return <Tag value={option} severity={getStatus(option)}></Tag>;
+          }}
+      />
+  );
+};
+
+
+//editor em select para o metodo de pagamento (o template do editor usa o mesmo que o do filtro do status)
+const metodsEditor = (options) => {
+  return (
+      <Dropdown
+          value={options.value}
+          options={metodes}
+          onChange={(e) => options.editorCallback(e.value)}
+          placeholder="Selecione um método"
+          itemTemplate={(option) => {
+              return <Tag value={option} severity={getMetodos(option)}></Tag>;
+          }}
+      />
+  );
+};
 
 //o que, de fato, possibilita a edição (enable)
 const allowEdit = (rowData) => {
@@ -256,7 +337,6 @@ return (
         'cpfFuncionario',
         'qtdProdutos',
         'valorUnidade',
-        'valorTotal',
         'metodoPagamento',
         'endereco',
         'status',
@@ -265,36 +345,34 @@ return (
       dataKey="codigoVenda" 
       rows={12} 
       rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
-      tableStyle={{ minWidth: '200rem' }}
+      tableStyle={{ minWidth: '160rem' }}
       paginatorLeft={paginatorLeft} 
       paginatorRight={paginatorRight}>
-        <Column selectionMode="multiple" exportable={false}></Column>
+        <Column selectionMode="multiple" exportable={false} style={{ width: '1.5%' }}></Column>
 
-        <Column field="codigoVenda" sortable   header="codigoVenda" style={{ width: 'auto' }}></Column>
+        <Column field="codigoVenda" sortable   header="Código de venda" style={{ width: '4%', textAlign: 'center'  }}></Column>
 
-        <Column field="dataHora" filter filterPlaceholder="Filtre pelo data" sortable  header="dataHora" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="dataHora" filter filterPlaceholder="Filtre pela data" sortable  header="Data e horário" editor={(options) => textEditor(options)} style={{ width: '4%' }}></Column>
 
-        <Column field="numeroIdentCarro" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="numeroIdentCarro" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="numeroIdentCarro" filter filterPlaceholder="Filtre pelo Número de identificação" sortable  header="Número de identificação" editor={(options) => textEditor(options)} style={{ width: '5%', textAlign: 'center' }}></Column>
 
-        <Column field="cliente" filter filterPlaceholder="Filtre pelo cargo" sortable  header="cliente" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="cliente" filter filterPlaceholder="Filtre pelo nome" sortable  header="Cliente" editor={(options) => textEditor(options)} style={{ width: '3%' }}></Column>
 
-        <Column field="cpfFuncionario" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cpfFuncionario" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="cpfFuncionario" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="CPF do funcionário" editor={(options) => textEditor(options)} style={{ width: '3%', textAlign: 'center'  }}></Column>
 
-        <Column field="qtdProdutos" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="qtdProdutos" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="qtdProdutos" filter filterPlaceholder="Filtre pel quantidade" sortable  header="Quantidade de produtos" editor={(options) => textEditor(options)} style={{ width: '5%', textAlign: 'center'  }}></Column>
 
-        <Column field="valorUnidade" filter filterPlaceholder="Filtre pelo valorUnidade" sortable  header="valorUnidade" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="valorUnidade" filter filterPlaceholder="Filtre pelo valor" sortable  header="Valor unidade" editor={(options) => textEditor(options)} style={{ width: '2%', textAlign: 'center' }} ></Column>
         
-        <Column field="metodoPagamento" filter filterPlaceholder="Filtre pelo final do metodoPagamento" sortable  header="metodoPagamento" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="metodoPagamento" filter  filterMenuStyle={{ width: '14rem' }} body={metodosBodyTemplate} filterElement={metodosFilterTemplate} sortable  header="Método de pagamento" editor={(options) => metodsEditor(options)} style={{ width: '4%', textAlign: 'center' }}></Column>
 
-        <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="endereço" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="Endereço" editor={(options) => textEditor(options)} style={{ width: '4%' }}></Column>
 
-        <Column field="valorTotal" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="valorTotal" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="status" filter filterMenuStyle={{ width: '14rem' }} body={statusBodyTemplate} filterElement={statusFilterTemplate}   sortable  header="Status" editor={(options) => statusEditor(options)} style={{ width: '1%' }}></Column>
 
-        <Column field="status" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="status" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column header="Editar" rowEditor={allowEdit}  style={{ width: '1%', alignItems: 'center' }} ></Column>
 
-        <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
-
-        <Column header="Excluir" body={actionBodyTemplate} headerStyle={{ Width: '8rem' }} style={{ width: 'auto' }}></Column>
+        <Column header="Excluir" body={actionBodyTemplate} style={{ width: '1.5%', alignItems: 'center' }}></Column>
 
           
       </DataTable>
