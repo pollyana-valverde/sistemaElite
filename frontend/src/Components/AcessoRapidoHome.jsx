@@ -15,37 +15,37 @@ const AcessoRapidoHome = () => {
         <Container>
             <Row className='acessoPai'>
                 <Col >
-                    <Link className="link" to="/FuncionarioCadastro">
+                    <a className="link" href="/FuncionarioCadastro">
                         <div className='acesso_tipoA blueLink'>
                             <Col><i className="pi pi-address-book border-round-lg"></i></Col>
                             <h3>Cadastrar novo funcionário</h3>
                         </div>
-                    </Link>
+                    </a>
 
 
-                    <Link className="link" to="/ProdutosCadastro">
+                    <a className="link" href="/ProdutosCadastro">
                         <div className='acesso_tipoB blueLink'>
                             <Col><i className="pi pi-barcode border-round-lg"></i></Col>
                             <h3>Cadastrar novo produto</h3>
                         </div>
-                    </Link>
+                    </a>
 
                 </Col>
 
                 <Col >
-                    <Link className="link" to="/CadastroClientes">
+                    <a className="link" href="/CadastroClientes">
                         <div className='acesso_tipoB greyLink'>
                             <Col><i className="pi pi-user border-round-lg"></i></Col>
                             <h3>Cadastrar novo cliente</h3>
                         </div>
-                    </Link>
+                    </a>
 
-                    <Link className="link" to="/FornecedorCadastro">
+                    <a className="link" href="/FornecedorCadastro">
                         <div className='acesso_tipoA greyLink'>
                             <Col><i className="pi pi-id-card border-round-lg"></i></Col>
                             <h3>Cadastrar novo fornecedor</h3>
                         </div>
-                    </Link>
+                    </a>
 
                 </Col>
             </Row>
