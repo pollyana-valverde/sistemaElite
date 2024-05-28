@@ -249,7 +249,7 @@ values
 ('Chevrolet', 'Tracker', 'Premier 1.2 turbo', 'Branco', '2024', '132 cavalos (CV)', 'turbo de 1.2 litro', 'transmissão automática.', 00245678901234568, '170140.00'),
 ('Chevrolet', 'Trailblazer', 'Premier', 'Azul', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00345608901234568, '364900.00'),
 ('Chevrolet', 'Trailblazer', 'Premier', 'Branco', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00445678901234568, '364900.00'),
-('Chevrolet', 'Trailblazer', 'Premier', 'Preto', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00545678901234568, '364900.00');
+('Chevrolet', 'Trailblazer', 'Premier', 'Preto', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00545678901234568, '364900.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Vermelho', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234517, '104690.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Cinza', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234563, '104690.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Preto', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234561, '104690.00'),
@@ -276,7 +276,7 @@ values
 ('Chevrolet', 'Tracker', 'Premier 1.2 turbo', 'Branco', '2024', '132 cavalos (CV)', 'turbo de 1.2 litro', 'transmissão automática.', 00245678901234568, '170140.00'),
 ('Chevrolet', 'Trailblazer', 'Premier', 'Azul', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00345608901234568, '364900.00'),
 ('Chevrolet', 'Trailblazer', 'Premier', 'Branco', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00445678901234568, '364900.00'),
-('Chevrolet', 'Trailblazer', 'Premier', 'Preto', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00545678901234568, '364900.00');
+('Chevrolet', 'Trailblazer', 'Premier', 'Preto', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00545678901234568, '364900.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Vermelho', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234517, '104690.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Cinza', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234563, '104690.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Preto', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234561, '104690.00'),
@@ -303,7 +303,7 @@ values
 ('Chevrolet', 'Tracker', 'Premier 1.2 turbo', 'Branco', '2024', '132 cavalos (CV)', 'turbo de 1.2 litro', 'transmissão automática.', 00245678901234568, '170140.00'),
 ('Chevrolet', 'Trailblazer', 'Premier', 'Azul', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00345608901234568, '364900.00'),
 ('Chevrolet', 'Trailblazer', 'Premier', 'Branco', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00445678901234568, '364900.00'),
-('Chevrolet', 'Trailblazer', 'Premier', 'Preto', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00545678901234568, '364900.00');
+('Chevrolet', 'Trailblazer', 'Premier', 'Preto', '2024', '215 cavalos (CV)', 'gasolina de 3.6 litros', 'transmissão automática.', 00545678901234568, '364900.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Vermelho', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234517, '104690.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Cinza', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234563, '104690.00'),
 ('Chevrolet', 'onix', '1.0T LT automático', 'Preto', '2024', '116 cavalos (CV)', 'Motor turbo de 1.0 litro', 'Transmissão automática', 12345678901234561, '104690.00'),
