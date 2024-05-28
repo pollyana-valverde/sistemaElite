@@ -12,7 +12,6 @@ import Row from 'react-bootstrap/Row';
 import '../css/contaPagarHome.css';
 
 export default function ContaPagarHome() {
-    const [products, setProducts] = useState([]);
     const [contasPagar, setContasPagar] = useState([]);
     const toast = useRef(null);
     const [statuses] = useState(['Baixado', 'Pendente']);
