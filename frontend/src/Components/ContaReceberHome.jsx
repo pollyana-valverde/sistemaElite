@@ -32,8 +32,9 @@ export default function ContaReceberHome() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:3001/contasReceber").then((res) => setContasReceber(res.data))
-
+        axios.get("http://localhost:3001/contasReceber")
+        .then((res) => setContasReceber(res.data))
+        .catch(err => (err))
       }, []);
 
     return (

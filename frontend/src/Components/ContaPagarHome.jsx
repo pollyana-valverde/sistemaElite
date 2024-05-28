@@ -32,8 +32,9 @@ export default function ContaPagarHome() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:3001/contasPagar").then((res) => setContasPagar(res.data))
-
+        axios.get("http://localhost:3001/contasPagar")
+        .then((res) => setContasPagar(res.data))
+        .catch(err => (err))
     }, []);
 
     return (
