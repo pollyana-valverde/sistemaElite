@@ -14,7 +14,8 @@ body::-webkit-scrollbar {
 
   /*estilização básica pro título das tabelas*/
 
-  .tableSistemaGeral h2{
+  .tableSistemaGeral h2, .tableSistemaGeral h4, .tableSistemaGeral i{
     margin: 20px 0;
+    margin-right: 10px;
     color: rgba(50, 50, 50, 0.797);
   }

@@ -12,13 +12,13 @@ const Logout = () => {
 
   setTimeout(() => {
     handleLogout();
-  }, 1 * 1000);
+  }, 1 * 1500);
 
-  return <>Logout Page</>;
+  return <div className="tableSistemaGeral d-flex"><h4>Saindo do sistema</h4> <i className="pi pi-spin pi-spinner-dotted" style={{ fontSize: '2rem' }}></i></div>;
 };
 
 export default Logout;
 
 
 
-{/* <button onSubmit={handleLogout}>Sair da conta</button> */}
+{/* <button onSubmit={handleLogout}>Sair da conta</button> */ }

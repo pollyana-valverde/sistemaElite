@@ -48,7 +48,7 @@ const FuncionarioForm = () => {
   return (
     <Form onSubmit={handleSubmit} className='formsSistema'>
 
-    <Row className="mb-3">
+    <Row className="mb-1">
       <Form.Group as={Col} controlId="formGridEmail">
         <Form.Label>Nome</Form.Label>
         <Form.Control type="text" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} />
@@ -60,7 +60,7 @@ const FuncionarioForm = () => {
       </Form.Group>
     </Row>
 
-    <Row className="mb-3">
+    <Row className="mb-1">
       <Form.Group as={Col} controlId="formGridEmail">
         <Form.Label>Cargo</Form.Label>
         <Form.Control type="text" name="cargo" placeholder="Cargo" value={formData.cargo} onChange={handleChange} />
@@ -73,7 +73,7 @@ const FuncionarioForm = () => {
     </Row>
 
     <Row>
-      <Col className="mb-3" xs={8}>
+      <Col className="mb-1" xs={8}>
         <Form.Label>Endereço</Form.Label>
         <Form.Control type="text" name="endereco" placeholder="Endereço" value={formData.endereco} onChange={handleChange} />
       </Col>
@@ -83,7 +83,7 @@ const FuncionarioForm = () => {
       </Col>
     </Row>
 
-    <Row className="mb-3">
+    <Row className="mb-1">
       <Form.Group as={Col} controlId="formGridEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
