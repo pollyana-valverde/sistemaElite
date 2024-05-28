@@ -4,6 +4,7 @@ import axios from 'axios';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { InputMask } from 'primereact/inputmask';
 
 const FuncionarioForm = () => {
   const [formData, setFormData] = useState({
@@ -35,6 +36,8 @@ const FuncionarioForm = () => {
         nome: '',
         email: '',
         cpf: '',
+        cargo: '',
+        registro: '',
         endereco: '',
         telefone: '',
         senha: ''
@@ -56,7 +59,7 @@ const FuncionarioForm = () => {
 
       <Form.Group as={Col} controlId="formGridPassword">
         <Form.Label>CPF</Form.Label>
-        <Form.Control type="text" name="cpf" placeholder="CPF" value={formData.cpf} onChange={handleChange} />
+        <InputMask className='form-control' type="text" name="cpf" mask="999.999.999-99" placeholder="999.999.999-99" value={formData.cpf} onChange={handleChange} ></InputMask>
       </Form.Group>
     </Row>
 
@@ -79,7 +82,7 @@ const FuncionarioForm = () => {
       </Col>
       <Col>
         <Form.Label>Telefone</Form.Label>
-        <Form.Control type="number" name="telefone" placeholder="Telefone" value={formData.telefone} onChange={handleChange} />
+        <InputMask className='form-control' type="text" name="telefone" mask="(99) 99999-9999" placeholder="(99) 99999-9999" value={formData.cpf} onChange={handleChange} ></InputMask>
       </Col>
     </Row>
 
