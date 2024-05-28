@@ -2,7 +2,14 @@
     margin: 20px 0;
     padding: 30px;
     border-radius: 25px;
-    background: linear-gradient(135deg, rgba(212, 212, 212, 0.392) 50%, rgba(50, 50, 50, 0.142));
+    background: linear-gradient(135deg, rgba(212, 212, 212, 0.392) 50%, #32323224);
+    border:1px solid #32323200;
+    transition: ease .3s;
+}
+
+.graficoVendas:hover{
+    transform: translateY(-7px);
+    border:1px solid #323232d5;
 }
 
 .graficoVendas h5{

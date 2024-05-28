@@ -6,8 +6,18 @@
     border-radius: 25px;
 }
 
-.contaPagarHome h5{
+.pagarHomeHeader{
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.pagarHomeHeader h5{
     margin-bottom: 20px;
+}
+
+.pagarHomeHeader i{
+    color: rgba(50, 50, 50, 0.741);
+    margin-right: 10px;
 }
 
 .paginacaoContaPagar{

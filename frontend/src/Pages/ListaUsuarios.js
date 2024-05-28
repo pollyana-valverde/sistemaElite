@@ -5,7 +5,7 @@ import TabelaCadastro from "../Components/TabelaCadastro";
 const ListaUsuarios = () => {
   return (
     <>
-      <div>
+      <div className="tableSistemaGeral">
         <h2>Lista de Usuários</h2>
         <TabelaCadastro />
       </div>

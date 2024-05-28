@@ -114,7 +114,7 @@ const TabelaContasReceber = () => {
         </div>
           <IconField iconPosition="left" className=' align-content-center'>
               <InputIcon className="pi pi-search" />
-              <InputText className='border-round-lg' value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Pesquisar registro..." />
+              <InputText className='border-round-lg' style={{width:"100%"}} value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Pesquisar registro..." />
           </IconField>
       </div>
   );
@@ -237,14 +237,39 @@ const handleAtualizarContasReceber =  (e) => {
     _products[index] = newData;
     console.log(newData.idcontaReceber);
   
-    console.log(_products)
+    const formData ={
+      ['idcontaReceber']: newData.idcontaReceber,
+      ['clasificacao']: newData.clasificacao,
+  ['valorReceber']: newData.valorReceber,
+  ['vencimento']: newData.vencimento,
+  ['empresa']: newData.empresa,
+  ['contaBancaria']: newData.contaBancaria,
+  ['descricao']: newData.descricao,
+  ['status']: newData.status,
+  ['valorRecebido']: newData.valorRecebido,
+    };
+  
+    
+    console.log(formData);
+  
+    try {
+       axios.put(`http://localhost:3001/contasReceber/${newData.idcontaReceber}`, formData);
+       toast.current.show({
+        severity: 'success',
+        summary: 'Ação bem-sucedida!',
+        detail: 'Registro atualizado',
+        life: 3000,});
+        } catch (error) {
+      console.error('Erro ao criar cadastro:', error);
+      toast.current.show({
+        severity: 'danger',
+        summary: 'Ação não realizada!',
+        detail: 'Registro não atualizado',
+        life: 3000,});
+    }
   
     setContasReceber(_products);
-    toast.current.show({
-          severity: 'success',
-          summary: 'Ação bem-sucedida!',
-          detail: 'Registro atualizado',
-          life: 3000,});
+
   
   };
   
@@ -320,7 +345,7 @@ const statusEditor = (options) => {
         ]} //indicando as células que serão filtradas
         paginator //paginação
         dataKey="idcontaReceber" 
-        rows={12} 
+        rows={5} 
         rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
         tableStyle={{ minWidth: '150rem' }}
         paginatorLeft={paginatorLeft} 

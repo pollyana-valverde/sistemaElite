@@ -6,8 +6,18 @@
     border-radius: 25px;
 }
 
-.contaReceberHome h5{
+.receberHomeHeader{
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.receberHomeHeader h5{
     margin-bottom: 20px;
+}
+
+.receberHomeHeader i{
+    color: #0456a2;
+    margin-right: 10px;
 }
 
 .contaReceberHome tbody,   .contaReceberHome thead, .contaReceberHome tr{

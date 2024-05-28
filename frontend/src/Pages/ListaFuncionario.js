@@ -5,7 +5,7 @@ import TabelaFuncionario from "../Components/TabelaFuncionario";
 const ListaFuncionario = () => {
   return (
     <>
-      <div>
+      <div className="tableSistemaGeral">
         <h2>Lista de funcionários</h2>
         <TabelaFuncionario />
       </div>

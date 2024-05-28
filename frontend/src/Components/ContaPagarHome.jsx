@@ -33,8 +33,8 @@ export default function ContaPagarHome() {
 
     useEffect(() => {
         axios.get("http://localhost:3001/contasPagar")
-        .then((res) => setContasPagar(res.data))
-        .catch(err => (err))
+            .then((res) => setContasPagar(res.data))
+            .catch(err => (err))
     }, []);
 
     return (
@@ -42,7 +42,7 @@ export default function ContaPagarHome() {
             <Row>
                 <Col>
                     <div className="contaPagarHome">
-                        <h5>Contas a pagar</h5>
+                        <div className='pagarHomeHeader'><h5>Contas a pagar </h5><a className="link" href="/ContasPagar"> <i className='pi pi-external-link'></i> </a></div>
                         <DataTable
                             size='small'
                             value={contasPagar}
@@ -53,7 +53,7 @@ export default function ContaPagarHome() {
                             paginatorClassName='paginacaoContaPagar border-round-lg'
                             paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink  NextPageLink LastPageLink"
                             currentPageReportTemplate=""
-                            tableStyle={{ width: '100%'}}
+                            tableStyle={{ width: '100%' }}
                         >
                             <Column field="valorPagar" sortable header="Valor a pagar" style={{ width: 'auto' }}></Column>
                             <Column field="status" body={statusBodyTemplate} sortable header="Status" style={{ width: 'auto' }}></Column>
