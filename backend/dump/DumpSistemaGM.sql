@@ -5,7 +5,7 @@ use sistemaGM;
   `idcontaReceber` INT AUTO_INCREMENT NOT NULL,
   `clasificacao` varchar(100) not null,
   `valorReceber` decimal(60,2)  not null,
-  `vencimento` date not null,
+  `vencimento` varchar(50) not null,
   `empresa` varchar(100) not null,
   `contaBancaria` varchar(70) not null,
   `descricao` VARCHAR(150) NOT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE `contasPagar` (
   `idcontaPagar` INT AUTO_INCREMENT NOT NULL,
   `clasificacao` varchar(100) not null,
   `valorPagar` decimal(60,2)  not null,
-  `vencimento` date not null,
+  `vencimento` varchar(50) not null,
   `empresa` varchar(100) not null,
   `contaBancaria` varchar(70) not null,
   `descricao` VARCHAR(150) NOT NULL,
@@ -338,7 +338,7 @@ values
 
 CREATE TABLE vendas ( 
   codigoVenda INT AUTO_INCREMENT NOT NULL,
-  dataHora DATETIME NOT NULL,
+  dataHora varchar(50) NOT NULL,
   numeroIdentCarro varchar(17) NOT NULL,
   cliente VARCHAR(200) NOT NULL,
   cpfFuncionario varchar(11) NOT NULL,
