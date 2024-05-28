@@ -5,7 +5,8 @@ import axios from 'axios';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-
+import { InputMask } from 'primereact/inputmask';
+import { InputNumber } from 'primereact/inputnumber';
 
 const ProdutosForm = () => {
     const [formData, setFormData] = useState({
@@ -78,7 +79,7 @@ const ProdutosForm = () => {
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Classificacao</Form.Label>
-                    <Form.Control  type="text" name="classificacao" placeholder="Clssificação" value={formData.classificacao} onChange={handleChange} />
+                    <Form.Control  type="text" name="classificacao" placeholder="Classificação" value={formData.classificacao} onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridPassword">
@@ -106,7 +107,8 @@ const ProdutosForm = () => {
                 </Col>
                 <Col>
                     <Form.Label>Valor</Form.Label>
-                    <Form.Control type="text" name="valor" placeholder="Valor" value={formData.valor} onChange={handleChange} />
+                    {/* <Form.Control type="text" name="valor" placeholder="Valor" value={formData.valor} onChange={handleChange} /> */}
+                    <InputNumber name="valor" className='numeroInput' inputId="currency-brazil" placeholder='R$' value={formData.valor} onValueChange={handleChange} mode="currency" currency="BRL" locale="pt-BR" />
                 </Col>
             </Row>
             <button className='btnFormSistema' type="submit">Salvar</button>

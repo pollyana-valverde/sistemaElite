@@ -217,7 +217,7 @@ potencia varchar(100)not null,
 tipoMotor varchar(100)not null,
 tipoTransmissao varchar(100)not null,
 numeroIdentificacao varchar(17),
-valor int not null
+valor decimal(60,2) not null
 );
 
 
