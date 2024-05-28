@@ -10,6 +10,31 @@
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: rgba(50, 50, 50, 0.372) rgba(234, 234, 234, 0.845);
+    visibility: visible;
+}
+
+.sideBarResponsivo{
+    visibility: hidden;
+    border: unset;
+}
+
+.sideBarResponsivo button{
+margin: 10px 0;
+    border-radius: 10px;
+    color: rgba(50, 50, 50, 0.676);
+    border-color: rgba(50, 50, 50, 0.58);
+    background-color:  rgba(206, 206, 206, 0.457);
+}
+
+
+@media (max-width: 770px){
+    .sideBarResponsivo{
+        visibility: visible;
+    }
+
+    .sideBar{
+        visibility: hidden;
+    }
 }
 
 .sideNavContent {

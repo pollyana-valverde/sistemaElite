@@ -130,7 +130,7 @@ return (
       </div>
         <IconField iconPosition="left" className=' align-content-center'>
             <InputIcon className="pi pi-search" />
-            <InputText className='border-round-lg' value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Pesquisar registro..." />
+            <InputText className='border-round-lg' style={{width:"100%"}} value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Pesquisar registro..." />
         </IconField>
     </div>
 );
