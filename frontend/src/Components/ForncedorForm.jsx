@@ -56,14 +56,14 @@ const FornecedorForm = () => {
     return (
         <Form onSubmit={handleSubmit} className='formsSistema'>
 
-            <Form.Group className="mb-3 mt-2" controlId="formGridAddress1">
+            <Form.Group className="mb-2 mt-2" controlId="formGridAddress1">
                 <Form.Label>Representante da empresa</Form.Label>
                 <Form.Control type="text" name="representanteImpresa" placeholder="Representante da impresa" value={formData.representanteImpresa} onChange={handleChange} />
             </Form.Group>
 
 
             <Row>
-                <Col className="mb-3" xs={4}>
+                <Col className="mb-1" xs={4}>
                     <Form.Label>Telefone do representante</Form.Label>
                     {/* <Form.Control type="number" name="telefoneRepresentante" placeholder="Telefone do representante" value={formData.telefoneRepresentante} onChange={handleChange} /> */}
                     <InputMask className='form-control' type="text" name="telefoneRepresentante" mask="(99) 99999-9999" placeholder="(99) 99999-9999" value={formData.telefoneRepresentante} onChange={handleChange} ></InputMask>
@@ -80,7 +80,7 @@ const FornecedorForm = () => {
             </Row>
 
             <Row>
-                <Col className="mb-3" xs={4}>
+                <Col className="mb-1" xs={4}>
                     <Form.Label>Nome da empresa</Form.Label>
                     <Form.Control type="text" name="nomeImpresa" placeholder="Nome da impresa" value={formData.nomeImpresa} onChange={handleChange} />
                 </Col>
@@ -96,7 +96,7 @@ const FornecedorForm = () => {
             </Row>
 
             <Row>
-                <Col className="mb-3" xs={7}>
+                <Col className="mb-1" xs={7}>
                     <Form.Label>Endereço da empresa</Form.Label>
                     <Form.Control type="text" name="endereco" placeholder="Endereço" value={formData.endereco} onChange={handleChange} />
                 </Col>

@@ -58,7 +58,7 @@ const ProdutosForm = () => {
         <Form onSubmit={handleSubmit} className='formsSistema'>
 
             <Row>
-                <Col className="mb-3" xs={3}>
+                <Col className="mb-1" xs={3}>
                     <Form.Label>Marca</Form.Label>
                     <Form.Control type="text" name="marca" placeholder="Marca" value={formData.marca} onChange={handleChange} />
                 </Col>
@@ -76,7 +76,7 @@ const ProdutosForm = () => {
                 </Col>
             </Row>
 
-            <Row className="mb-3">
+            <Row className="mb-1">
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Classificacao</Form.Label>
                     <Form.Control  type="text" name="classificacao" placeholder="Classificação" value={formData.classificacao} onChange={handleChange} />
@@ -88,7 +88,7 @@ const ProdutosForm = () => {
                 </Form.Group>
             </Row>
 
-            <Row className="mb-3">
+            <Row className="mb-1">
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Tipo de motor</Form.Label>
                     <Form.Control  type="text" name="tipoMotor" placeholder="Tipo de motor" value={formData.tipoMotor} onChange={handleChange} />
@@ -101,7 +101,7 @@ const ProdutosForm = () => {
             </Row>
 
             <Row>
-                <Col className="mb-3" xs={7}>
+                <Col className="mb-1" xs={7}>
                     <Form.Label>Número de Identificação</Form.Label>
                     <Form.Control type="text" name="numeroIdentificacao" placeholder="Número de Identificação" value={formData.numeroIdentificacao} onChange={handleChange} />
                 </Col>

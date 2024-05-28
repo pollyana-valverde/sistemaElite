@@ -352,7 +352,7 @@ return (
       paginatorRight={paginatorRight}>
         <Column selectionMode="multiple" exportable={false}></Column>
 
-        <Column field="idcontaPagar" sortable   header="idcontaPagar" style={{ width: 'auto', textAlign: 'center' }}></Column>
+        <Column field="idcontaPagar" sortable   header="Identificação" style={{ width: 'auto', textAlign: 'center' }}></Column>
 
         <Column field="clasificacao" filter filterPlaceholder="Filtre pelo classifição" sortable  header="Classifição" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
