@@ -10,6 +10,7 @@ import {Container, Row, Col} from 'react-bootstrap'
 
 import Rotas from "../Routes";
 
+// function navAct = 
 
 const Header = () => {
 
@@ -104,7 +105,7 @@ const Header = () => {
              ) : (
             <Rotas />
           )}
-          
+          {/* <button className="navButton" onClick={navAct} type="button">lorem ipsum</button> */}
           </Row>
           </Container>
     </>
