@@ -11,13 +11,17 @@ import ChartVendasHome from "../Components/ChartVendasHome";
 import ContaPagarHome from "../Components/ContaPagarHome";
 import ContaReceberHome from "../Components/ContaReceberHome";
 
+import { useAuth } from '../provider/AuthProvider';
+
 import '../css/home.css';
 
 
 function Home() {
+  const { token } = useAuth();
+
   return (
     <Container className="homeConteiner">
-<h1>Bem-vindo ...!</h1>
+<h1>Bem-vindo {token}!</h1>
       <Row>
         <Col >
           <AcessoRapidoHome />

@@ -85,7 +85,6 @@ const Header = () => {
                       <div className='navProfileInfo'>
                         <p>Administrador</p>
                         <h5>{token}</h5>
-                        {/* <Nome /> */}
                       </div>
                     </li>
                         {links.map((link, index) => (
