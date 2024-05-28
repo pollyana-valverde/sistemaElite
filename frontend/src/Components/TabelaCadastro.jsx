@@ -208,14 +208,36 @@ const handleAtualizarCadastro =  (e) => {
   _products[index] = newData;
   console.log(newData.idCadastro);
 
-  console.log(_products)
+  const formData ={
+    ['idCadastro']: newData.idCadastro,
+    ['nome']: newData.nome,
+['email']: newData.email,
+['telefone']: newData.telefone,
+['cpf']: newData.cpf,
+['endereco']: newData.endereco,
+['senha']: newData.senha
+  };
+
+  
+  console.log(formData);
+
+  try {
+     axios.put(`http://localhost:3001/cadastros/${newData.idCadastro}`, formData);
+     toast.current.show({
+      severity: 'success',
+      summary: 'Ação bem-sucedida!',
+      detail: 'Registro atualizado',
+      life: 3000,});
+      } catch (error) {
+    console.error('Erro ao criar cadastro:', error);
+    toast.current.show({
+      severity: 'danger',
+      summary: 'Ação não realizada!',
+      detail: 'Registro não atualizado',
+      life: 3000,});
+  }
 
   setCadastros(_products);
-  toast.current.show({
-        severity: 'success',
-        summary: 'Ação bem-sucedida!',
-        detail: 'Registro atualizado',
-        life: 3000,});
 
 };
 
@@ -274,7 +296,7 @@ return (
       ]} //indicando as células que serão filtradas
       paginator //paginação
       dataKey="idCadastro" 
-      rows={12} 
+      rows={5} 
       rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
       tableStyle={{ minWidth: '100rem' }}
       paginatorLeft={paginatorLeft} 

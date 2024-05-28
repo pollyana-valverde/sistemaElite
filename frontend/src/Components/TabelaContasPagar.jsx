@@ -237,14 +237,39 @@ const handleAtualizarContasPagar =  (e) => {
   _products[index] = newData;
   console.log(newData.idcontaPagar);
 
-  console.log(_products)
+  const formData ={
+    ['idcontaPagar']: newData.idcontaPagar,
+    ['clasificacao']: newData.clasificacao,
+['valorPagar']: newData.valorPagar,
+['vencimento']: newData.vencimento,
+['empresa']: newData.empresa,
+['contaBancaria']: newData.contaBancaria,
+['descricao']: newData.descricao,
+['status']: newData.status,
+['valorPago']: newData.valorPago,
+
+  };
+
+  
+  console.log(formData);
+
+  try {
+     axios.put(`http://localhost:3001/contasPagar/${newData.idcontaPagar}`, formData);
+     toast.current.show({
+      severity: 'success',
+      summary: 'Ação bem-sucedida!',
+      detail: 'Registro atualizado',
+      life: 3000,});
+      } catch (error) {
+    console.error('Erro ao criar cadastro:', error);
+    toast.current.show({
+      severity: 'danger',
+      summary: 'Ação não realizada!',
+      detail: 'Registro não atualizado',
+      life: 3000,});
+  }
 
   setContasPagar(_products);
-  toast.current.show({
-        severity: 'success',
-        summary: 'Ação bem-sucedida!',
-        detail: 'Registro atualizado',
-        life: 3000,});
 
 };
 
@@ -320,7 +345,7 @@ return (
       ]} //indicando as células que serão filtradas
       paginator //paginação
       dataKey="idcontaPagar" 
-      rows={12} 
+      rows={5} 
       rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
       tableStyle={{ minWidth: '140rem' }}
       paginatorLeft={paginatorLeft} 

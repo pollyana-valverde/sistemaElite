@@ -247,14 +247,10 @@ const handleAtualizarFornecedor =  (e) => {
       summary: 'Ação não realizada!',
       detail: 'Registro não atualizado',
       life: 3000,});
-  }s
+  }
 
   setFornecedores(_products);
-  toast.current.show({
-        severity: 'success',
-        summary: 'Ação bem-sucedida!',
-        detail: 'Registro atualizado',
-        life: 3000,});
+
 
 };
 
@@ -317,7 +313,7 @@ const header = renderHeader();
             ]} //indicando as células que serão filtradas
             paginator //paginação
             dataKey="idFornecedor" 
-            rows={12} 
+            rows={5} 
             rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
             tableStyle={{ minWidth: '200rem' }}
             paginatorLeft={paginatorLeft} 

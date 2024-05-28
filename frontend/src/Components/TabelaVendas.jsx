@@ -264,24 +264,23 @@ const handleAtualizarVendas =  (e) => {
   console.log(newData.codigoVenda);
 
   const formData ={
-    ['idFornecedor']: newData.idFornecedor,
-    ['representanteImpresa']: newData.representanteImpresa,
-['telefoneRepresentante']: newData.telefoneRepresentante,
-['cargoRepresentante']: newData.cargoRepresentante,
-['cpfRepresentante']: newData.cpfRepresentante,
-['nomeImpresa']: newData.nomeImpresa,
-['email']: newData.email,
-['telefoneImpresa']: newData.telefoneImpresa,
-['cnpj']: newData.cnpj,
+    ['codigoVenda']: newData.codigoVenda,
+    ['dataHora']: newData.dataHora,
+['numeroIdentCarro']: newData.numeroIdentCarro,
+['cliente']: newData.cliente,
+['cpfFuncionario']: newData.cpfFuncionario,
+['qtdProdutos']: newData.qtdProdutos,
+['valorUnidade']: newData.valorUnidade,
+['metodoPagamento']: newData.metodoPagamento,
 ['endereco']: newData.endereco,
-['siteImpresa']: newData.siteImpresa
+['status']: newData.status
   };
 
   
   console.log(formData);
 
   try {
-     axios.put(`http://localhost:3001/fornecedor/${newData.idFornecedor}`, formData);
+     axios.put(`http://localhost:3001/vendas/${newData.codigoVenda}`, formData);
      toast.current.show({
       severity: 'success',
       summary: 'Ação bem-sucedida!',
@@ -389,7 +388,7 @@ return (
       ]} //indicando as células que serão filtradas
       paginator //paginação
       dataKey="codigoVenda" 
-      rows={12} 
+      rows={5} 
       rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
       tableStyle={{ minWidth: '160rem' }}
       paginatorLeft={paginatorLeft} 

@@ -47,10 +47,10 @@ router.post('/cadastroNovoUsuario', (req, res) => {
 
 // Rota para atualizar um registro existente pelo ID
 router.put('/cadastros/:idCadastro', (req, res) => {
-  const { id } = req.params;
+  const { idCadastro } = req.params;
   const { nome, email, cpf, endereco, telefone, senha } = req.body;
-  connection.query('UPDATE cadastro SET nome = ?, email = ?, cpf = ?, endereco = ?, telefone = ?, senha = ? WHERE id = ?',
-    [nome, email, cpf, endereco, telefone, senha, id], (err, result) => {
+  connection.query('UPDATE cadastro SET nome = ?, email = ?, cpf = ?, endereco = ?, telefone = ?, senha = ? WHERE idCadastro = ?',
+    [nome, email, cpf, endereco, telefone, senha, idCadastro], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar o registro:', err);
         res.status(500).json({ error: 'Erro ao atualizar o registro' });
@@ -124,7 +124,7 @@ router.post('/vendas', (req, res) => {
 router.put('/vendas/:codigoVenda', (req, res) => {
   const { codigoVenda } = req.params;
   const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade , metodoPagamento, endereco, status } = req.body;
-  connection.query('UPDATE vendas SET dataHora = ?, numeroIdentCarro = ?, cliente = ?, cpfFuncionario = ?, qtdProdutos = ?, valorUnidade = ?, metodoPagamento = ?, endereco = ?, status = ?, WHERE codigoVenda = ?',
+  connection.query('UPDATE vendas SET dataHora = ?, numeroIdentCarro = ?, cliente = ?, cpfFuncionario = ?, qtdProdutos = ?, valorUnidade = ?, metodoPagamento = ?, endereco = ?, status = ? WHERE codigoVenda = ?',
     [dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, metodoPagamento, endereco, status, codigoVenda], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar o registro:', err);
@@ -288,11 +288,11 @@ router.post('/cliente', (req, res) => {
 });
 
 // Rota para atualizar um registro existente pelo ID
-router.put('/cliente/:id', (req, res) => {
-  const { id } = req.params;
+router.put('/cliente/:idCliente', (req, res) => {
+  const { idCliente } = req.params;
   const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
-  connection.query('UPDATE clientes SET representanteImpresa = ?, telefoneRepresentante = ?, cargoRepresentante = ?, cpfRepresentante = ?, nomeImpresa = ?, email = ?, telefoneImpresa = ?, cnpj = ?, endereco = ?, siteImpresa = ? WHERE id = ?',
-    [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, id], (err, result) => {
+  connection.query('UPDATE clientes SET representanteImpresa = ?, telefoneRepresentante = ?, cargoRepresentante = ?, cpfRepresentante = ?, nomeImpresa = ?, email = ?, telefoneImpresa = ?, cnpj = ?, endereco = ?, siteImpresa = ? WHERE idCliente = ?',
+    [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, idCliente], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar o registro:', err);
         res.status(500).json({ error: 'Erro ao atualizar o registro' });
@@ -351,11 +351,11 @@ router.get('/contasReceber/:id', (req, res) => {
 });
 
 // Rota para atualizar um registro existente pelo ID
-router.put('/contasReceber/:id', (req, res) => {
-  const { id } = req.params;
-  const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
-  connection.query('UPDATE contasreceber SET status = ?, valorRecebido =? WHERE idcontaReceber = ?',
-    [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, id], (err, result) => {
+router.put('/contasReceber/:idcontaReceber', (req, res) => {
+  const { idcontaReceber } = req.params;
+  const {clasificacao, valorReceber, vencimento, empresa, contaBancaria, descricao, status, valorRecebido } = req.body;
+  connection.query('UPDATE contasreceber SET clasificacao = ?, valorReceber = ?, vencimento = ?, empresa = ?, contaBancaria = ?, descricao = ?, status = ?, valorRecebido =? WHERE idcontaReceber = ?',
+    [clasificacao, valorReceber, vencimento, empresa, contaBancaria, descricao, status, valorRecebido, idcontaReceber], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar conta:', err);
         res.status(500).json({ error: 'Erro ao atualizar conta' });
@@ -444,11 +444,11 @@ router.get('/contasPagar/:status', (req, res) => {
 });
 
 // Rota para atualizar um registro existente pelo ID
-router.put('/contasPagar/:id', (req, res) => {
-  const { id } = req.params;
-  const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
-  connection.query('UPDATE contasPagar SET status = ?, valorPago =? WHERE idcontaPagar = ?',
-    [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, id], (err, result) => {
+router.put('/contasPagar/:idcontaPagar', (req, res) => {
+  const { idcontaPagar } = req.params;
+  const {clasificacao, valorPagar, vencimento, empresa, contaBancaria, descricao, status, valorPago } = req.body;
+  connection.query('UPDATE contasPagar SET clasificacao =?, valorPagar =?, vencimento =?, empresa =?, contaBancaria =?, descricao =?, status =?, valorPago =? WHERE idcontaPagar = ?',
+    [clasificacao, valorPagar, vencimento, empresa, contaBancaria, descricao, status, valorPago, idcontaPagar], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar conta:', err);
         res.status(500).json({ error: 'Erro ao atualizar conta' });
@@ -518,10 +518,10 @@ router.post('/produtos', (req, res) => {
 
 // Rota para atualizar um registro existente pelo ID
 router.put('/produtos/:idCarro', (req, res) => {
-  const { id } = req.params;
+  const { idCarro } = req.params;
   const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor } = req.body;
   connection.query('UPDATE carros SET marca = ?, modelo = ?, classificacao = ?, cor = ?, anoFabricacao = ?, potencia = ?, tipoMotor = ?, tipoTransmissao = ?, numeroIdentificacao = ?, valor = ? WHERE idCarro = ?',
-    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, id], (err, result) => {
+    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, idCarro], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar o registro:', err);
         res.status(500).json({ error: 'Erro ao atualizar o registro' });
@@ -590,10 +590,10 @@ router.post('/funcionario', (req, res) => {
 
 // Rota para atualizar um registro existente pelo ID
 router.put('/funcionario/:idFuncionario', (req, res) => {
-  const { id } = req.params;
+  const { idFuncionario } = req.params;
   const { nome, email, cpf, cargo, registro, endereco, telefone, senha, } = req.body;
   connection.query('UPDATE funcionarios SET nome = ?, email = ?, cpf = ?, cargo = ?, registro = ?, endereco = ?, telefone = ?, senha = ? WHERE idFuncionario = ?',
-    [nome, email, cpf, cargo, registro, endereco, telefone, senha, id], (err, result) => {
+    [nome, email, cpf, cargo, registro, endereco, telefone, senha, idFuncionario], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar o registro:', err);
         res.status(500).json({ error: 'Erro ao atualizar o registro' });
