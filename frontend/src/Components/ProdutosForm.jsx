@@ -107,7 +107,6 @@ const ProdutosForm = () => {
                 </Col>
                 <Col>
                     <Form.Label>Valor</Form.Label>
-                    {/* <Form.Control type="text" name="valor" placeholder="Valor" value={formData.valor} onChange={handleChange} /> */}
                     <InputNumber name="valor" className='numeroInput' inputId="currency-brazil" placeholder='R$' value={formData.valor} onValueChange={handleChange} mode="currency" currency="BRL" locale="pt-BR" />
                 </Col>
             </Row>
