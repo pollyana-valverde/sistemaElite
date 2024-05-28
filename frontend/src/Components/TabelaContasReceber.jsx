@@ -43,7 +43,9 @@ const TabelaContasReceber = () => {
     
         //link para pegar os dados
         useEffect(() => {
-          axios.get("http://localhost:3001/contasReceber").then((res) => setContasReceber(res.data))
+          axios.get("http://localhost:3001/contasReceber")
+          .then((res) => setContasReceber(res.data))
+          .catch(err => (err))
           setLoading(false);
           initFilters(); 
         }, []);

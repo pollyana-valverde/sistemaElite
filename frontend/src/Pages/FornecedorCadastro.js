@@ -8,7 +8,6 @@ const FornecerCadastro = () => {
       <div className="formsSistemaGeral">
         <h2>Cadastrar fornecedor</h2>
         <FornecedorForm />
-        {/* Conteúdo da página Contato */}
       </div>
     </>
   );

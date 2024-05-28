@@ -42,7 +42,9 @@ const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
 //link para pegar os dados
 useEffect(() => {
-  axios.get("http://localhost:3001/contasPagar").then((res) => setContasPagar(res.data))
+  axios.get("http://localhost:3001/contasPagar")
+  .then((res) => setContasPagar(res.data))
+  .catch(err => (err))
   setLoading(false);
   initFilters(); 
 }, []);

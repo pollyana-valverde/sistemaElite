@@ -55,7 +55,9 @@ const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
 //link para pegar os dados
 useEffect(() => {
-  axios.get("http://localhost:3001/produtos").then((res) => setProdutos(res.data))
+  axios.get("http://localhost:3001/produtos")
+  .then((res) => setProdutos(res.data))
+  .catch(err => (err))
   setLoading(false);
   initFilters(); 
 }, []);
