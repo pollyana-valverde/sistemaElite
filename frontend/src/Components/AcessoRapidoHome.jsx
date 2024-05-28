@@ -25,7 +25,7 @@ const AcessoRapidoHome = () => {
 
                     <Link className="link" to="/ProdutosCadastro">
                         <div className='acesso_tipoB blueLink'>
-                            <Col><i className="pi pi-address-book border-round-lg"></i></Col>
+                            <Col><i className="pi pi-barcode border-round-lg"></i></Col>
                             <h3>Cadastrar novo produto</h3>
                         </div>
                     </Link>
@@ -35,14 +35,14 @@ const AcessoRapidoHome = () => {
                 <Col >
                     <Link className="link" to="/CadastroClientes">
                         <div className='acesso_tipoB greyLink'>
-                            <Col><i className="pi pi-address-book border-round-lg"></i></Col>
+                            <Col><i className="pi pi-user border-round-lg"></i></Col>
                             <h3>Cadastrar novo cliente</h3>
                         </div>
                     </Link>
 
                     <Link className="link" to="/FornecedorCadastro">
                         <div className='acesso_tipoA greyLink'>
-                            <Col><i className="pi pi-address-book border-round-lg"></i></Col>
+                            <Col><i className="pi pi-id-card border-round-lg"></i></Col>
                             <h3>Cadastrar novo fornecedor</h3>
                         </div>
                     </Link>

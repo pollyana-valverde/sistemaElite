@@ -11,11 +11,13 @@ import ChartVendasHome from "../Components/ChartVendasHome";
 import ContaPagarHome from "../Components/ContaPagarHome";
 import ContaReceberHome from "../Components/ContaReceberHome";
 
+import '../css/home.css';
+
 
 function Home() {
   return (
     <Container className="homeConteiner">
-
+<h1>Bem-vindo ...!</h1>
       <Row>
         <Col >
           <AcessoRapidoHome />

@@ -9,15 +9,6 @@
     color: rgba(50, 50, 50, 0.741);
 }
 
-.graficoVendas h5::after{
-    content: '';
-    margin-left: 15px;
-    position: absolute;
-    height: 1px;
-    top: 7.4%;
-    width: 19%;
-    background-color: rgba(50, 50, 50, 0.741);
-}
 
 .graficoVendasContent canvas{ 
     height: 230px !important;
