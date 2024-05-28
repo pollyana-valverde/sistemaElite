@@ -14,7 +14,7 @@ const AcessoRapidoHome = () => {
     return (
         <Container>
             <Row className='acessoPai'>
-                <Col lg={3}>
+                <Col >
                     <Link className="link" to="/FuncionarioCadastro">
                         <div className='acesso_tipoA blueLink'>
                             <Col><i className="pi pi-address-book border-round-lg"></i></Col>
@@ -32,7 +32,7 @@ const AcessoRapidoHome = () => {
 
                 </Col>
 
-                <Col lg={3}>
+                <Col >
                     <Link className="link" to="/CadastroClientes">
                         <div className='acesso_tipoB greyLink'>
                             <Col><i className="pi pi-address-book border-round-lg"></i></Col>

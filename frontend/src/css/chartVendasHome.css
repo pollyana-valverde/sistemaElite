@@ -1,0 +1,24 @@
+.graficoVendas{
+    margin: 20px 0;
+    padding: 30px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(212, 212, 212, 0.392) 50%, rgba(50, 50, 50, 0.142));
+}
+
+.graficoVendas h5{
+    color: rgba(50, 50, 50, 0.741);
+}
+
+.graficoVendas h5::after{
+    content: '';
+    margin-left: 15px;
+    position: absolute;
+    height: 1px;
+    top: 7.4%;
+    width: 19%;
+    background-color: rgba(50, 50, 50, 0.741);
+}
+
+.graficoVendasContent canvas{ 
+    height: 230px !important;
+}

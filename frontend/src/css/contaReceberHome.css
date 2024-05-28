@@ -1,0 +1,31 @@
+.contaReceberHome{
+    /* width: 50%; */
+    padding: 20px;
+    background-color: #0673d841;
+    color: #0456a2;
+    border-radius: 25px;
+}
+
+.contaReceberHome h5{
+    margin-bottom: 20px;
+}
+
+.contaReceberHome tbody,   .contaReceberHome thead, .contaReceberHome tr{
+    background-color: #0673d800 !important;
+}
+
+.contaReceberHome  th{
+    background-color: #0673d834;
+    /* border-radius: 10px; */
+    color: #063d70;
+}
+
+.contaReceberHome tr.p-row-odd{
+    background-color: #0673d81a !important;
+}
+.paginacaoContaReceber{
+    width: 100%;
+    height: 40px;
+    background-color: #0673d800 !important;
+    border:  #0673d800 !important;
+}

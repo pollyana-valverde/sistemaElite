@@ -1,6 +1,4 @@
-.acessoPai{
-    height: 100vh;
-}
+
 
 .acesso_tipoA{
     border-radius: 23px ;
@@ -8,7 +6,7 @@
     padding: 24px 15px;
     display: flex;
     flex-direction: column;
-    height: 15%;
+    height: 50%;
     justify-content: space-between;
 }
 
@@ -26,7 +24,7 @@
     padding: 15px;
     display: flex;
     flex-direction: column;
-    height: 12%;
+    height: 40%;
     justify-content: space-between;
 }
 
@@ -39,8 +37,8 @@
 }
 
 .acesso_tipoA.blueLink{
-    background-color: #0671d8;
-    color: white;
+    background-color: #0673d841;
+    color: #0673d8;
 }
 
 .acesso_tipoA.blueLink i{
@@ -56,8 +54,8 @@
 
 .acesso_tipoB.blueLink i{
     padding: 10px;
-    background-color: #0671d8;
-    color: white;
+    background-color: #0673d841;
+    color: #0673d8;
 }
 
 .acesso_tipoA.greyLink{
