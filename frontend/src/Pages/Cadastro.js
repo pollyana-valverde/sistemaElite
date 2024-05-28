@@ -7,7 +7,6 @@ const Cadastro = () => {
   return (
     <>
       <div className="titulocad">
-        <h2>Cadastro</h2>
         <CadastroForm />
       </div>
     </>

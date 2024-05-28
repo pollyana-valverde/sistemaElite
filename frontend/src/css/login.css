@@ -46,3 +46,13 @@
 .quadroForm input {
     border-color: rgba(32, 32, 32, 0.484);
 }
+
+.quadroForm input:hover{
+    background-color:  rgba(50, 50, 50, 0.052);
+}
+
+.quadroForm input:focus-visible{
+    box-shadow: none !important;
+    background-color:  rgba(50, 50, 50, 0.052);
+    border-color: rgba(32, 32, 32, 0.484);
+}

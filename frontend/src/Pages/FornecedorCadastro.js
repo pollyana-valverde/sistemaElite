@@ -5,7 +5,7 @@ import FornecedorForm from "../Components/ForncedorForm";
 const FornecerCadastro = () => {
   return (
     <>
-      <div>
+      <div className="formsSistemaGeral">
         <h2>Cadastrar fornecedor</h2>
         <FornecedorForm />
       </div>

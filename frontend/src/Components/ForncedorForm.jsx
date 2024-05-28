@@ -55,7 +55,7 @@ const FornecedorForm = () => {
     return (
         <Form onSubmit={handleSubmit} className='formsSistema'>
 
-            <Form.Group className="mb-3" controlId="formGridAddress1">
+            <Form.Group className="mb-3 mt-2" controlId="formGridAddress1">
                 <Form.Label>Representante da empresa</Form.Label>
                 <Form.Control type="text" name="representanteImpresa" placeholder="Representante da impresa" value={formData.representanteImpresa} onChange={handleChange} />
             </Form.Group>

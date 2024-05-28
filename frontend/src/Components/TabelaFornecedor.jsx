@@ -8,44 +8,20 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-import { Toolbar } from 'primereact/toolbar';
-import { useParams } from 'react-router-dom';
-
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 
 export default function TabelaFornecedor() {
-    const [filters, setFilters] = useState(null); //filtro
-    const [globalFilterValue, setGlobalFilterValue] = useState(''); //filtro global
-    const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState(null); //filtro
+  const [globalFilterValue, setGlobalFilterValue] = useState(''); //filtro global
+  const [loading, setLoading] = useState(false);
   const [fornecedores, setFornecedores] = useState([]);
+  const [visible, setVisible] = useState(false);
   const toast = useRef(null);
-  const [selectedProducts, setSelectedProducts] = useState(null);
-  // const {id} = useParams();
-  // const [values, setValues] = useState([
-
-  // ])
-
-  const [values, setValues] = useState({
-    representanteImpresa: '',
-    telefoneRepresentante: '',
-    cargoRepresentante: '',
-    cpfRepresentante: '',
-    nomeImpresa: '',
-    email: '',
-    cnpj: '',
-    endereco: '',
-    telefoneImpresa: '',
-    siteImpresa: ''
-});
-  // const [products, setProducts] = useState(null);
-  // const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
+  const [selectedFornecedores, setSelectedFornecedores] = useState(null);
 
 
-
-
-
-
-//paginação
+    //paginação
     const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
     const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
@@ -57,14 +33,6 @@ export default function TabelaFornecedor() {
       setLoading(false);
       initFilters(); 
     }, []);
-
-    // const getCustomers = (data) => {
-    //   return [...(data || [])].map((d) => {
-    //       d.date = new Date(d.date);
-
-    //       return d;
-    //   });
-  // };
 
 
 
@@ -121,11 +89,21 @@ const initFilters = () => {
 //componente para limpar o input de texto com o filtro global
 const renderHeader = () => {
   return (
-      <div className="flex justify-content-between">
-          <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined onClick={clearFilter} />
-          <IconField iconPosition="left">
+      <div className="flex justify-content-between ">
+        <div className='flex mb-3 px-3 mt-3'>
+        <Button
+        className='mr-2 border-round-lg'
+        label="Excluir"
+        icon="pi pi-trash"
+        severity="danger"
+        onClick={() => setVisible(true)}
+        disabled={!selectedFornecedores || !selectedFornecedores.length}
+      />
+          <Button className='border-round-lg' type="button" icon="pi pi-filter-slash" label="Limpar" outlined onClick={clearFilter} />
+        </div>
+          <IconField iconPosition="left" className=' align-content-center'>
               <InputIcon className="pi pi-search" />
-              <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
+              <InputText className='border-round-lg' value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Pesquisar registro..." />
           </IconField>
       </div>
   );
@@ -135,7 +113,7 @@ const renderHeader = () => {
 
 ///////////////////////////////// deletar linha da tabela ////////////////////////////////
 
-//pega os dados para serem excluídos pela url
+//pega os dados para serem excluídos pela url (específico)
 const handleExcluirFornecedor = async (idFornecedor) => {
   try {
     await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
@@ -155,34 +133,58 @@ const handleExcluirFornecedor = async (idFornecedor) => {
 };
 
 
+//pega os dados para serem excluídos pela url (geral)
+const handleExcluirVariosFornecedor = async (idFornecedor) => {
+  try {
+    await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
+    // Atualiza a lista de fornecedores após a exclusão
+    const { data } = await axios.get("http://localhost:3001/fornecedor");
+    setFornecedores(data);
+    console.log("Fornecedor excluído com sucesso!");
+  } catch (error) {
+    console.error("Erro ao excluir Fornecedor:", error);
+  }
+  //tipo um modal pequeno que avisa que foi bem sucedido
+};
+
+
+
 //deleta os registros que foram selecinados
-const deleteSelectedProducts = () => {
-  // let _products = products.filter((val) => !selectedProducts.includes(val));
+const deleteSelectedProducts =  () => {
 
-  // setProducts(_products);
-  // setDeleteProductsDialog(false);
-  // setSelectedProducts(null);
-  toast.current.show({
-    severity: 'success',
-    summary: 'Successful',
-    detail: 'Products Deleted',
-    life: 3000,
-  });
+  let _products = fornecedores.filter((id) => selectedFornecedores.includes(id));
+    
+
+  setFornecedores(_products);
+  setSelectedFornecedores(null);
+
+  function excluirSelecionados(item, index) {
+    handleExcluirVariosFornecedor(item.idFornecedor);
+    console.log(item.idFornecedor); 
+  }
+
+_products.forEach(excluirSelecionados);
+
+setVisible(false)
+toast.current.show({
+  severity: 'success',
+  summary: 'Ação bem-sucedida!',
+  detail: 'Registros deletados',
+  life: 3000,});
 };
 
-const leftToolbarTemplate = () => {
-  return (
-    <div className="flex flex-wrap gap-2">
-      <Button
-        label="Delete"
-        icon="pi pi-trash"
-        severity="danger"
-        onClick={deleteSelectedProducts}
-        disabled={!selectedProducts || !selectedProducts.length}
-      />
-    </div>
-  );
-};
+const reject = () => {
+  setVisible(false)
+  toast.current.show({ severity: 'warn', summary: 'Ação não realizada', detail: 'Os registros selecionados não foram excluídos.', life: 3000 });
+  
+}
+
+const footerContent = (
+  <div>
+      <Button label="Não" icon="pi pi-times" onClick={reject} className="p-button-text border-round-lg" />
+      <Button label="Sim" icon="pi pi-check" onClick={deleteSelectedProducts} autoFocus  className='border-round-lg '/>
+  </div>
+);
 
 const actionBodyTemplate = (fornecedores) => {
   return (
@@ -193,6 +195,7 @@ icon="pi pi-trash"
 rounded
 outlined
 severity="danger"
+className='border-round-lg '
 onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
 />
                   
@@ -202,44 +205,16 @@ onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
 
 //////////////////////////////////////////// editar e atualizar dados com inputs ////////////////////////////
 
-// const handleChange = (e) => {
-//   const { name, value } = e.target;
-//   setValues({
-//       ...values,
-//       [name]: value
-//   });
-// };
-
 //função que atualiza o dato e mostra o pop-up
 const handleAtualizarFornecedor =  (e) => {
-  // e.preventDefault();
-  // try {
-  //      axios.put('http://localhost:3001/fornecedor', values).then(res => {
-  //       setValues({
-  //         representanteImpresa: res.data.representanteImpresa,
-  //         telefoneRepresentante: '',
-  //         cargoRepresentante: '',
-  //         cpfRepresentante: '',
-  //         nomeImpresa: '',
-  //         email: '',
-  //         cnpj: '',
-  //         endereco: '',
-  //         telefoneImpresa: '',
-  //         siteImpresa: ''
-  //     });
-  //     });
-      
-  //     // Limpar o formulário após o envio bem-sucedido
-  //     alert('Fornecedor cadastrado com sucesso!');
-  // } catch (error) {
-  //     console.error('Erro ao cadastrar fornecedor:', error);
-  //     alert('Erro ao cadastrar fornecedor. Verifique o console para mais detalhes.');
-  // }
   
   let _products = [...fornecedores];
   let { newData, index } = e;
 
   _products[index] = newData;
+  console.log(newData.idFornecedor);
+
+  console.log(_products)
 
   setFornecedores(_products);
   toast.current.show({
@@ -275,17 +250,17 @@ const header = renderHeader();
 
     return (
         <>
-        <Toast ref={toast} />
+        <Toast ref={toast} style={{zIndex: '99999'}} />
+  <ConfirmDialog group="declarative"  visible={visible} onHide={() => setVisible(false)} message="Tem certeza que quer excluír esses registros?" 
+                header="Confirmação" icon="pi pi-exclamation-triangle"   footer={footerContent}/>
         <div className="card">
-        <Toolbar
-          className="mb-4"
-          left={leftToolbarTemplate}
-        ></Toolbar>
+
             <DataTable 
+            size='small'
             editMode="row" //modo de edição, no caso, a row toda
             onRowEditComplete={handleAtualizarFornecedor} //executa quando terminar de fazer a edição
-            selection={selectedProducts}
-            onSelectionChange={(e) => setSelectedProducts(e.value)}
+            selection={selectedFornecedores}
+            onSelectionChange={(e) => setSelectedFornecedores(e.value)}
             showGridlines //mostrar linhas da tabela
             stripedRows //linhas de cores diferentes
             removableSort //a partir do 3° click na ordenação volta ao estado inicial (sem ordenação)
@@ -293,7 +268,7 @@ const header = renderHeader();
             value={fornecedores} //dados que serão pegos
             filters={filters} //renderizando o filtro
             header={header} //cabeçalho da tabela com o filtro global e o limpador
-            emptyMessage="Nenhum fornecedor encontrado."
+            emptyMessage="Nenhum Registro encontrado."
             globalFilterFields={[
               'idFornecedor', 
               'representanteImpresa', 
@@ -309,38 +284,38 @@ const header = renderHeader();
             ]} //indicando as células que serão filtradas
             paginator //paginação
             dataKey="idFornecedor" 
-            rows={5} 
+            rows={12} 
             rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
-            tableStyle={{ minWidth: '50rem' }}
+            tableStyle={{ minWidth: '200rem' }}
             paginatorLeft={paginatorLeft} 
             paginatorRight={paginatorRight}>
               <Column selectionMode="multiple" exportable={false}></Column>
 
-              <Column field="idFornecedor" sortable   header="idFornecedor" style={{ width: '25%' }}></Column>
+              <Column field="idFornecedor" sortable   header="Identificação" style={{ width: 'auto', textAlign:'center' }}></Column>
 
-              <Column field="representanteImpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="representanteImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="representanteImpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="Representante da impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="telefoneRepresentante" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="telefoneRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="telefoneRepresentante" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="Telefone do representante" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="cargoRepresentante" filter filterPlaceholder="Filtre pelo cargo" sortable  header="cargoRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="cargoRepresentante" filter filterPlaceholder="Filtre pelo cargo" sortable  header="Cargo do representante" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="cpfRepresentante" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="cpfRepresentante" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="cpfRepresentante" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="CPF do representante" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="nomeImpresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="nomeImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="nomeImpresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="Nome da impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="email" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="Email" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
               
-              <Column field="cnpj" filter filterPlaceholder="Filtre pelo final do cnpj" sortable  header="cnpj" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="cnpj" filter filterPlaceholder="Filtre pelo final do cnpj" sortable  header="CNPJ" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="endereço" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="Endereço" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="telefoneImpresa" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="telefoneImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="telefoneImpresa" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="Eelefone da impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="siteImpresa" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="siteImpresa" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+              <Column field="siteImpresa" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="Site da impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column header="Editar" rowEditor={allowEdit} headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+              <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 
-              <Column header="Excluir" body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }} style={{ width: '25%' }}></Column>
+              <Column header="Excluir" body={actionBodyTemplate} headerStyle={{ Width: '8rem' }} style={{ width: 'auto' }}></Column>
 
                 
             </DataTable>
@@ -348,130 +323,50 @@ const header = renderHeader();
 
         </>
     );
-}
+};
         
 
 
-// import DataTable from 'datatables.net-dt';
 
 
-// const TabelaFornecedor = () => {
-//   const [fornecedores, setFornecedores] = useState([]);
-  // const [dataTable, setDataTable] = useState([])
-
-  //   function format(d) {
-  //     // `d` is the original data object for the row
-  //     return (
-  //         '<dl>' +
-  //         '<dt>Full name:</dt>' +
-  //         '<dd>' +
-  //         d.name +
-  //         '</dd>' +
-  //         '<dt>Extension number:</dt>' +
-  //         '<dd>' +
-  //         d.extn +
-  //         '</dd>' +
-  //         '<dt>Extra info:</dt>' +
-  //         '<dd>And any further details here (images etc)...</dd>' +
-  //         '</dl>'
-  //     );
-  // }
-
-
-
-  // const dataSet = "http://localhost:3001/fornecedor";
-
-
-//   const dataSet = "http://localhost:3001/fornecedor";
-
-//   useEffect(() => {
- 
-//   const fetchData = async () => {
-//     console.log('fetchData: ');
-//     try {
-//       const { data } = await axios.get(dataSet);
-//       const modifiedData = data.map(r => ({
-//         ...r
-//       }));
-
-//       console.log('asdfasdfpppp: ', modifiedData)
-
-//       if (modifiedData.length === 0) {
-//         console.error('Erro: Nenhum dado retornado.');
-//         return;
-//       }
-
-//       const targetElement = document.querySelector('#fornecedorTabela');
-//       if (!targetElement) {
-//         console.error('Erro: Elemento de destino não encontrado.');
-//         return;
-//       }
-
-//       console.log('Initializing DataTable...');
-//       new setDataTable(targetElement, {
-       
-//         columns: [
-//           { data: 'idFornecedor' },
-//           { data: 'representanteImpresa' },
-//           { data: 'telefoneRepresentante' },
-//           { data: 'cargoRepresentante' },
-//           { data: 'cpfRepresentante' },
-//           { data: 'nomeImpresa' },
-//           { data: 'email' },
-//           { data: 'telefoneImpresa' },
-//           { data: 'cnpj' },
-//           { data: 'endereco' },
-//           { data: 'siteImpresa' },
-//         ],
-//         dataTable: modifiedData,
-//          destroy: true,
-//       });
-//       setFornecedores(modifiedData);
-      
-      
-//     } catch (error) {
-//       console.error("Erro ao buscar Fornecedor:", error);
-//     }
-//   };
-
-//   fetchData();
-// }, []);
-
-
-
-  // const handleExcluirFornecedor = async (idFornecedor) => {
-  //   try {
-  //     await axios.delete(`http://localhost:3001/fornecedor/${idFornecedor}`);
-  //     // Atualiza a lista de fornecedores após a exclusão
-  //     const { data } = await axios.get("http://localhost:3001/fornecedor");
-  //     // setFornecedores(data);
-  //     console.log("Fornecedor excluído com sucesso!");
-  //   } catch (error) {
-  //     console.error("Erro ao excluir Fornecedor:", error);
-  //   }
+// const handleAtualizarFornecedor =  (e) => {
+  //   // e.preventDefault();
+  //   // try {
+  //   //      axios.put('http://localhost:3001/fornecedor', values).then(res => {
+  //   //       setValues({
+  //   //         representanteImpresa: res.data.representanteImpresa,
+  //   //         telefoneRepresentante: '',
+  //   //         cargoRepresentante: '',
+  //   //         cpfRepresentante: '',
+  //   //         nomeImpresa: '',
+  //   //         email: '',
+  //   //         cnpj: '',
+  //   //         endereco: '',
+  //   //         telefoneImpresa: '',
+  //   //         siteImpresa: ''
+  //   //     });
+  //   //     });
+        
+  //   //     // Limpar o formulário após o envio bem-sucedido
+  //   //     alert('Fornecedor cadastrado com sucesso!');
+  //   // } catch (error) {
+  //   //     console.error('Erro ao cadastrar fornecedor:', error);
+  //   //     alert('Erro ao cadastrar fornecedor. Verifique o console para mais detalhes.');
+  //   // }
+    
+  //   let _products = [...fornecedores];
+  //   let { newData, index } = e;
+  
+  //   _products[index] = newData;
+  //   console.log(newData.idFornecedor);
+  
+  //   console.log(_products)
+  
+  //   setFornecedores(_products);
+  //   toast.current.show({
+  //         severity: 'success',
+  //         summary: 'Ação bem-sucedida!',
+  //         detail: 'Registro atualizado',
+  //         life: 3000,});
+  
   // };
-
-//   return (
-//     <table id="fornecedorTabela" class="table table-striped compact" style={{ width: "100%" }} >
-//       <thead>
-//         <tr>
-//           <th>ID da impresa</th>
-//           <th>Representante da impresa</th>
-//           <th>Telefone do representante</th>
-//           <th>Cargo do representante</th>
-//           <th>CPF do representante</th>
-//           <th>Nome da impresa</th>
-//           <th>Email</th>
-//           <th>CNPJ</th>
-//           <th>Endereço</th>
-//           <th>Telefone da impresa</th>
-//           <th>Site da impresa</th>
-//           <th>Ação</th>
-//         </tr>
-//       </thead>
-//       <tbody></tbody>
-//     </table>
-//   );
-// };
-
-// export default TabelaFornecedor;

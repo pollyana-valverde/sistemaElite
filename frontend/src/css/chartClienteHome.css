@@ -1,0 +1,11 @@
+.graficoCliente{
+    margin: 40px 0;
+    padding: 30px;
+    border-radius: 25px;
+    background-color: #bfdaff39;
+}
+
+.graficoCliente h5{
+    color: #0673d8;
+}
+
