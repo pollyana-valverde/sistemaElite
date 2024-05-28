@@ -1,13 +1,14 @@
 // Home
 import React from "react";
 
+import AcessoRapidoHome from "../Components/AcessoRapidoHome";
+
 
 function Home(){
   return (
     <>
       <div>
-        <h2>Página Home</h2>
-        Teste
+        <AcessoRapidoHome />
       </div>
     </>
   );

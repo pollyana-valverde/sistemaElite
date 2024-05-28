@@ -26,10 +26,10 @@ const Header = () => {
       },{
         titulo: <li className='headerLineNav'><p>Cadastrar</p></li>,
         caminho: "/FuncionarioCadastro",
-        nome: "Cadastrar Funcionários",
+        nome: "Cadastrar funcionários",
       },{
         caminho: "/CadastroClientes",
-        nome: "Cadastrar Clientes",
+        nome: "Cadastrar clientes",
       },{
         caminho: "/FornecedorCadastro",
         nome: "Cadastrar fornecedor",
@@ -39,23 +39,23 @@ const Header = () => {
       },{
         titulo: <li className='headerLineNav'> <p>Registros</p></li>,
         caminho: "/listaUsuarios",
-        nome: "Lista de Usuários",
+        nome: "Lista de usuários",
       },{
         caminho: "/ListaFuncionario",
-        nome: "Lista de Funcionários",
+        nome: "Lista de funcionários",
       },{
         caminho: "/ListaFornecedores",
-        nome: "Lista de Fornecedores",
+        nome: "Lista de fornecedores",
       },{
         caminho: "/ListaClientes",
-        nome: "Lista de Clientes",
+        nome: "Lista de clientes",
       },{
         caminho: "/ListaProdutos",
         nome: "Lista de produtos",
       },{
 
         caminho: "/ListaVendas",
-        nome: "Lista de Vendas",
+        nome: "Lista de vendas",
 
       },{
         titulo: <li className='headerLineNav'><p>Contas</p></li>,
