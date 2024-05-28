@@ -30,7 +30,9 @@ const TabelaCadastro = () => {
   
       //link para pegar os dados
       useEffect(() => {
-        axios.get("http://localhost:3001/cadastros").then((res) => setCadastros(res.data))
+        axios.get("http://localhost:3001/cadastros")
+        .then((res) => setCadastros(res.data))
+        .catch(err => (err))
         setLoading(false);
         initFilters(); 
       }, []);

@@ -29,7 +29,9 @@ export default function TabelaFornecedor() {
 
     //link para pegar os dados
     useEffect(() => {
-      axios.get("http://localhost:3001/fornecedor").then((res) => setFornecedores(res.data))
+      axios.get("http://localhost:3001/fornecedor")
+      .then((res) => setFornecedores(res.data))
+      .catch(err => (err))
       setLoading(false);
       initFilters(); 
     }, []);
