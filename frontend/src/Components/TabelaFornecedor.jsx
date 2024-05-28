@@ -20,7 +20,6 @@ export default function TabelaFornecedor() {
   const toast = useRef(null);
   const [selectedFornecedores, setSelectedFornecedores] = useState(null);
 
-
     //paginação
     const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
     const paginatorRight = <Button type="button" icon="pi pi-download" text />;
@@ -205,6 +204,7 @@ onClick={() => handleExcluirFornecedor(fornecedores.idFornecedor)}
 
 //////////////////////////////////////////// editar e atualizar dados com inputs ////////////////////////////
 
+
 //função que atualiza o dato e mostra o pop-up
 const handleAtualizarFornecedor =  (e) => {
   
@@ -214,7 +214,38 @@ const handleAtualizarFornecedor =  (e) => {
   _products[index] = newData;
   console.log(newData.idFornecedor);
 
-  console.log(_products)
+  const formData ={
+    ['idFornecedor']: newData.idFornecedor,
+    ['representanteImpresa']: newData.representanteImpresa,
+['telefoneRepresentante']: newData.telefoneRepresentante,
+['cargoRepresentante']: newData.cargoRepresentante,
+['cpfRepresentante']: newData.cpfRepresentante,
+['nomeImpresa']: newData.nomeImpresa,
+['email']: newData.email,
+['telefoneImpresa']: newData.telefoneImpresa,
+['cnpj']: newData.cnpj,
+['endereco']: newData.endereco,
+['siteImpresa']: newData.siteImpresa
+  };
+
+  
+  console.log(formData);
+
+  try {
+     axios.put(`http://localhost:3001/fornecedor/${newData.idFornecedor}`, formData);
+     toast.current.show({
+      severity: 'success',
+      summary: 'Ação bem-sucedida!',
+      detail: 'Registro atualizado',
+      life: 3000,});
+      } catch (error) {
+    console.error('Erro ao criar cadastro:', error);
+    toast.current.show({
+      severity: 'danger',
+      summary: 'Ação não realizada!',
+      detail: 'Registro não atualizado',
+      life: 3000,});
+  }s
 
   setFornecedores(_products);
   toast.current.show({
