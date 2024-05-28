@@ -21,7 +21,7 @@ function Home() {
 
   return (
     <Container className="homeConteiner">
-<h1>Bem-vindo {token}!</h1>
+<h1>Bem-vindo(a) {token}!</h1>
       <Row>
         <Col >
           <AcessoRapidoHome />
@@ -29,7 +29,7 @@ function Home() {
         </Col>
         <Col >
           <ChartVendasHome />
-          <Col className="d-flex">
+          <Col lg={12} className="d-flex wrapTablesHome">
             <ContaPagarHome />
             <ContaReceberHome />
           </Col>

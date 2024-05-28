@@ -6,7 +6,7 @@ import TabelaContasReceber from "../Components/TabelaContasReceber";
 const ContasReceber = () => {
   return (
     <>
-      <div>
+      <div className="tableSistemaGeral">
         <h2>Contas a receber</h2>
         < TabelaContasReceber/>
       </div>

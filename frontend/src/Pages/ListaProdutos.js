@@ -5,7 +5,7 @@ import TabelaProdutos from "../Components/TabelaProdutos";
 const ListaProdutos = () => {
   return (
     <>
-      <div>
+      <div className="tableSistemaGeral">
         <h2>Lista de produtos</h2>
         <TabelaProdutos />
       </div>

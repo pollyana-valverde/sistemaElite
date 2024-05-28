@@ -5,7 +5,7 @@ import TabelaContasPagar from "../Components/TabelaContasPagar";
 const ContasPagar = () => {
   return (
     <>
-      <div>
+      <div className="tableSistemaGeral">
         <h2>Contas a pagar</h2>
         <TabelaContasPagar />
       </div>

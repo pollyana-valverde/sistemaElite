@@ -5,7 +5,7 @@ import TabelaFornecedor from "../Components/TabelaFornecedor";
 const ListaFornecedores = () => {
   return (
     <>
-      <div>
+      <div className="tableSistemaGeral">
         <h2>Lista de Fornecedores</h2>
         <TabelaFornecedor />
       </div>

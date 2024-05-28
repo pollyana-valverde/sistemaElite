@@ -42,7 +42,7 @@ export default function ContaReceberHome() {
             <Row>
                 <Col>
                     <div className="contaReceberHome">
-                        <h5>Contas a Receber</h5>
+                    <div className='receberHomeHeader'><h5>Contas a receber </h5><a className="link" href="/ContasReceber"> <i className='pi pi-external-link'></i> </a></div>
                         <DataTable
                             size='small'
                             value={contasReceber}

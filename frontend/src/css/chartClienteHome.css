@@ -1,8 +1,17 @@
 .graficoCliente{
-    margin: 40px 0;
+    margin: 40px 0 0;
     padding: 30px;
     border-radius: 25px;
     background-color: #bfdaff39;
+    transition: ease .3s;
+    border:1px solid #bfdaff39;
+
+}
+
+.graficoCliente:hover{
+    transform: translateY(-7px);
+    border:1px solid #4675b7;
+
 }
 
 .graficoCliente h5{

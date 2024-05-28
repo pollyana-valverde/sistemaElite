@@ -1,80 +1,91 @@
-
-
-.acesso_tipoA{
-    border-radius: 23px ;
+.acesso_tipoA {
+    border-radius: 23px;
     margin: 20px 0;
     padding: 24px 15px;
     display: flex;
     flex-direction: column;
     height: 50%;
     justify-content: space-between;
+    transition: ease .3s;
 }
 
-.acesso_tipoA h3{
+
+.acesso_tipoA:hover {
+    transform: translateY(-7px);
+}
+
+
+.acesso_tipoA h3 {
     font-size: 22px;
 }
 
-.acesso_tipoA i{
+.acesso_tipoA i {
     font-size: 30px;
 }
 
-.acesso_tipoB{
-    border-radius: 23px ;
+.acesso_tipoB {
+    border-radius: 23px;
     margin: 20px 0;
     padding: 15px;
     display: flex;
     flex-direction: column;
     height: 40%;
     justify-content: space-between;
+    transition: ease .3s;
 }
 
-.acesso_tipoB h3{
+.acesso_tipoB:hover {
+    transform: translateY(-7px);
+}
+
+.acesso_tipoB h3 {
     font-size: 22px;
 }
 
-.acesso_tipoB i{
+.acesso_tipoB i {
     font-size: 21px;
 }
 
-.acesso_tipoA.blueLink{
+.acesso_tipoA.blueLink {
     background-color: #0673d841;
     color: #0673d8;
+    transition: ease .3s;
 }
 
-.acesso_tipoA.blueLink i{
+.acesso_tipoA.blueLink i {
     padding: 10px;
     background-color: white;
     color: #0673d8;
 }
 
-.acesso_tipoB.blueLink{
+.acesso_tipoB.blueLink {
     color: #0673d8;
     border: 1px solid #0673d856;
 }
 
-.acesso_tipoB.blueLink i{
+.acesso_tipoB.blueLink i {
     padding: 10px;
     background-color: #0673d841;
     color: #0673d8;
 }
 
-.acesso_tipoA.greyLink{
+.acesso_tipoA.greyLink {
     background: linear-gradient(135deg, rgba(212, 212, 212, 0.845) 50%, rgba(50, 50, 50, 0.142));
     color: rgba(50, 50, 50, 0.741);
 }
 
-.acesso_tipoA.greyLink i{
+.acesso_tipoA.greyLink i {
     padding: 10px;
     background-color: white;
     color: rgba(50, 50, 50, 0.741);
 }
 
-.acesso_tipoB.greyLink{
+.acesso_tipoB.greyLink {
     color: rgba(50, 50, 50, 0.741);
     border: 1px solid rgba(50, 50, 50, 0.427);
 }
 
-.acesso_tipoB.greyLink i{
+.acesso_tipoB.greyLink i {
     padding: 10px;
     background: linear-gradient(135deg, rgba(204, 204, 204, 0.845) 50%, rgba(50, 50, 50, 0.142));
     color: rgba(50, 50, 50, 0.741);
