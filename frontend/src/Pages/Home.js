@@ -10,10 +10,12 @@ import Row from 'react-bootstrap/Row';
 // import ChartVendasHome from "../Components/ChartVendasHome";
 // import ContaPagarHome from "../Components/ContaPagarHome";
 // import ContaReceberHome from "../Components/ContaReceberHome";
+// import Calendario from "../Components/Calendario";
 
 import { useAuth } from '../provider/AuthProvider';
 
 import '../css/home.css';
+import 'smart-webcomponents-react/source/styles/smart.default.css';
 
 
 function Home() {
@@ -24,7 +26,7 @@ function Home() {
 <h1>Bem-vindo(a) {token}!</h1>
       <Row>
         <Col >
-
+{/* <Calendario/> */}
           {/* <AcessoRapidoHome />
           <ChartClienteHome /> */}
         </Col>
