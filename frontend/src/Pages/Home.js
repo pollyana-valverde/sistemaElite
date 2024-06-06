@@ -15,7 +15,7 @@ import Row from 'react-bootstrap/Row';
 import { useAuth } from '../provider/AuthProvider';
 
 import '../css/home.css';
-import 'smart-webcomponents-react/source/styles/smart.default.css';
+// import 'smart-webcomponents-react/source/styles/smart.default.css';
 
 
 function Home() {
