@@ -472,10 +472,10 @@ router.delete('/Boletim/:id', (req, res) => {
 });
 
 
-//////////////////////////////////////////////////// Produtos (carros) ////////////////////////////////////////////
+//////////////////////////////////////////////////// Contas a Pagar ////////////////////////////////////////////
 // Rota para listar todos os registros
 router.get('/produtos', (req, res) => {
-  connection.query('SELECT * FROM carros', (err, results) => {
+  connection.query('SELECT * FROM contasPagar', (err, results) => {
     if (err) {
       console.error('Erro ao buscar os registros:', err);
       res.status(500).json({ error: 'Erro ao buscar os registros' });
@@ -486,9 +486,9 @@ router.get('/produtos', (req, res) => {
 });
 
 // Rota para buscar um registro específico pelo ID
-router.get('/produtos/:idCarro', (req, res) => {
+router.get('/produtos/:idcontasPagar', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM carros WHERE idCarro = ?', [id], (err, results) => {
+  connection.query('SELECT * FROM contasPagar WHERE idcontasPagar = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -505,7 +505,7 @@ router.get('/produtos/:idCarro', (req, res) => {
 // Rota para criar um novo registro
 router.post('/produtos', (req, res) => {
   const { descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status } = req.body;
-  connection.query('INSERT INTO carros (descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+  connection.query('INSERT INTO contasPagar (descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
     [descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status], (err, result) => {
       if (err) {
         console.error('Erro ao criar o registro:', err);
@@ -517,11 +517,11 @@ router.post('/produtos', (req, res) => {
 });
 
 // Rota para atualizar um registro existente pelo ID
-router.put('/produtos/:idCarro', (req, res) => {
-  const { idCarro } = req.params;
+router.put('/produtos/:idcontasPagar', (req, res) => {
+  const { idcontasPagar } = req.params;
   const { descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status } = req.body;
-  connection.query('UPDATE carros SET descricao = ?, categoria = ?, nomePagamento = ?, dataEmissao = ?, dataVencimento = ?, valor = ?, parcelamento = ?, status = ? WHERE idCarro = ?',
-    [descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status, idCarro], (err, result) => {
+  connection.query('UPDATE contasPagar SET descricao = ?, categoria = ?, nomePagamento = ?, dataEmissao = ?, dataVencimento = ?, valor = ?, parcelamento = ?, status = ? WHERE idcontasPagar = ?',
+    [descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status, idcontasPagar], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar o registro:', err);
         res.status(500).json({ error: 'Erro ao atualizar o registro' });
@@ -534,7 +534,7 @@ router.put('/produtos/:idCarro', (req, res) => {
 // Rota para excluir um registro pelo ID
 router.delete('/produtos/:id', (req, res) => {
   const { id } = req.params;
-  connection.query('DELETE FROM carros WHERE idCarro = ?', [id], (err, result) => {
+  connection.query('DELETE FROM contasPagar WHERE idcontasPagar = ?', [id], (err, result) => {
     if (err) {
       console.error('Erro ao excluir o registro:', err);
       res.status(500).json({ error: 'Erro ao excluir o registro' });

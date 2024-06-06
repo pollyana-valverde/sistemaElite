@@ -102,54 +102,6 @@ values ('Receita com produto', '1345.38', '20240613', 'Indústria mecânica Pere
 ('Receita com produto', '1984.52', '20240928', 'Indústria mecânica Perez', 'E01 - Banco do Brasil', 'Documento 328 - Parcela 1 de 3', 'Pendente', '0');
 
 
-create table carros (
-`idCarro` int auto_increment primary key,
-`descricao` varchar(255)not null,
-`categoria` enum('Salário', 'Aluguel', 'Luz', 'Água', 'Internet', 'Material Escolar', 'Manutenção') not null,
-`nomePagamento` varchar(100)not null,
-`dataEmissao` date not null,
-`dataVencimento` date not null,
-`valor` decimal(10, 2) not null,
-`parcelamento` int default 1,
-`status` enum('Pendente', 'Paga', 'Atrasada', 'Cancelada') not null
-);
-
-
-insert into carros (descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status)
-values
-('Entrada 2024', 'Salário', 'Sistema Etapa', '2024-06-06', '2024-06-30', '10000.00', '2', 'Paga'),
-('Aluguel de Junho', 'Aluguel', 'Imobiliária XYZ', '2024-06-01', '2024-06-30', '1200.00', '1', 'Pendente'),
-('Conta de Luz', 'Luz', 'Energia S.A.', '2024-06-03', '2024-06-15', '200.00', '1', 'Atrasada'),
-('Conta de Água', 'Água', 'Águas Municipais', '2024-06-05', '2024-06-20', '150.00', '1', 'Cancelada'),
-('Internet de Junho', 'Internet', 'Provedor XYZ', '2024-06-01', '2024-06-30', '80.00', '1', 'Paga'),
-('Material Escolar Filho 1', 'Material Escolar', 'Papelaria ABC', '2024-06-05', '2024-07-05', '50.00', '1', 'Pendente'),
-('Manutenção Carro', 'Manutenção', 'Oficina Mecânica Z', '2024-06-10', '2024-06-15', '500.00', '1', 'Pendente'),
-('Salário Junho', 'Salário', 'Empresa ABC', '2024-06-05', '2024-06-05', '5000.00', '1', 'Pendente'),
-('Aluguel de Julho', 'Aluguel', 'Imobiliária XYZ', '2024-07-01', '2024-07-31', '1200.00', '1', 'Pendente'),
-('Conta de Luz Julho', 'Luz', 'Energia S.A.', '2024-07-03', '2024-07-15', '220.00', '1', 'Pendente'),
-('Conta de Água Julho', 'Água', 'Águas Municipais', '2024-07-05', '2024-07-20', '160.00', '1', 'Pendente'),
-('Internet de Julho', 'Internet', 'Provedor XYZ', '2024-07-01', '2024-07-31', '80.00', '1', 'Atrasada'),
-('Material Escolar Filho 2', 'Material Escolar', 'Papelaria ABC', '2024-07-05', '2024-08-05', '60.00', '1', 'Cancelada'),
-('Manutenção Carro 2', 'Manutenção', 'Oficina Mecânica Z', '2024-07-10', '2024-07-15', '600.00', '1', 'Atrasada'),
-('Salário Julho', 'Salário', 'Empresa ABC', '2024-07-05', '2024-07-05', '5000.00', '1', 'Cancelada'),
-('Entrada 2024', 'Salário', 'Sistema Etapa', '2024-06-06', '2024-06-30', '10000.00', '2', 'Paga'),
-('Aluguel de Junho', 'Aluguel', 'Imobiliária XYZ', '2024-06-01', '2024-06-30', '1200.00', '1', 'Pendente'),
-('Conta de Luz', 'Luz', 'Energia S.A.', '2024-06-03', '2024-06-15', '200.00', '1', 'Atrasada'),
-('Conta de Água', 'Água', 'Águas Municipais', '2024-06-05', '2024-06-20', '150.00', '1', 'Cancelada'),
-('Internet de Junho', 'Internet', 'Provedor XYZ', '2024-06-01', '2024-06-30', '80.00', '1', 'Paga'),
-('Material Escolar Filho 1', 'Material Escolar', 'Papelaria ABC', '2024-06-05', '2024-07-05', '50.00', '1', 'Pendente'),
-('Manutenção Carro', 'Manutenção', 'Oficina Mecânica Z', '2024-06-10', '2024-06-15', '500.00', '1', 'Pendente'),
-('Salário Junho', 'Salário', 'Empresa ABC', '2024-06-05', '2024-06-05', '5000.00', '1', 'Pendente'),
-('Aluguel de Julho', 'Aluguel', 'Imobiliária XYZ', '2024-07-01', '2024-07-31', '1200.00', '1', 'Pendente'),
-('Conta de Luz Julho', 'Luz', 'Energia S.A.', '2024-07-03', '2024-07-15', '220.00', '1', 'Pendente'),
-('Conta de Água Julho', 'Água', 'Águas Municipais', '2024-07-05', '2024-07-20', '160.00', '1', 'Pendente'),
-('Internet de Julho', 'Internet', 'Provedor XYZ', '2024-07-01', '2024-07-31', '80.00', '1', 'Atrasada'),
-('Material Escolar Filho 2', 'Material Escolar', 'Papelaria ABC', '2024-07-05', '2024-08-05', '60.00', '1', 'Cancelada'),
-('Manutenção Carro 2', 'Manutenção', 'Oficina Mecânica Z', '2024-07-10', '2024-07-15', '600.00', '1', 'Atrasada'),
-('Salário Julho', 'Salário', 'Empresa ABC', '2024-07-05', '2024-07-05', '5000.00', '1', 'Cancelada');
-
-
-
 CREATE TABLE vendas ( 
   codigoVenda INT AUTO_INCREMENT NOT NULL,
   dataHora varchar(50) NOT NULL,
@@ -719,3 +671,61 @@ values
 ('Amanda Ferreira', 'amandinhaAmanda@gmail.com', '(11) 99899-2827', '889.010.090-21', 'Agente de Limpeza', '123456798', 'Avenida dos Ipês, 456, Bairro Jardim Primavera, Cidade Esperança, Estado da Harmonia, CEP: 23456-789', 'Soluções Terceirizadas Ltda.'),
 ('Carolina Alves', 'alvesAmanda09@uol.com.br.com', '(11) 98177-2933', '776.332.435-21', 'Funcionário da Cantina', '88796654', 'Praça das Águias, 987, Bairro Vista Verde, Cidade Encantada, Estado da Serenidade, CEP: 45678-901', 'Terceirizações Inteligentes Ltda'),
 ('Armando Gustavo', 'GgguGa.armando@gmail.com', '(11) 91234-9928', '876.567.123-21', 'Agente de Limpeza', '54673345', 'Praça dos Girassóis, 109, Bairro Vida Nova, Cidade dos Sonhos, Estado da Paz, CEP: 43210-987', 'Serviços Terceirizados S.A.');
+
+
+create table contasPagar (
+`idContasPagar` int auto_increment primary key,
+`descricao` varchar(255)not null,
+`categoria` enum('Salário', 'Aluguel', 'Luz', 'Água', 'Internet', 'Material Escolar', 'Manutenção') not null,
+`nomePagamento` varchar(100)not null,
+`dataEmissao` date not null,
+`dataVencimento` date not null,
+`valor` decimal(10, 2) not null,
+`parcelamento` int default 1,
+`status` enum('Pendente', 'Paga', 'Atrasada', 'Cancelada') not null
+);
+
+
+insert into contasPagar (descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status)
+values
+('Entrada 2024', 'Salário', 'Sistema Etapa', '2024-06-06', '2024-06-30', '10000.00', '2', 'Paga'),
+('Aluguel de Junho', 'Aluguel', 'Imobiliária XYZ', '2024-06-01', '2024-06-30', '1200.00', '1', 'Pendente'),
+('Conta de Luz', 'Luz', 'Energia S.A.', '2024-06-03', '2024-06-15', '200.00', '1', 'Atrasada'),
+('Conta de Água', 'Água', 'Águas Municipais', '2024-06-05', '2024-06-20', '150.00', '1', 'Cancelada'),
+('Internet de Junho', 'Internet', 'Provedor XYZ', '2024-06-01', '2024-06-30', '80.00', '1', 'Paga'),
+('Material Escolar Filho 1', 'Material Escolar', 'Papelaria ABC', '2024-06-05', '2024-07-05', '50.00', '1', 'Pendente'),
+('Manutenção Carro', 'Manutenção', 'Oficina Mecânica Z', '2024-06-10', '2024-06-15', '500.00', '1', 'Pendente'),
+('Salário Junho', 'Salário', 'Empresa ABC', '2024-06-05', '2024-06-05', '5000.00', '1', 'Pendente'),
+('Aluguel de Julho', 'Aluguel', 'Imobiliária XYZ', '2024-07-01', '2024-07-31', '1200.00', '1', 'Pendente'),
+('Conta de Luz Julho', 'Luz', 'Energia S.A.', '2024-07-03', '2024-07-15', '220.00', '1', 'Pendente'),
+('Conta de Água Julho', 'Água', 'Águas Municipais', '2024-07-05', '2024-07-20', '160.00', '1', 'Pendente'),
+('Internet de Julho', 'Internet', 'Provedor XYZ', '2024-07-01', '2024-07-31', '80.00', '1', 'Atrasada'),
+('Material Escolar Filho 2', 'Material Escolar', 'Papelaria ABC', '2024-07-05', '2024-08-05', '60.00', '1', 'Cancelada'),
+('Manutenção Carro 2', 'Manutenção', 'Oficina Mecânica Z', '2024-07-10', '2024-07-15', '600.00', '1', 'Atrasada'),
+('Salário Julho', 'Salário', 'Empresa ABC', '2024-07-05', '2024-07-05', '5000.00', '1', 'Cancelada'),
+('Entrada 2024', 'Salário', 'Sistema Etapa', '2024-06-06', '2024-06-30', '10000.00', '2', 'Paga'),
+('Aluguel de Junho', 'Aluguel', 'Imobiliária XYZ', '2024-06-01', '2024-06-30', '1200.00', '1', 'Pendente'),
+('Conta de Luz', 'Luz', 'Energia S.A.', '2024-06-03', '2024-06-15', '200.00', '1', 'Atrasada'),
+('Conta de Água', 'Água', 'Águas Municipais', '2024-06-05', '2024-06-20', '150.00', '1', 'Cancelada'),
+('Internet de Junho', 'Internet', 'Provedor XYZ', '2024-06-01', '2024-06-30', '80.00', '1', 'Paga'),
+('Material Escolar Filho 1', 'Material Escolar', 'Papelaria ABC', '2024-06-05', '2024-07-05', '50.00', '1', 'Pendente'),
+('Manutenção Carro', 'Manutenção', 'Oficina Mecânica Z', '2024-06-10', '2024-06-15', '500.00', '1', 'Pendente'),
+('Salário Junho', 'Salário', 'Empresa ABC', '2024-06-05', '2024-06-05', '5000.00', '1', 'Pendente'),
+('Aluguel de Julho', 'Aluguel', 'Imobiliária XYZ', '2024-07-01', '2024-07-31', '1200.00', '1', 'Pendente'),
+('Conta de Luz Julho', 'Luz', 'Energia S.A.', '2024-07-03', '2024-07-15', '220.00', '1', 'Pendente'),
+('Conta de Água Julho', 'Água', 'Águas Municipais', '2024-07-05', '2024-07-20', '160.00', '1', 'Pendente'),
+('Internet de Julho', 'Internet', 'Provedor XYZ', '2024-07-01', '2024-07-31', '80.00', '1', 'Atrasada'),
+('Material Escolar Filho 2', 'Material Escolar', 'Papelaria ABC', '2024-07-05', '2024-08-05', '60.00', '1', 'Cancelada'),
+('Manutenção Carro 2', 'Manutenção', 'Oficina Mecânica Z', '2024-07-10', '2024-07-15', '600.00', '1', 'Atrasada'),
+('Salário Julho', 'Salário', 'Empresa ABC', '2024-07-05', '2024-07-05', '5000.00', '1', 'Cancelada');
+
+
+
+
+
+
+
+
+
+
+
