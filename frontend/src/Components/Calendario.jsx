@@ -6,6 +6,8 @@ import { Input } from 'smart-webcomponents-react/input';
 import { Tree, TreeItem, TreeItemsGroup } from 'smart-webcomponents-react/tree';
 import { Scheduler } from 'smart-webcomponents-react/scheduler';
 
+import '../css/calendario.css';
+
 export default function Calendario() {
 
 	const scheduler = useRef();
@@ -343,7 +345,6 @@ export default function Calendario() {
 				<div className="content">
 					<section id="sideA">
 						<div className="button-container">
-							<div id="logo"></div>
 						</div>
 						<div className="controls-container">
 							<Calendar
@@ -352,20 +353,7 @@ export default function Calendario() {
 								scrollButtonsPosition={scrollButtonsPosition}
 								onChange={handleCalendarChange}
 							></Calendar>
-							<Input id="searchBar" className="underlined" placeholder="Search for people"></Input>
-							<Tree
-								ref={tree}
-								id="tree"
-								selectionMode="checkBox"
-								toggleElementPosition="far"
-								onChange={handleTreeChange}
-							>
-								<TreeItemsGroup expanded>My calendars
-									<TreeItem value="birthday" selected>Birthdays</TreeItem>
-									<TreeItem value="holiday" selected>Holidays</TreeItem>
-									<TreeItem value="event" selected>Events</TreeItem>
-								</TreeItemsGroup>
-							</Tree>
+							
 						</div>
 					</section>
 					<section id="sideB">

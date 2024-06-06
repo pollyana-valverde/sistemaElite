@@ -105,7 +105,7 @@ margin: 10px 0;
 
 /* corpo do acordeão */
 .bodyNavLinks li div.p-accordion-tab{
-    border-bottom: 1px solid rgba(50, 50, 50, 0.635);
+    border-bottom: 0.5px solid rgba(50, 50, 50, 0.201);
 }
 
 .bodyNavLinks li div.p-accordion-tab.p-accordion-tab-active{
@@ -113,18 +113,25 @@ margin: 10px 0;
 }
 
 .bodyNavLinks li a.p-accordion-header-link{
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 13px;
+    border-radius: none;
     border: none;
     text-decoration: none;
     background-color: transparent ;
     color: rgba(50, 50, 50, 0.635);
 }
 
+
 .bodyNavLinks li div.p-accordion-tab.p-accordion-tab-active a.p-accordion-header-link{
     text-decoration: none;
-    background-color: rgb(255, 255, 255) !important;
+    background-color: rgba(50, 50, 50, 0.1);    
     color: rgba(50, 50, 50, 0.635);
+    border-bottom: 1px solid rgba(50, 50, 50, 0.226);
 }
 
 .bodyNavLinks li div.p-accordion-content{
-    background-color: red ;
+    background-color: rgba(50, 50, 50, 0.1);    
+    padding: 10px 13px;
 }

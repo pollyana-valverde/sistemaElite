@@ -144,6 +144,7 @@ const Header = () => {
                             <h5>{token}</h5>
                           </div>
                         </li>
+                        <li className='headerLineNav'> <p></p></li>
                         <li className='lineNavLink'><a href="/">Home</a></li>
                         <div className="bodyNavLinks">
                           <li>
