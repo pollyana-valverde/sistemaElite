@@ -1,12 +1,12 @@
 //Lista de Usuarios
 import React from "react";
-import TabelaProdutos from "../Components/TabelaProdutos";
+import TabelaProdutos from "../Components/TabelaContasAPagar";
 
 const ListaProdutos = () => {
   return (
     <>
       <div className="tableSistemaGeral">
-        <h2>Lista de produtos</h2>
+        <h2>Contas a pagar</h2>
         <TabelaProdutos />
       </div>
     </>

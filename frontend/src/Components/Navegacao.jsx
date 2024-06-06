@@ -38,8 +38,8 @@ const Header = () => {
       caminho: "/FornecedorCadastro",
       nome: " fornecedor",
     }, {
-      caminho: "/ProdutosCadastro",
-      nome: "produtos",
+      caminho: "/CadastrarPagamento",
+      nome: "Cadastrar Pagamento",
     }
   ]);
 
@@ -61,8 +61,8 @@ const Header = () => {
       caminho: "/ListaClientes",
       nome: "clientes",
     }, {
-      caminho: "/ListaProdutos",
-      nome: "produtos",
+      caminho: "/ListaContasAPagar",
+      nome: "Contas a pagar",
     }, {
 
       caminho: "/ListaVendas",
@@ -102,8 +102,8 @@ const Header = () => {
       caminho: "/FornecedorCadastro",
       nome: " fornecedor",
     }, {
-      caminho: "/ProdutosCadastro",
-      nome: "produtos",
+      caminho: "/CadastrarPagamento",
+      nome: "Cadastrar pagamento",
     }, {
       titulo: <li className='headerLineNav'> <p>Registros</p></li>,
       caminho: "/listaUsuarios",
@@ -121,8 +121,9 @@ const Header = () => {
       caminho: "/ListaClientes",
       nome: "clientes",
     }, {
-      caminho: "/ListaProdutos",
-      nome: "produtos",
+      caminho: "/Boletim",
+      nome: "Boletim Escolar",
+
     }, {
 
       caminho: "/ListaVendas",
