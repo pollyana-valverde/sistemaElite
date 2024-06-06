@@ -32,6 +32,9 @@ const Header = () => {
       caminho: "/FuncionarioCadastro",
       nome: "Cadastrar funcionários",
     }, {
+      caminho: "/FuncionarioTercCadastro",
+      nome: "Cadastrar funcionários Terceirizados",
+    }, {
       caminho: "/CadastroClientes",
       nome: "Cadastrar clientes",
     }, {
@@ -47,6 +50,9 @@ const Header = () => {
     }, {
       caminho: "/ListaFuncionario",
       nome: "Lista de funcionários",
+    },{
+      caminho: "/ListaFuncionarioTerc",
+      nome: "Lista de funcionários Terceirizados",
     }, {
       caminho: "/ListaFornecedores",
       nome: "Lista de fornecedores",

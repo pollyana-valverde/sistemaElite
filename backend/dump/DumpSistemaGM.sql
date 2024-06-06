@@ -102,7 +102,6 @@ values ('Receita com produto', '1345.38', '20240613', 'Indústria mecânica Pere
 ('Receita com produto', '1984.52', '20240928', 'Indústria mecânica Perez', 'E01 - Banco do Brasil', 'Documento 328 - Parcela 1 de 3', 'Pendente', '0');
 
 
-
 create table carros (
 idCarro int auto_increment primary key,
 marca varchar(100)not null,
@@ -685,7 +684,6 @@ VALUES
 ( 'Larissa Costa', 'larissa.costa@example.com', '19198765432', '404.445.464-00', 'Avenida dos Holandeses, 1616, Teresina, PI', 'larissa4'),
 ( 'João Ribeiro', 'joao.ribeiro@example.com', '20198765432', '505.556.575-00', 'Rua das Hortênsias, 1717, Maceió, AL', 'joao7890');
 
-
 CREATE TABLE `Boletim` ( 
   `idBoletim` INT AUTO_INCREMENT NOT NULL,
   `nomeAluno` VARCHAR(150) NOT NULL,
@@ -751,3 +749,55 @@ VALUES
 ('Samantha Moraes', '1° Semestre', 'Química', '9.0', '8.0', '9.0', '8.7', 'aprovado'),
 ('Samantha Moraes', '1° Semestre', 'Biologia', '8.0', '7.0', '9.0', '8.0', 'aprovado'),
 ('Samantha Moraes', '1° Semestre', 'Educação Física', '9.0', '9.0', '8.0', '8.7', 'aprovado');
+
+
+CREATE TABLE `FuncionariosTerceirizados` (
+    `idFuncionarioTercerizado` INT AUTO_INCREMENT  NOT NULL,
+    `nome` VARCHAR(100) NOT NULL,
+	`email` VARCHAR(100),
+	`telefone` VARCHAR(15),
+    `cpf` VARCHAR(14) NOT NULL,
+    `cargo` VARCHAR(50) NOT NULL,
+	`regime_trabalho` VARCHAR(10) NOT NULL,
+	`endereco` VARCHAR(250) NOT NULL,
+	`empresa_terceirizada` VARCHAR(100) NOT NULL,
+  CONSTRAINT `PRIMARY` PRIMARY KEY (idFuncionarioTercerizado)
+);
+
+
+
+INSERT INTO FuncionariosTerceirizados (nome, email, telefone, cpf, cargo,  regime_trabalho, endereco, empresa_terceirizada)
+values
+('Amanda Ferreira', 'amandinhaAmanda@gmail.com', '(11) 99899-2827', '889.010.020-21', 'Agente de Limpeza', '123456798', 'Avenida dos Ipês, 456, Bairro Jardim Primavera, Cidade Esperança, Estado da Harmonia, CEP: 23456-789', 'Serviços Terceirizados S.A.'),
+('Carolina Alves', 'alvesAmanda09@uol.com.br.com', '(11) 98177-2933', '776.332.435-21', 'Funcionário da Cantina', '88796654', 'Praça das Águias, 987, Bairro Vista Verde, Cidade Encantada, Estado da Serenidade, CEP: 45678-901', 'Soluções Terceirizadas Ltda.'),
+('Armando Gustavo', 'GgguGa.armando@gmail.com', '(11) 91234-9928', '876.567.123-21', 'Agente de Limpeza', '54673345', 'Praça dos Girassóis, 109, Bairro Vida Nova, Cidade dos Sonhos, Estado da Paz, CEP: 43210-987', 'Terceirizações Inteligentes Ltda'),
+('Giovane Chavez', 'havesGiovane@example.com', '(11) 92345-6789', '123.456.789-10', 'Sócio', '123456789', 'Rua das Flores, 123, Bairro Bela Vista, Cidade dos Sonhos, Estado do Arco-Íris, CEP: 12345-678', 'Outsourcing Total S.A.'),
+('Arnaldo Pereira Santos', 'Arnarldinho..Pereira.santos@outlook.com', '(11) 93456-7890', '765.432.109-87', 'Sócio', '123456879', 'Rua dos Cedros, 543, Bairro Nova Vida, Cidade da Esperança, Estado do Sol, CEP: 76543-210', 'Serviços Externos & Cia.'),
+('Maria dos Anjos', 'maria_anjos272@gmail.com', '(11) 94567-8901', '345.678.901-32', 'Gerente', '123456897', 'Travessa das Palmeiras, 789, Bairro Sol Nascente, Cidade da Alegria, Estado das Cores, CEP: 34567-890', 'Terceirização Profissional Ltda.'),
+('Paulo Carvalho', 'paulo.carvalho@icloud.com', '(11) 95678-9012', '654.321.098-76', 'Supervisor de linha', '123456978', 'Avenida das Oliveiras, 876, Bairro Vale da Lua, Cidade das Maravilhas, Estado da Harmonia, CEP: 65432-109', 'Parceiros Terceirizados Ltda.'),
+('Guilherme Alburqueque', 'guiAlbuquerque.silva@gmail.com', '(11) 96789-0123', '543.210.987-65', 'Supervisor de linha', '123456987', 'Travessa dos Coqueiros, 210, Bairro Sol Poente, Cidade das Flores, Estado da Alegria, CEP: 54321-098', 'Fornecedores de Serviços Outsourced Ltda.'),
+('Carolina Sanches', 'carolina.sanches@outlook.com', '(11) 97890-1234', '456.789.012-43', 'Supervisor de linha', '123457689', 'Praça das Águias, 987, Bairro Vista Verde, Cidade Encantada, Estado da Serenidade, CEP: 45678-901', 'Terceirização Estratégica S.A.'),
+('Henrique Augusto', 'henriqueAugusto@uol.com.br', '(11) 98901-2345', '432.109.876-54', 'Operador de máquina', '123457869', ' Praça dos Girassóis, 109, Bairro Vida Nova, Cidade dos Sonhos, Estado da Paz, CEP: 43210-987', 'Soluções de Terceirização Global Ltda.'),
+('Amanda Ferreira', 'amandinhaAmanda@gmail.com', '(11) 99899-2827', '889.010.029-21', 'Agente de Limpeza', '123456798', 'Avenida dos Ipês, 456, Bairro Jardim Primavera, Cidade Esperança, Estado da Harmonia, CEP: 23456-789', 'Serviços Terceirizados S.A.'),
+('Carolina Alves', 'alvesAmanda09@uol.com.br.com', '(11) 98177-2933', '776.332.435-21', 'Funcionário da Cantina', '88796654', 'Praça das Águias, 987, Bairro Vista Verde, Cidade Encantada, Estado da Serenidade, CEP: 45678-901', 'Fornecedores de Serviços Outsourced Ltda.'),
+('Armando Gustavo', 'GgguGa.armando@gmail.com', '(11) 91234-9928', '876.567.123-21', 'Agente de Limpeza', '54673345', 'Praça dos Girassóis, 109, Bairro Vida Nova, Cidade dos Sonhos, Estado da Paz, CEP: 43210-987', 'Terceirizações Inteligentes Ltda'),
+('Giovane Chavez', 'havesGiovane@example.com', '(11) 92345-6789', '123.456.789-10', 'Sócio', '123456789', 'Rua das Flores, 123, Bairro Bela Vista, Cidade dos Sonhos, Estado do Arco-Íris, CEP: 12345-678', 'Fornecedores de Serviços Outsourced Ltda.'),
+('Arnaldo Pereira Santos', 'Arnarldinho..Pereira.santos@outlook.com', '(11) 93456-7890', '765.432.109-87', 'Sócio', '123456879', 'Rua dos Cedros, 543, Bairro Nova Vida, Cidade da Esperança, Estado do Sol, CEP: 76543-210', 'Soluções Terceirizadas Ltda.'),
+('Maria dos Anjos', 'maria_anjos272@gmail.com', '(11) 94567-8901', '345.678.901-32', 'Gerente', '123456897', 'Travessa das Palmeiras, 789, Bairro Sol Nascente, Cidade da Alegria, Estado das Cores, CEP: 34567-890', 'Terceirizações Inteligentes Ltda'),
+('Paulo Carvalho', 'paulo.carvalho@icloud.com', '(11) 95678-9012', '654.321.098-76', 'Supervisor de linha', '123456978', 'Avenida das Oliveiras, 876, Bairro Vale da Lua, Cidade das Maravilhas, Estado da Harmonia, CEP: 65432-109', 'Serviços Terceirizados S.A.'),
+('Guilherme Alburqueque', 'guiAlbuquerque.silva@gmail.com', '(11) 96789-0123', '543.210.987-65', 'Supervisor de linha', '123456987', 'Travessa dos Coqueiros, 210, Bairro Sol Poente, Cidade das Flores, Estado da Alegria, CEP: 54321-098', 'Parceiros Terceirizados Ltda.'),
+('Carolina Sanches', 'carolina.sanches@outlook.com', '(11) 97890-1234', '456.789.012-43', 'Supervisor de linha', '123457689', 'Praça das Águias, 987, Bairro Vista Verde, Cidade Encantada, Estado da Serenidade, CEP: 45678-901', 'Soluções Terceirizadas Ltda.'),
+('Henrique Augusto', 'henriqueAugusto@uol.com.br', '(11) 98901-2345', '432.109.876-54', 'Operador de máquina', '123457869', ' Praça dos Girassóis, 109, Bairro Vida Nova, Cidade dos Sonhos, Estado da Paz, CEP: 43210-987', 'Fornecedores de Serviços Outsourced Ltda.'),
+('Amanda Ferreira', 'amandinhaAmanda@gmail.com', '(11) 99899-2827', '889.010.290-21', 'Agente de Limpeza', '123456798', 'Avenida dos Ipês, 456, Bairro Jardim Primavera, Cidade Esperança, Estado da Harmonia, CEP: 23456-789', 'Terceirizações Inteligentes Ltda'),
+('Carolina Alves', 'alvesAmanda09@uol.com.br.com', '(11) 98177-2933', '776.332.435-21', 'Funcionário da Cantina', '88796654', 'Praça das Águias, 987, Bairro Vista Verde, Cidade Encantada, Estado da Serenidade, CEP: 45678-901', 'Parceiros Terceirizados Ltda.'),
+('Armando Gustavo', 'GgguGa.armando@gmail.com', '(11) 91234-9928', '876.567.123-21', 'Agente de Limpeza', '54673345', 'Praça dos Girassóis, 109, Bairro Vida Nova, Cidade dos Sonhos, Estado da Paz, CEP: 43210-987', 'Soluções Terceirizadas Ltda.'),
+('Giovane Chavez', 'havesGiovane@example.com', '(11) 92345-6789', '123.456.789-10', 'Sócio', '123456789', 'Rua das Flores, 123, Bairro Bela Vista, Cidade dos Sonhos, Estado do Arco-Íris, CEP: 12345-678', 'Fornecedores de Serviços Outsourced Ltda.'),
+('Arnaldo Pereira Santos', 'Arnarldinho..Pereira.santos@outlook.com', '(11) 93456-7890', '765.432.109-87', 'Sócio', '123456879', 'Rua dos Cedros, 543, Bairro Nova Vida, Cidade da Esperança, Estado do Sol, CEP: 76543-210', 'Terceirizações Inteligentes Ltda'),
+('Maria dos Anjos', 'maria_anjos272@gmail.com', '(11) 94567-8901', '345.678.901-32', 'Gerente', '123456897', 'Travessa das Palmeiras, 789, Bairro Sol Nascente, Cidade da Alegria, Estado das Cores, CEP: 34567-890', 'Parceiros Terceirizados Ltda.'),
+('Paulo Carvalho', 'paulo.carvalho@icloud.com', '(11) 95678-9012', '654.321.098-76', 'Supervisor de linha', '123456978', 'Avenida das Oliveiras, 876, Bairro Vale da Lua, Cidade das Maravilhas, Estado da Harmonia, CEP: 65432-109', 'Soluções Terceirizadas Ltda.'),
+('Guilherme Alburqueque', 'guiAlbuquerque.silva@gmail.com', '(11) 96789-0123', '543.210.987-65', 'Supervisor de linha', '123456987', 'Travessa dos Coqueiros, 210, Bairro Sol Poente, Cidade das Flores, Estado da Alegria, CEP: 54321-098', 'Terceirizações Inteligentes Ltda'),
+('Carolina Sanches', 'carolina.sanches@outlook.com', '(11) 97890-1234', '456.789.012-43', 'Supervisor de linha', '123457689', 'Praça das Águias, 987, Bairro Vista Verde, Cidade Encantada, Estado da Serenidade, CEP: 45678-901', 'Serviços Terceirizados S.A.'),
+('Henrique Augusto', 'henriqueAugusto@uol.com.br', '(11) 98901-2345', '432.109.876-54', 'Operador de máquina', '123457869', ' Praça dos Girassóis, 109, Bairro Vida Nova, Cidade dos Sonhos, Estado da Paz, CEP: 43210-987', 'Fornecedores de Serviços Outsourced Ltda.'),
+('Amanda Ferreira', 'amandinhaAmanda@gmail.com', '(11) 99899-2827', '889.010.090-21', 'Agente de Limpeza', '123456798', 'Avenida dos Ipês, 456, Bairro Jardim Primavera, Cidade Esperança, Estado da Harmonia, CEP: 23456-789', 'Soluções Terceirizadas Ltda.'),
+('Carolina Alves', 'alvesAmanda09@uol.com.br.com', '(11) 98177-2933', '776.332.435-21', 'Funcionário da Cantina', '88796654', 'Praça das Águias, 987, Bairro Vista Verde, Cidade Encantada, Estado da Serenidade, CEP: 45678-901', 'Terceirizações Inteligentes Ltda'),
+('Armando Gustavo', 'GgguGa.armando@gmail.com', '(11) 91234-9928', '876.567.123-21', 'Agente de Limpeza', '54673345', 'Praça dos Girassóis, 109, Bairro Vida Nova, Cidade dos Sonhos, Estado da Paz, CEP: 43210-987', 'Serviços Terceirizados S.A.');
