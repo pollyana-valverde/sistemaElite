@@ -327,7 +327,7 @@ return (
 
         <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="Endereço" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="empresa_terceirizada" filter filterPlaceholder="Filtre pela empresa" sortable  header="empresa_terceirizada" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="empresa_terceirizada" filter filterPlaceholder="Filtre pela empresa" sortable  header="empresa_terceirizada1" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
         <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 
