@@ -9,16 +9,16 @@ import { InputMask } from 'primereact/inputmask';
 
 const FornecedorForm = () => {
     const [formData, setFormData] = useState({
-        representanteImpresa: '',
+        representanteEmpresa: '',
         telefoneRepresentante: '',
         cargoRepresentante: '',
         cpfRepresentante: '',
-        nomeImpresa: '',
+        nomeEmpresa: '',
         email: '',
         cnpj: '',
         endereco: '',
-        telefoneImpresa: '',
-        siteImpresa: ''
+        telefoneEmpresa: '',
+        produtoServico: ''
     });
 
     const handleChange = (e) => {
@@ -36,16 +36,16 @@ const FornecedorForm = () => {
             alert('Fornecedor cadastrado com sucesso!');
             // Limpar o formulário após o envio bem-sucedido
             setFormData({
-                representanteImpresa: '',
+                representanteEmpresa: '',
                 telefoneRepresentante: '',
                 cargoRepresentante: '',
                 cpfRepresentante: '',
-                nomeImpresa: '',
+                nomeEmpresa: '',
                 email: '',
                 cnpj: '',
                 endereco: '',
-                telefoneImpresa: '',
-                siteImpresa: ''
+                telefoneEmpresa: '',
+                produtoServico: ''
             });
         } catch (error) {
             console.error('Erro ao cadastrar fornecedor:', error);
@@ -58,7 +58,7 @@ const FornecedorForm = () => {
 
             <Form.Group className="mb-2 mt-2" controlId="formGridAddress1">
                 <Form.Label>Representante da empresa</Form.Label>
-                <Form.Control type="text" name="representanteImpresa" placeholder="Representante da impresa" value={formData.representanteImpresa} onChange={handleChange} />
+                <Form.Control type="text" name="representanteEmpresa" placeholder="Representante da Empresa" value={formData.representanteEmpresa} onChange={handleChange} />
             </Form.Group>
 
 
@@ -80,7 +80,7 @@ const FornecedorForm = () => {
             <Row>
                 <Col className="mb-1" xs={4}>
                     <Form.Label>Nome da empresa</Form.Label>
-                    <Form.Control type="text" name="nomeImpresa" placeholder="Nome da impresa" value={formData.nomeImpresa} onChange={handleChange} />
+                    <Form.Control type="text" name="nomeEmpresa" placeholder="Nome da Empresa" value={formData.nomeEmpresa} onChange={handleChange} />
                 </Col>
                 <Col>
                     <Form.Label>Email da empresa</Form.Label>
@@ -99,13 +99,13 @@ const FornecedorForm = () => {
                 </Col>
                 <Col>
                     <Form.Label>Telefone da empresa</Form.Label>
-                    <InputMask className='form-control' type="text" name="telefoneImpresa" mask="(99) 99999-9999" placeholder="(99) 99999-9999" value={formData.telefoneImpresa} onChange={handleChange} ></InputMask>
+                    <InputMask className='form-control' type="text" name="telefoneEmpresa" mask="(99) 99999-9999" placeholder="(99) 99999-9999" value={formData.telefoneEmpresa} onChange={handleChange} ></InputMask>
                 </Col>
             </Row>
 
             <Form.Group className="mb-3" controlId="formGridAddress1">
-                <Form.Label>Site da empresa</Form.Label>
-                <Form.Control type="url" name="siteImpresa" placeholder="https://" value={formData.siteImpresa} onChange={handleChange} />
+                <Form.Label>Produto/Serviço</Form.Label>
+                <Form.Control type="text" name="produtoServico" placeholder="produto ou serviço" value={formData.produtoServico} onChange={handleChange} />
             </Form.Group>
 
             <button className='btnFormSistema' type="submit">Salvar</button>

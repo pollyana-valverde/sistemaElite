@@ -202,9 +202,9 @@ router.get('/fornecedor/:idFornecedor', (req, res) => {
 
 // Rota para criar um novo registro
 router.post('/fornecedor', (req, res) => {
-  const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
-  connection.query('INSERT INTO fornecedores (representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-    [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa], (err, result) => {
+  const { representanteEmpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeEmpresa, email, telefoneEmpresa, cnpj, endereco, produtoServico } = req.body;
+  connection.query('INSERT INTO fornecedores (representanteEmpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeEmpresa, email, telefoneEmpresa, cnpj, endereco, produtoServico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    [representanteEmpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeEmpresa, email, telefoneEmpresa, cnpj, endereco, produtoServico], (err, result) => {
       if (err) {
         console.error('Erro ao criar o registro:', err);
         res.status(500).json({ error: 'Erro ao criar o registro' });
@@ -217,9 +217,9 @@ router.post('/fornecedor', (req, res) => {
 // Rota para atualizar um registro existente pelo ID
 router.put('/fornecedor/:idFornecedor', (req, res) => {
   const { idFornecedor } = req.params;
-  const { representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa } = req.body;
-  connection.query('UPDATE fornecedores SET representanteImpresa = ?, telefoneRepresentante = ?, cargoRepresentante = ?, cpfRepresentante = ?, nomeImpresa = ?, email = ?, telefoneImpresa = ?, cnpj = ?, endereco = ?, siteImpresa = ? WHERE idFornecedor = ?',
-    [representanteImpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeImpresa, email, telefoneImpresa, cnpj, endereco, siteImpresa, idFornecedor], (err, result) => {
+  const { representanteEmpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeEmpresa, email, telefoneEmpresa, cnpj, endereco, produtoServico } = req.body;
+  connection.query('UPDATE fornecedores SET representanteEmpresa = ?, telefoneRepresentante = ?, cargoRepresentante = ?, cpfRepresentante = ?, nomeEmpresa = ?, email = ?, telefoneEmpresa = ?, cnpj = ?, endereco = ?, produtoServico = ? WHERE idFornecedor = ?',
+    [representanteEmpresa, telefoneRepresentante, cargoRepresentante, cpfRepresentante, nomeEmpresa, email, telefoneEmpresa, cnpj, endereco, produtoServico, idFornecedor], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar o registro:', err);
         res.status(500).json({ error: 'Erro ao atualizar o registro' });

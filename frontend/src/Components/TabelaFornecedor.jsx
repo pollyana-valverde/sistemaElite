@@ -80,7 +80,7 @@ const initFilters = () => {
 
       endereco: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
 
-      siteImpresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+      produtoServico: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   });
   setGlobalFilterValue('');
 };
@@ -227,7 +227,7 @@ const handleAtualizarFornecedor =  (e) => {
 ['telefoneImpresa']: newData.telefoneImpresa,
 ['cnpj']: newData.cnpj,
 ['endereco']: newData.endereco,
-['siteImpresa']: newData.siteImpresa
+['produtoServico']: newData.produtoServico
   };
 
   
@@ -309,7 +309,7 @@ const header = renderHeader();
               'telefoneImpresa',
               'cnpj',
               'endereco',
-              'siteImpresa',
+              'produtoServico',
             ]} //indicando as células que serão filtradas
             paginator //paginação
             dataKey="idFornecedor" 
@@ -322,7 +322,7 @@ const header = renderHeader();
 
               <Column field="idFornecedor" sortable   header="Identificação" style={{ width: 'auto', textAlign:'center' }}></Column>
 
-              <Column field="representanteImpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="Representante da impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+              <Column field="representanteEmpresa" filter filterPlaceholder="Filtre pelo nome" sortable  header="Representante da Empresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
               <Column field="telefoneRepresentante" filter filterPlaceholder="Filtre pelo final do telefone" sortable  header="Telefone do representante" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
@@ -330,7 +330,7 @@ const header = renderHeader();
 
               <Column field="cpfRepresentante" filter filterPlaceholder="Filtre pelo final do cpf" sortable  header="CPF do representante" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="nomeImpresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="Nome da impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+              <Column field="nomeEmpresa" filter filterPlaceholder="Filtre pelo nome da Empresa" sortable  header="Nome da Empresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
               <Column field="email" filter filterPlaceholder="Filtre pelo email" sortable  header="Email" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
               
@@ -338,9 +338,9 @@ const header = renderHeader();
 
               <Column field="endereco" filter filterPlaceholder="Filtre pelo endereço" sortable  header="Endereço" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="telefoneImpresa" filter filterPlaceholder="Filtre pelo telefone da impresa" sortable  header="Eelefone da impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+              <Column field="telefoneEmpresa" filter filterPlaceholder="Filtre pelo telefone da Empresa" sortable  header="Telefone da Empresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-              <Column field="siteImpresa" filter filterPlaceholder="Filtre pelo nome do site" sortable  header="Site da impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+              <Column field="produtoServico" filter filterPlaceholder="Filtre pelo produto ou serviço" sortable  header="produto/Servico" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
               <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 
