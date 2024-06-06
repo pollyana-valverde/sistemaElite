@@ -10,8 +10,8 @@ import Logout from "./Pages/Logout";
 import TabelaUsuarios from "./Pages/ListaUsuarios";
 import FornecerCadastro from "./Pages/FornecedorCadastro";
 import TabelaFornecedor from "./Pages/ListaFornecedores";
-import ClienteCadastro from "./Pages/CadastroClientes";
-import ListaClientes from "./Pages/ListaClientes";
+import CadastroAlunos from "./Pages/CadastroAlunos";
+import ListaAlunos from "./Pages/ListaAlunos";
 import ContasReceber from "./Pages/ContasReceber";
 import Boletim from "./Pages/Boletim";
 import CadastrarPagamento from './Pages/CadastrarPagamento';
@@ -29,7 +29,7 @@ const Rotas = () => {
 
   //define rotas públicas acessíveis para todos os usuários
 
-/////ou vai ser usado pra admin ou eu tiro essa parte
+  /////ou vai ser usado pra admin ou eu tiro essa parte
   const rotasPublicas = [
     {
       path: "/cadastro",
@@ -42,59 +42,59 @@ const Rotas = () => {
     {
       path: "/",
       element: <ProtectedRoute />,
-      children: [ 
+      children: [
         {
           path: "/",
           element: <Home />,
-        },{
-          path: "/CadastroClientes",
-          element: <ClienteCadastro />,
-        },{
+        }, {
+          path: "/CadastroAlunos",
+          element: <CadastroAlunos />,
+        }, {
           path: "/ListaUsuarios",
           element: <TabelaUsuarios />,
-        },{
+        }, {
           path: "/FornecedorCadastro",
           element: <FornecerCadastro />,
-        },{
+        }, {
           path: "/TabelaFornecedor",
           element: <TabelaFornecedor />,
-        },{
-          path: "/ListaClientes",
-          element: <ListaClientes />,
-        },{
+        }, {
+          path: "/ListaAlunos",
+          element: <ListaAlunos />,
+        }, {
           path: "/ListaFornecedores",
           element: <ListaFornecedores />,
-        },{
+        }, {
           path: "/ContasReceber",
           element: <ContasReceber />,
-        },{
+        }, {
           path: "/Boletim",
-          element: < Boletim/>
-        },{
+          element: < Boletim />
+        }, {
           path: "/CadastrarPagamento",
-          element: < CadastrarPagamento/>
-        },{
+          element: < CadastrarPagamento />
+        }, {
           path: "/ListaContasAPagar",
-          element: < ListaContasAPagar/>
-        },{
+          element: < ListaContasAPagar />
+        }, {
           path: "/ListaFuncionario",
-          element: < ListaFuncionario/>
-        },{
+          element: < ListaFuncionario />
+        }, {
           path: "/ListaFuncionarioTerc",
-          element: < ListaFuncionarioTerc/>
-        },{
+          element: < ListaFuncionarioTerc />
+        }, {
           path: "/FuncionarioCadastro",
-          element: < FuncionarioCadastro/>
-        },{
+          element: < FuncionarioCadastro />
+        }, {
           path: "/FuncionarioTercCadastro",
-          element: <FuncionarioTercCadastro/>
-        },{
+          element: <FuncionarioTercCadastro />
+        }, {
           path: "/ListaVendas",
-          element: < ListaVendas/>
-        },{
+          element: < ListaVendas />
+        }, {
           path: "/FuncionarioCadastro",
-          element: < FuncionarioCadastro/>
-        },{
+          element: < FuncionarioCadastro />
+        }, {
           path: "/Logout",
           element: <Logout />,
         }
@@ -107,7 +107,7 @@ const Rotas = () => {
     {
       path: "/cadastro",
       element: <Cadastro />,
-    },{
+    }, {
       path: "/login",
       element: <Login />
     },

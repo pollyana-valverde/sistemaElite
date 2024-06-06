@@ -32,8 +32,8 @@ const Header = () => {
       caminho: "/FuncionarioTercCadastro",
       nome: "funcionários Terceirizados",
     }, {
-      caminho: "/CadastroClientes",
-      nome: " clientes",
+      caminho: "/CadastroAlunos",
+      nome: "Alunos",
     }, {
       caminho: "/FornecedorCadastro",
       nome: " fornecedor",
@@ -50,16 +50,16 @@ const Header = () => {
     }, {
       caminho: "/ListaFuncionario",
       nome: "funcionários",
-    },{
+    }, {
       caminho: "/ListaFuncionarioTerc",
       nome: "funcionários Terceirizados",
     },
- {
+    {
       caminho: "/ListaFornecedores",
       nome: "fornecedores",
     }, {
-      caminho: "/ListaClientes",
-      nome: "clientes",
+      caminho: "/ListaAlunos",
+      nome: "Lista de Alunos",
     }, {
 
       caminho: "/ListaVendas",
@@ -97,9 +97,9 @@ const Header = () => {
       caminho: "/FuncionarioTercCadastro",
       nome: "funcionários Terceirizados",
     },
-{
-      caminho: "/CadastroClientes",
-      nome: " clientes",
+    {
+      caminho: "/CadastroAlunos",
+      nome: "Alunos",
     }, {
       caminho: "/FornecedorCadastro",
       nome: " fornecedor",
@@ -113,15 +113,15 @@ const Header = () => {
     }, {
       caminho: "/ListaFuncionario",
       nome: "Lista de funcionários",
-    },{
+    }, {
       caminho: "/ListaFuncionarioTerc",
       nome: "Lista de funcionários Terceirizados",
     }, {
       caminho: "/ListaFornecedores",
       nome: "fornecedores",
     }, {
-      caminho: "/ListaClientes",
-      nome: "clientes",
+      caminho: "/ListaAlunos",
+      nome: "Alunos",
     }, {
       caminho: "/Boletim",
       nome: "Boletim Escolar",
