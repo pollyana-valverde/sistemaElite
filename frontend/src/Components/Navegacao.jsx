@@ -29,14 +29,17 @@ const Header = () => {
       caminho: "/FuncionarioCadastro",
       nome: " funcionários",
     }, {
+      caminho: "/FuncionarioTercCadastro",
+      nome: "funcionários Terceirizados",
+    }, {
       caminho: "/CadastroClientes",
       nome: " clientes",
     }, {
       caminho: "/FornecedorCadastro",
       nome: " fornecedor",
     }, {
-      caminho: "/ProdutosCadastro",
-      nome: "produtos",
+      caminho: "/CadastrarPagamento",
+      nome: "Cadastrar Pagamento",
     }
   ]);
 
@@ -47,20 +50,25 @@ const Header = () => {
     }, {
       caminho: "/ListaFuncionario",
       nome: "funcionários",
-    }, {
+    },{
+      caminho: "/ListaFuncionarioTerc",
+      nome: "funcionários Terceirizados",
+    },
+ {
       caminho: "/ListaFornecedores",
       nome: "fornecedores",
     }, {
       caminho: "/ListaClientes",
       nome: "clientes",
     }, {
-      caminho: "/ListaProdutos",
-      nome: "produtos",
-    }, {
 
       caminho: "/ListaVendas",
       nome: "Lista de vendas",
 
+    },
+    {
+      caminho: "/Boletim",
+      nome: "Boletim Escolar",
     }
   ]);
 
@@ -68,8 +76,9 @@ const Header = () => {
     {
       caminho: "/ContasReceber",
       nome: "Contas a receber",
-    }, {
-      caminho: "/ContasPagar",
+    },
+    {
+      caminho: "/ListaContasAPagar",
       nome: "Contas a pagar",
     }
   ]);
@@ -83,23 +92,30 @@ const Header = () => {
     }, {
       titulo: <li className='headerLineNav'><p>Cadastrar</p></li>,
       caminho: "/FuncionarioCadastro",
-      nome: " funcionários",
+      nome: "funcionários",
     }, {
+      caminho: "/FuncionarioTercCadastro",
+      nome: "funcionários Terceirizados",
+    },
+{
       caminho: "/CadastroClientes",
       nome: " clientes",
     }, {
       caminho: "/FornecedorCadastro",
       nome: " fornecedor",
     }, {
-      caminho: "/ProdutosCadastro",
-      nome: "produtos",
+      caminho: "/CadastrarPagamento",
+      nome: "Cadastrar pagamento",
     }, {
       titulo: <li className='headerLineNav'> <p>Registros</p></li>,
       caminho: "/listaUsuarios",
       nome: "usuários",
     }, {
       caminho: "/ListaFuncionario",
-      nome: "funcionários",
+      nome: "Lista de funcionários",
+    },{
+      caminho: "/ListaFuncionarioTerc",
+      nome: "Lista de funcionários Terceirizados",
     }, {
       caminho: "/ListaFornecedores",
       nome: "fornecedores",
@@ -107,8 +123,9 @@ const Header = () => {
       caminho: "/ListaClientes",
       nome: "clientes",
     }, {
-      caminho: "/ListaProdutos",
-      nome: "produtos",
+      caminho: "/Boletim",
+      nome: "Boletim Escolar",
+
     }, {
 
       caminho: "/ListaVendas",

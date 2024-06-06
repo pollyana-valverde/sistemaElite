@@ -123,7 +123,7 @@ router.post('/vendas', (req, res) => {
 // Rota para atualizar um registro existente pelo ID
 router.put('/vendas/:codigoVenda', (req, res) => {
   const { codigoVenda } = req.params;
-  const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade , metodoPagamento, endereco, status } = req.body;
+  const { dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, metodoPagamento, endereco, status } = req.body;
   connection.query('UPDATE vendas SET dataHora = ?, numeroIdentCarro = ?, cliente = ?, cpfFuncionario = ?, qtdProdutos = ?, valorUnidade = ?, metodoPagamento = ?, endereco = ?, status = ? WHERE codigoVenda = ?',
     [dataHora, numeroIdentCarro, cliente, cpfFuncionario, qtdProdutos, valorUnidade, metodoPagamento, endereco, status, codigoVenda], (err, result) => {
       if (err) {
@@ -353,7 +353,7 @@ router.get('/contasReceber/:id', (req, res) => {
 // Rota para atualizar um registro existente pelo ID
 router.put('/contasReceber/:idcontaReceber', (req, res) => {
   const { idcontaReceber } = req.params;
-  const {clasificacao, valorReceber, vencimento, empresa, contaBancaria, descricao, status, valorRecebido } = req.body;
+  const { clasificacao, valorReceber, vencimento, empresa, contaBancaria, descricao, status, valorRecebido } = req.body;
   connection.query('UPDATE contasreceber SET clasificacao = ?, valorReceber = ?, vencimento = ?, empresa = ?, contaBancaria = ?, descricao = ?, status = ?, valorRecebido =? WHERE idcontaReceber = ?',
     [clasificacao, valorReceber, vencimento, empresa, contaBancaria, descricao, status, valorRecebido, idcontaReceber], (err, result) => {
       if (err) {
@@ -504,9 +504,9 @@ router.get('/produtos/:idCarro', (req, res) => {
 
 // Rota para criar um novo registro
 router.post('/produtos', (req, res) => {
-  const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, id } = req.body;
-  connection.query('INSERT INTO carros (marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )',
-    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, id], (err, result) => {
+  const { descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status } = req.body;
+  connection.query('INSERT INTO carros (descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status], (err, result) => {
       if (err) {
         console.error('Erro ao criar o registro:', err);
         res.status(500).json({ error: 'Erro ao criar o registro' });
@@ -519,9 +519,9 @@ router.post('/produtos', (req, res) => {
 // Rota para atualizar um registro existente pelo ID
 router.put('/produtos/:idCarro', (req, res) => {
   const { idCarro } = req.params;
-  const { marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor } = req.body;
-  connection.query('UPDATE carros SET marca = ?, modelo = ?, classificacao = ?, cor = ?, anoFabricacao = ?, potencia = ?, tipoMotor = ?, tipoTransmissao = ?, numeroIdentificacao = ?, valor = ? WHERE idCarro = ?',
-    [marca, modelo, classificacao, cor, anoFabricacao, potencia, tipoMotor, tipoTransmissao, numeroIdentificacao, valor, idCarro], (err, result) => {
+  const { descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status } = req.body;
+  connection.query('UPDATE carros SET descricao = ?, categoria = ?, nomePagamento = ?, dataEmissao = ?, dataVencimento = ?, valor = ?, parcelamento = ?, status = ? WHERE idCarro = ?',
+    [descricao, categoria, nomePagamento, dataEmissao, dataVencimento, valor, parcelamento, status, idCarro], (err, result) => {
       if (err) {
         console.error('Erro ao atualizar o registro:', err);
         res.status(500).json({ error: 'Erro ao atualizar o registro' });
@@ -615,6 +615,76 @@ router.delete('/funcionario/:id', (req, res) => {
   });
 });
 
+
+///////////////////////////////////////// cadastro do funcionário Tercerizado ////////////////////////////////////
+// Rota para listar todos os registros
+router.get('/funcionarioTerc', (req, res) => {
+  connection.query('SELECT * FROM FuncionariosTerceirizados', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para buscar um registro específico pelo ID
+router.get('/funcionarioTerc/:idFuncionarioTercerizado', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM FuncionariosTerceirizados WHERE idFuncionarioTercerizado = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+// Rota para criar um novo registro
+router.post('/funcionarioTerc', (req, res) => {
+  const { nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada, id } = req.body;
+  connection.query('INSERT INTO FuncionariosTerceirizados (nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada, id], (err, result) => {
+      if (err) {
+        console.error('Erro ao criar o registro:', err);
+        res.status(500).json({ error: 'Erro ao criar o registro' });
+        return;
+      }
+      res.status(201).json({ message: 'Registro criado com sucesso', id: result.insertId });
+    });
+});
+
+// Rota para atualizar um registro existente pelo ID
+router.put('/funcionarioTerc/:idFuncionarioTercerizado', (req, res) => {
+  const { idFuncionarioTercerizado } = req.params;
+  const { nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada, } = req.body;
+  connection.query('UPDATE FuncionariosTerceirizados SET nome = ?, email = ?, cpf = ?, cargo = ?, regime_trabalho  = ?, endereco = ?, telefone = ?, empresa_terceirizada = ? WHERE idFuncionarioTercerizado = ?',
+    [nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada, idFuncionarioTercerizado], (err, result) => {
+      if (err) {
+        console.error('Erro ao atualizar o registro:', err);
+        res.status(500).json({ error: 'Erro ao atualizar o registro' });
+        return;
+      }
+      res.json({ message: 'Registro atualizado com sucesso' });
+    });
+});
+
+router.delete('/funcionarioTerc/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('DELETE FROM FuncionariosTerceirizados WHERE idFuncionarioTercerizado = ?', [id], (err, result) => {
+    if (err) {
+      console.error('Erro ao excluir o registro:', err);
+      res.status(500).json({ error: 'Erro ao excluir o registro' });
+      return;
+    }
+    res.json({ message: 'Registro excluído com sucesso' });
+  });
+});
 
 
 module.exports = router;
