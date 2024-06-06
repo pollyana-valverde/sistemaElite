@@ -12,23 +12,23 @@ import { Tag } from 'primereact/tag';
 import { Dropdown } from 'primereact/dropdown';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
-const TabelaContasPagar = () => {
+const TabelaBoletim = () => {
   const [filters, setFilters] = useState(null); //filtro
   const [globalFilterValue, setGlobalFilterValue] = useState(''); //filtro global
   const [loading, setLoading] = useState(false);
-  const [contasPagar, setContasPagar] = useState([]);
+  const [Boletim, setBoletim] = useState([]);
   const [visible, setVisible] = useState(false);
   const toast = useRef(null);
-  const [selectedContasPagar, setSelectedContasPagar] = useState(null);
+  const [selectedBoletim, setSelectedBoletim] = useState(null);
 
-  const [statuses] = useState(['Baixado', 'Pendente']);
+  const [statuses] = useState(['aprovado', 'reprovado']);
 
-  const getStatus = (status) => {
-      switch (status) {
-          case 'Baixado':
+  const getStatus = (situacao) => {
+      switch (situacao) {
+          case 'aprovado':
               return 'success';
 
-          case 'Pendente':
+          case 'reprovado':
               return 'danger';
       }
   };
@@ -42,8 +42,8 @@ const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
 //link para pegar os dados
 useEffect(() => {
-  axios.get("http://localhost:3001/contasPagar")
-  .then((res) => setContasPagar(res.data))
+  axios.get("http://localhost:3001/Boletim")
+  .then((res) => setBoletim(res.data))
   .catch(err => (err))
   setLoading(false);
   initFilters(); 
@@ -75,21 +75,21 @@ const initFilters = () => {
 setFilters({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 
-    clasificacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+    nomeAluno: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    valorPagar: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+    semestre: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    vencimento: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+    materia: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    empresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+    nota1: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    contaBancaria: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    nota2: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
 
-    descricao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+    nota3: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
-    status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
+    notaFinal: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
 
-    valorPago: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+    situacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
 
 });
 setGlobalFilterValue('');
@@ -108,7 +108,7 @@ return (
       icon="pi pi-trash"
       severity="danger"
       onClick={() => setVisible(true)}
-      disabled={!selectedContasPagar || !selectedContasPagar.length}
+      disabled={!selectedBoletim || !selectedBoletim.length}
     />
         <Button className='border-round-lg' type="button" icon="pi pi-filter-slash" label="Limpar" outlined onClick={clearFilter} />
       </div>
@@ -122,7 +122,7 @@ return (
 
 //filtro de status
 const statusBodyTemplate = (rowData) => {
-  return <Tag value={rowData.status} severity={getStatus(rowData.status)} />;
+  return <Tag value={rowData.situacao} severity={getStatus(rowData.situacao)} />;
 };
 
 const statusFilterTemplate = (options) => {
@@ -136,12 +136,12 @@ const statusItemTemplate = (option) => {
 ///////////////////////////////// deletar linha da tabela ////////////////////////////////
 
 //pega os dados para serem excluídos pela url (específico)
-const handleExcluirContaPagar = async (idcontaPagar) => {
+const handleExcluirContaPagar = async (idBoletim) => {
   try {
-    await axios.delete(`http://localhost:3001/contasPagar/${idcontaPagar}`);
+    await axios.delete(`http://localhost:3001/Boletim/${idBoletim}`);
     // Atualiza a lista de cliente após a exclusão
-    const { data } = await axios.get("http://localhost:3001/contasPagar");
-    setContasPagar(data);
+    const { data } = await axios.get("http://localhost:3001/Boletim");
+    setBoletim(data);
     console.log("Cliente excluído com sucesso!");
   } catch (error) {
     console.error("Erro ao excluir cliente:", error);
@@ -156,12 +156,12 @@ const handleExcluirContaPagar = async (idcontaPagar) => {
 
 
 //pega os dados para serem excluídos pela url (geral)
-const handleExcluirVariosContasPagar = async (idcontaPagar) => {
+const handleExcluirVariosBoletim = async (idBoletim) => {
   try {
-    await axios.delete(`http://localhost:3001/contasPagar/${idcontaPagar}`);
+    await axios.delete(`http://localhost:3001/Boletim/${idBoletim}`);
     // Atualiza a lista de cliente após a exclusão
-    const { data } = await axios.get("http://localhost:3001/contasPagar");
-    setContasPagar(data);
+    const { data } = await axios.get("http://localhost:3001/Boletim");
+    setBoletim(data);
     console.log("Cliente excluído com sucesso!");
   } catch (error) {
     console.error("Erro ao excluir cliente:", error);
@@ -174,15 +174,15 @@ const handleExcluirVariosContasPagar = async (idcontaPagar) => {
 //deleta os registros que foram selecinados
 const deleteSelectedProducts =  () => {
 
-  let _products = contasPagar.filter((id) => selectedContasPagar.includes(id));
+  let _products = Boletim.filter((id) => selectedBoletim.includes(id));
     
 
-  setContasPagar(_products);
-  setSelectedContasPagar(null);
+  setBoletim(_products);
+  setSelectedBoletim(null);
 
   function excluirSelecionados(item, index) {
-    handleExcluirVariosContasPagar(item.idcontaPagar);
-    console.log(item.idcontaPagar); 
+    handleExcluirVariosBoletim(item.idBoletim);
+    console.log(item.idBoletim); 
   }
 
 _products.forEach(excluirSelecionados);
@@ -209,7 +209,7 @@ const footerContent = (
 );
 
 
-const actionBodyTemplate = (contasPagar) => {
+const actionBodyTemplate = (Boletim) => {
   return (
     <React.Fragment>
 
@@ -219,7 +219,7 @@ rounded
 outlined
 severity="danger"
 className='border-round-lg '
-onClick={() => handleExcluirContaPagar(contasPagar.idcontaPagar)}
+onClick={() => handleExcluirContaPagar(Boletim.idBoletim)}
 />
                   
     </React.Fragment>
@@ -229,24 +229,24 @@ onClick={() => handleExcluirContaPagar(contasPagar.idcontaPagar)}
 //////////////////////////////////////////// editar e atualizar dados com inputs ////////////////////////////
 
 //função que atualiza o dato e mostra o pop-up
-const handleAtualizarContasPagar =  (e) => {
+const handleAtualizarBoletim =  (e) => {
   
-  let _products = [...contasPagar];
+  let _products = [...Boletim];
   let { newData, index } = e;
 
   _products[index] = newData;
-  console.log(newData.idcontaPagar);
+  console.log(newData.idBoletim);
 
   const formData ={
-    ['idcontaPagar']: newData.idcontaPagar,
-    ['clasificacao']: newData.clasificacao,
-['valorPagar']: newData.valorPagar,
-['vencimento']: newData.vencimento,
-['empresa']: newData.empresa,
-['contaBancaria']: newData.contaBancaria,
-['descricao']: newData.descricao,
-['status']: newData.status,
-['valorPago']: newData.valorPago,
+    ['idBoletim']: newData.idBoletim,
+    ['nomeAluno']: newData.clasificacao,
+['semestre']: newData.valorPagar,
+['materia']: newData.vencimento,
+['nota1']: newData.empresa,
+['nota2']: newData.contaBancaria,
+['nota3']: newData.descricao,
+['notaFinal']: newData.status,
+['situacao']: newData.valorPago,
 
   };
 
@@ -254,7 +254,7 @@ const handleAtualizarContasPagar =  (e) => {
   console.log(formData);
 
   try {
-     axios.put(`http://localhost:3001/contasPagar/${newData.idcontaPagar}`, formData);
+     axios.put(`http://localhost:3001/Boletim/${newData.idBoletim}`, formData);
      toast.current.show({
       severity: 'success',
       summary: 'Ação bem-sucedida!',
@@ -269,7 +269,7 @@ const handleAtualizarContasPagar =  (e) => {
       life: 3000,});
   }
 
-  setContasPagar(_products);
+  setBoletim(_products);
 
 };
 
@@ -321,30 +321,31 @@ return (
       <DataTable 
       size='small'
       editMode="row" //modo de edição, no caso, a row toda
-      onRowEditComplete={handleAtualizarContasPagar} //executa quando terminar de fazer a edição
-      selection={selectedContasPagar}
-      onSelectionChange={(e) => setSelectedContasPagar(e.value)}
+      onRowEditComplete={handleAtualizarBoletim} //executa quando terminar de fazer a edição
+      selection={selectedBoletim}
+      onSelectionChange={(e) => setSelectedBoletim(e.value)}
       showGridlines //mostrar linhas da tabela
       stripedRows //linhas de cores diferentes
       removableSort //a partir do 3° click na ordenação volta ao estado inicial (sem ordenação)
       loading={loading}
-      value={contasPagar} //dados que serão pegos
+      value={Boletim} //dados que serão pegos
       filters={filters} //renderizando o filtro
       header={header} //cabeçalho da tabela com o filtro global e o limpador
       emptyMessage="Nenhum Registro encontrado."
       globalFilterFields={[
-        'idcontaPagar', 
-        'clasificacao', 
-        'valorPagar', 
-        'vencimento', 
-        'empresa',
-        'contaBancaria',
-        'descricao',
-        'status',
-        'valorPago',
+        'idBoletim', 
+        'nomeAluno',
+        'semestre', 
+        'materia', 
+        'nota1', 
+        'nota2',
+        'nota3',
+        'notaFinal',
+        'situacao',
+       
       ]} //indicando as células que serão filtradas
       paginator //paginação
-      dataKey="idcontaPagar" 
+      dataKey="idBoletim" 
       rows={5} 
       rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
       tableStyle={{ minWidth: '140rem' }}
@@ -352,24 +353,24 @@ return (
       paginatorRight={paginatorRight}>
         <Column selectionMode="multiple" exportable={false}></Column>
 
-        <Column field="idcontaPagar" sortable   header="Identificação" style={{ width: 'auto', textAlign: 'center' }}></Column>
+        <Column field="idBoletim" sortable   header="Identificação" style={{ width: 'auto', textAlign: 'center' }}></Column>
 
-        <Column field="clasificacao" filter filterPlaceholder="Filtre pelo classifição" sortable  header="Classifição" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="nomeAluno" filter filterPlaceholder="Filtre pelo nome" sortable  header="nome do Aluno" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="valorPagar" filter filterPlaceholder="Filtre pelo valor" sortable  header="Valor a pagar" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="semestre" filter filterPlaceholder="Filtre pelo semestre" sortable  header="Semestre" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="vencimento" filter filterPlaceholder="Filtre pelo data de vencimento" sortable  header="Vencimento" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="materia" filter filterPlaceholder="Filtre pela matéria" sortable  header="Matéria" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="empresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="Impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="nota1" filter filterPlaceholder="Filtre pela nota 1" sortable  header="Nota 1" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="contaBancaria" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="Conta bancaria" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="nota2" filter filterPlaceholder="Filtre pela nota 2" sortable  header="Nota 2" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-        <Column field="descricao" filter filterPlaceholder="Filtre pelo descrição" sortable  header="Descrição" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="nota3" filter filterPlaceholder="Filtre pela nota 3" sortable  header="Nota 3" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
         
-        <Column field="valorPago" filter filterPlaceholder="Filtre pelo valor" sortable  header="Valor pago" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="notaFinal" filter filterPlaceholder="Filtre pela nota Final" sortable  header="Nota Final" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
 
-        <Column field="status" filter  filterMenuStyle={{ width: '14rem' }} body={statusBodyTemplate} filterElement={statusFilterTemplate}   sortable  header="Status" editor={(options) => statusEditor(options)} style={{ width: 'auto' }}></Column>
+        <Column field="situacao" filter  filterMenuStyle={{ width: '14rem' }} body={statusBodyTemplate} filterElement={statusFilterTemplate}   sortable  header="Situação" editor={(options) => statusEditor(options)} style={{ width: 'auto' }}></Column>
 
         <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 
@@ -383,4 +384,4 @@ return (
 );
 };
 
-export default TabelaContasPagar;
+export default TabelaBoletim;
