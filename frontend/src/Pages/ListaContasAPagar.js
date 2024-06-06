@@ -1,16 +1,16 @@
 //Lista de Usuarios
 import React from "react";
-import TabelaContasPagar from "../Components/TabelaContasPagar";
+import TabelaProdutos from "../Components/TabelaContasAPagar";
 
-const ContasPagar = () => {
+const ListaProdutos = () => {
   return (
     <>
       <div className="tableSistemaGeral">
         <h2>Contas a pagar</h2>
-        <TabelaContasPagar />
+        <TabelaProdutos />
       </div>
     </>
   );
 };
 
-export default ContasPagar;
+export default ListaProdutos;
