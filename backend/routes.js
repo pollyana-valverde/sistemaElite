@@ -444,19 +444,11 @@ router.get('/Boletim/:situacao', (req, res) => {
 });
 
 // Rota para atualizar um registro existente pelo ID
-<<<<<<< HEAD
-router.put('/contasPagar/:idcontaPagar', (req, res) => {
-  const { idcontaPagar } = req.params;
-  const { clasificacao, valorPagar, vencimento, empresa, contaBancaria, descricao, status, valorPago } = req.body;
-  connection.query('UPDATE contasPagar SET clasificacao =?, valorPagar =?, vencimento =?, empresa =?, contaBancaria =?, descricao =?, status =?, valorPago =? WHERE idcontaPagar = ?',
-    [clasificacao, valorPagar, vencimento, empresa, contaBancaria, descricao, status, valorPago, idcontaPagar], (err, result) => {
-=======
 router.put('/Boletim/:idBoletim', (req, res) => {
   const { idBoletim } = req.params;
   const {nomeAluno, semestre, materia, nota1, nota2, nota3, notaFinal, situacao } = req.body;
   connection.query('UPDATE Boletim SET nomeAluno =?, semestre =?, materia =?, nota1 =?, nota2 =?, nota3 =?, notaFinal =?, situacao =? WHERE idBoletim = ?',
     [nomeAluno, semestre, materia, nota1, nota2, nota3, notaFinal, situacao, idBoletim], (err, result) => {
->>>>>>> 6274fb9934c49d0d694efea32b232c381becd6ea
       if (err) {
         console.error('Erro ao atualizar conta:', err);
         res.status(500).json({ error: 'Erro ao atualizar conta' });

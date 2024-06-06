@@ -14,8 +14,8 @@ import ClienteCadastro from "./Pages/CadastroClientes";
 import ListaClientes from "./Pages/ListaClientes";
 import ContasReceber from "./Pages/ContasReceber";
 import Boletim from "./Pages/Boletim";
-import ProdutosCadastro from './Pages/ProdutosCadastro';
-import ListaProdutos from "./Pages/ListaProdutos";
+import CadastrarPagamento from './Pages/CadastrarPagamento';
+import ListaContasAPagar from "./Pages/ListaContasAPagar";
 import ListaFornecedores from "./Pages/ListaFornecedores";
 import ListaFuncionario from "./Pages/ListaFuncionario";
 import ListaFuncionarioTerc from "./Pages/ListaFuncionarioTerc";
@@ -71,11 +71,11 @@ const Rotas = () => {
           path: "/Boletim",
           element: < Boletim/>
         },{
-          path: "/ProdutosCadastro",
-          element: < ProdutosCadastro/>
+          path: "/CadastrarPagamento",
+          element: < CadastrarPagamento/>
         },{
-          path: "/listaProdutos",
-          element: < ListaProdutos/>
+          path: "/ListaContasAPagar",
+          element: < ListaContasAPagar/>
         },{
           path: "/ListaFuncionario",
           element: < ListaFuncionario/>

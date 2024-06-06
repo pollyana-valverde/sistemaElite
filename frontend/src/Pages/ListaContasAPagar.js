@@ -1,6 +1,6 @@
 //Lista de Usuarios
 import React from "react";
-import TabelaProdutos from "../Components/TabelaProdutos";
+import TabelaProdutos from "../Components/TabelaContasAPagar";
 
 const ListaProdutos = () => {
   return (

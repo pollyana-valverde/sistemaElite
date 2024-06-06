@@ -38,8 +38,8 @@ const Header = () => {
       caminho: "/FornecedorCadastro",
       nome: " fornecedor",
     }, {
-      caminho: "/ProdutosCadastro",
-      nome: "produtos",
+      caminho: "/CadastrarPagamento",
+      nome: "Cadastrar Pagamento",
     }
   ]);
 
@@ -61,8 +61,8 @@ const Header = () => {
       caminho: "/ListaClientes",
       nome: "clientes",
     }, {
-      caminho: "/ListaProdutos",
-      nome: "produtos",
+      caminho: "/ListaContasAPagar",
+      nome: "Contas a pagar",
     }, {
 
       caminho: "/ListaVendas",
@@ -76,8 +76,8 @@ const Header = () => {
       caminho: "/ContasReceber",
       nome: "Contas a receber",
     }, {
-      caminho: "/ContasPagar",
-      nome: "Contas a pagar",
+      caminho: "/Boletim",
+      nome: "Boletim Escolar",
     }
   ]);
 
@@ -102,12 +102,8 @@ const Header = () => {
       caminho: "/FornecedorCadastro",
       nome: " fornecedor",
     }, {
-      caminho: "/ProdutosCadastro",
-<<<<<<< HEAD
+      caminho: "/CadastrarPagamento",
       nome: "Cadastrar pagamento",
-=======
-      nome: "produtos",
->>>>>>> 6274fb9934c49d0d694efea32b232c381becd6ea
     }, {
       titulo: <li className='headerLineNav'> <p>Registros</p></li>,
       caminho: "/listaUsuarios",
@@ -125,12 +121,9 @@ const Header = () => {
       caminho: "/ListaClientes",
       nome: "clientes",
     }, {
-      caminho: "/ListaProdutos",
-<<<<<<< HEAD
-      nome: "Contas a pagar",
-=======
-      nome: "produtos",
->>>>>>> 6274fb9934c49d0d694efea32b232c381becd6ea
+      caminho: "/Boletim",
+      nome: "Boletim Escolar",
+
     }, {
 
       caminho: "/ListaVendas",

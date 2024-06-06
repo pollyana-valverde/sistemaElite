@@ -1,6 +1,6 @@
 //Cadastro
 import React from "react";
-import ProdutosForm from "../Components/ProdutosForm";
+import ProdutosForm from "../Components/ContasAPagar";
 const Produtos = () => {
   return (
     <>
