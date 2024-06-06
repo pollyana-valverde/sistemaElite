@@ -66,8 +66,8 @@ const Header = () => {
       caminho: "/ContasReceber",
       nome: "Contas a receber",
     }, {
-      caminho: "/ContasPagar",
-      nome: "Contas a pagar",
+      caminho: "/Boletim",
+      nome: "Boletim Escolar",
     }
   ]);
 

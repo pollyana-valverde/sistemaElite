@@ -1,13 +1,13 @@
 //Lista de Usuarios
 import React from "react";
-import TabelaContasPagar from "../Components/TabelaContasPagar";
+import TabelaBoletim from "../Components/TabelaBoletim";
 
 const ContasPagar = () => {
   return (
     <>
       <div className="tableSistemaGeral">
-        <h2>Contas a pagar</h2>
-        <TabelaContasPagar />
+        <h2>Boletim Escolar</h2>
+        <TabelaBoletim />
       </div>
     </>
   );
