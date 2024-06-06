@@ -11,11 +11,11 @@ const FuncionarioForm = () => {
     nome: '',
     email: '',
     cpf: '',
-    cargo: '', 
-    registro: '',
-    endereco: '',
+    cargo: '',
+    RegimeDeTrabalho: '',
+    Salario: '',
     telefone: '',
-    senha: ''
+    endereco: ''
   });
 
   const handleChange = (e) => {
@@ -37,10 +37,10 @@ const FuncionarioForm = () => {
         email: '',
         cpf: '',
         cargo: '',
-        registro: '',
-        endereco: '',
+        RegimeDeTrabalho: '',
+        Salario: '',
         telefone: '',
-        senha: ''
+        endereco: ''
       });
     } catch (error) {
       console.error('Erro ao criar cadastro:', error);
@@ -51,55 +51,59 @@ const FuncionarioForm = () => {
   return (
     <Form onSubmit={handleSubmit} className='formsSistema'>
 
-    <Row className="mb-1">
-      <Form.Group as={Col} controlId="formGridEmail">
-        <Form.Label>Nome</Form.Label>
-        <Form.Control type="text" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} />
-      </Form.Group>
+      <Row className="mb-1">
+        <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Nome</Form.Label>
+          <Form.Control type="text" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} />
+        </Form.Group>
 
-      <Form.Group as={Col} controlId="formGridPassword">
-        <Form.Label>CPF</Form.Label>
-        <InputMask className='form-control' type="text" name="cpf" mask="999.999.999-99" placeholder="999.999.999-99" value={formData.cpf} onChange={handleChange} ></InputMask>
-      </Form.Group>
-    </Row>
+        <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>CPF</Form.Label>
+          <InputMask className='form-control' type="text" name="cpf" mask="999.999.999-99" placeholder="999.999.999-99" value={formData.cpf} onChange={handleChange} ></InputMask>
+        </Form.Group>
+      </Row>
 
-    <Row className="mb-1">
-      <Form.Group as={Col} controlId="formGridEmail">
-        <Form.Label>Cargo</Form.Label>
-        <Form.Control type="text" name="cargo" placeholder="Cargo" value={formData.cargo} onChange={handleChange} />
-      </Form.Group>
+      <Row className="mb-1">
+        <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Cargo</Form.Label>
+          <Form.Control type="text" name="cargo" placeholder="Cargo" value={formData.cargo} onChange={handleChange} />
+        </Form.Group>
 
-      <Form.Group as={Col} controlId="formGridPassword">
-        <Form.Label>Registro</Form.Label>
-        <Form.Control type="text" name="registro" placeholder="Registro" value={formData.registro} onChange={handleChange} />
-      </Form.Group>
-    </Row>
+        <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>Regime de trabalho</Form.Label>
+          <Form.Control as="select" type="text" name="RegimeDeTrabalho" placeholder="período" value={formData.registro} onChange={handleChange} >
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Integral">Integral</option>
+          </Form.Control>
+        </Form.Group>
+      </Row>
 
-    <Row>
-      <Col className="mb-1" xs={8}>
-        <Form.Label>Endereço</Form.Label>
-        <Form.Control type="text" name="endereco" placeholder="Endereço" value={formData.endereco} onChange={handleChange} />
-      </Col>
-      <Col>
-        <Form.Label>Telefone</Form.Label>
-        <InputMask className='form-control' type="text" name="telefone" mask="(99) 99999-9999" placeholder="(99) 99999-9999" value={formData.cpf} onChange={handleChange} ></InputMask>
-      </Col>
-    </Row>
+      <Row>
+        <Col>
+          <Form.Label>Telefone</Form.Label>
+          <InputMask className='form-control' type="text" name="telefone" mask="(99) 99999-9999" placeholder="(99) 99999-9999" value={formData.cpf} onChange={handleChange} ></InputMask>
+        </Col>
+        <Col className="mb-1" xs={8}>
+          <Form.Label>Salario</Form.Label>
+          <Form.Control type="text" name="Salario" placeholder="Salario" value={formData.Salario} onChange={handleChange} />
+        </Col>
+      </Row>
 
-    <Row className="mb-1">
-      <Form.Group as={Col} controlId="formGridEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
-      </Form.Group>
+      <Row className="mb-1">
+        <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+        </Form.Group>
 
-      <Form.Group as={Col} controlId="formGridPassword">
-        <Form.Label>Senha</Form.Label>
-        <Form.Control type="password" name="senha" placeholder="Senha" value={formData.senha} onChange={handleChange} />
-      </Form.Group>
-    </Row>
+        <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>endereco</Form.Label>
+          <Form.Control type="text" name="endereco" placeholder="endereco" value={formData.endereco} onChange={handleChange} />
+        </Form.Group>
+      </Row>
 
-    <button className='btnFormSistema' type="submit">Salvar</button>
-  </Form>
+      <button className='btnFormSistema' type="submit">Salvar</button>
+    </Form>
   );
 };
 

@@ -22,11 +22,11 @@ const TabelaContasReceber = () => {
     const [selectedContasReceber, setSelectedContasReceber] = useState(null);
   
     
-    const [statuses] = useState(['Baixado', 'Pendente']);
+    const [statuses] = useState(['Pago', 'Pendente']);
 
     const getStatus = (status) => {
         switch (status) {
-            case 'Baixado':
+            case 'Pago':
                 return 'success';
   
             case 'Pendente':
@@ -75,22 +75,21 @@ const TabelaContasReceber = () => {
   setFilters({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   
-      clasificacao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+      aluno: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
-      valorReceber: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+      responsavel_financeiro: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+  
+      telefone: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
       vencimento: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
-  
-      empresa: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
       contaBancaria: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
   
       descricao: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
   
+      valor: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
+      
       status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-  
-      valorRecebido: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }] },
-  
   });
   setGlobalFilterValue('');
   };
@@ -137,9 +136,9 @@ const statusItemTemplate = (option) => {
   ///////////////////////////////// deletar linha da tabela ////////////////////////////////
   
   //pega os dados para serem excluídos pela url (específico)
-  const handleExcluirContaReceber = async (idcontaReceber) => {
+  const handleExcluirContaReceber = async (idcontasReceber) => {
     try {
-      await axios.delete(`http://localhost:3001/contasReceber/${idcontaReceber}`);
+      await axios.delete(`http://localhost:3001/contasReceber/${idcontasReceber}`);
       // Atualiza a lista de fornecedores após a exclusão
       const { data } = await axios.get("http://localhost:3001/contasReceber");
       setContasReceber(data);
@@ -157,9 +156,9 @@ const statusItemTemplate = (option) => {
   
   
   //pega os dados para serem excluídos pela url (geral)
-  const handleExcluirVariosContasReceber = async (idcontaReceber) => {
+  const handleExcluirVariosContasReceber = async (idcontasReceber) => {
     try {
-      await axios.delete(`http://localhost:3001/contasReceber/${idcontaReceber}`);
+      await axios.delete(`http://localhost:3001/contasReceber/${idcontasReceber}`);
       // Atualiza a lista de fornecedores após a exclusão
       const { data } = await axios.get("http://localhost:3001/contasReceber");
       setContasReceber(data);
@@ -182,8 +181,8 @@ const statusItemTemplate = (option) => {
     setSelectedContasReceber(null);
   
     function excluirSelecionados(item, index) {
-      handleExcluirVariosContasReceber(item.idcontaReceber);
-      console.log(item.idcontaReceber); 
+      handleExcluirVariosContasReceber(item.idcontasReceber);
+      console.log(item.idcontasReceber); 
     }
   
   _products.forEach(excluirSelecionados);
@@ -219,7 +218,7 @@ const statusItemTemplate = (option) => {
   outlined
   severity="danger"
   className='border-round-lg '
-  onClick={() => handleExcluirContaReceber(contasReceber.idcontaReceber)}
+  onClick={() => handleExcluirContaReceber(contasReceber.idcontasReceber)}
   />
                     
       </React.Fragment>
@@ -235,25 +234,25 @@ const handleAtualizarContasReceber =  (e) => {
     let { newData, index } = e;
   
     _products[index] = newData;
-    console.log(newData.idcontaReceber);
+    console.log(newData.idcontasReceber);
   
     const formData ={
-      ['idcontaReceber']: newData.idcontaReceber,
-      ['clasificacao']: newData.clasificacao,
-  ['valorReceber']: newData.valorReceber,
+      ['idcontasReceber']: newData.idcontasReceber,
+      ['aluno']: newData.aluno,
+  ['responsavel_financeiro']: newData.responsavel_financeiro,
+  ['telefone']: newData.telefone,
   ['vencimento']: newData.vencimento,
-  ['empresa']: newData.empresa,
   ['contaBancaria']: newData.contaBancaria,
   ['descricao']: newData.descricao,
+  ['valor']: newData.valor,
   ['status']: newData.status,
-  ['valorRecebido']: newData.valorRecebido,
     };
-  
+    
     
     console.log(formData);
   
     try {
-       axios.put(`http://localhost:3001/contasReceber/${newData.idcontaReceber}`, formData);
+       axios.put(`http://localhost:3001/contasReceber/${newData.idcontasReceber}`, formData);
        toast.current.show({
         severity: 'success',
         summary: 'Ação bem-sucedida!',
@@ -333,18 +332,19 @@ const statusEditor = (options) => {
         header={header} //cabeçalho da tabela com o filtro global e o limpador
         emptyMessage="Nenhum Registro encontrado."
         globalFilterFields={[
-          'idcontaReceber', 
-          'clasificacao', 
-          'valorReceber', 
-          'vencimento', 
-          'empresa',
+          'idcontasReceber', 
+          'aluno', 
+          'responsavel_financeiro', 
+          'telefone', 
+          'vencimento',
           'contaBancaria',
           'descricao',
+          'valor',
           'status',
-          'valorRecebido',
+          
         ]} //indicando as células que serão filtradas
         paginator //paginação
-        dataKey="idcontaReceber" 
+        dataKey="idcontasReceber" 
         rows={5} 
         rowsPerPageOptions={[5, 10, 25, 50]} //selecionar quantas linhas estão visíveis
         tableStyle={{ minWidth: '150rem' }}
@@ -352,29 +352,29 @@ const statusEditor = (options) => {
         paginatorRight={paginatorRight}>
           <Column selectionMode="multiple" exportable={false}></Column>
 
-          <Column field="idcontaReceber" sortable   header="Identificação" style={{ width: 'auto', textAlign: 'center' }}></Column>
+          <Column field="idcontasReceber" sortable   header="Identificação" style={{ width: 'auto', textAlign: 'center' }}></Column>
 
-          <Column field="clasificacao" filter filterPlaceholder="Filtre pelo classificação" sortable  header="Classificação" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="aluno" filter filterPlaceholder="Filtre pelo aluno" sortable  header="aluno" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="valorReceber" filter filterPlaceholder="Filtre pelo valor" sortable  header="Valor a receber" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="responsavel_financeiro" filter filterPlaceholder="Filtre pelo responsavel_financeiro" sortable  header="responsavel_financeiro" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="vencimento" filter filterPlaceholder="Filtre pela data de vencimento" sortable  header="Vencimento" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="telefone" filter filterPlaceholder="Filtre pela data de telefone" sortable  header="telefone" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="empresa" filter filterPlaceholder="Filtre pelo nome da impresa" sortable  header="Impresa" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="vencimento" filter filterPlaceholder="Filtre pelo vencimento" sortable  header="vencimento" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="contaBancaria" filter filterPlaceholder="Filtre pelo conta" sortable  header="Conta bancaria" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="contaBancaria" filter filterPlaceholder="Filtre pelo contaBancaria" sortable  header="Conta bancaria" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="descricao" filter filterPlaceholder="Filtre pelo descrição" sortable  header="Descrição" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="descricao" filter filterPlaceholder="Filtre pelo descricao" sortable  header="descricao" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
           
-          <Column field="valorRecebido" filter filterPlaceholder="Filtre pelo final do valor" sortable  header="Valor recebido" editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="valor" filter filterPlaceholder="Filtre pelo final do valor" sortable  header="valor " editor={(options) => textEditor(options)} style={{ width: 'auto' }}></Column>
 
-          <Column field="status" filter filterMenuStyle={{ width: '14rem' }} body={statusBodyTemplate} filterElement={statusFilterTemplate}   sortable  header="Status" editor={(options) => statusEditor(options)} style={{ width: 'auto' }}></Column>
+          <Column field="status" filter  filterMenuStyle={{ width: '14rem' }} body={statusBodyTemplate} filterElement={statusFilterTemplate}   sortable  header="Status" editor={(options) => statusEditor(options)} style={{ width: 'auto' }}></Column>
 
           <Column header="Editar" rowEditor={allowEdit} headerStyle={{ Width: '8rem' }} bodyStyle={{ alignItems: 'center' }}></Column>
 
           <Column header="Excluir" body={actionBodyTemplate} headerStyle={{ Width: '8rem' }} style={{ width: 'auto' }}></Column>
 
-            
+          
         </DataTable>
     </div>
 

@@ -7,7 +7,7 @@ const FuncionarioCadastro = () => {
   return (
     <>
       <div className="formsSistemaGeral">
-        <h2>Cadastrar funcionário</h2>
+        <h2>Cadastro de Funcionários Internos</h2>
         <FuncionarioForm />
       </div>
     </>
