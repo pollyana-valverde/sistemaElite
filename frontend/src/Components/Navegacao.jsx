@@ -61,13 +61,14 @@ const Header = () => {
       caminho: "/ListaClientes",
       nome: "clientes",
     }, {
-      caminho: "/ListaContasAPagar",
-      nome: "Contas a pagar",
-    }, {
 
       caminho: "/ListaVendas",
       nome: "Lista de vendas",
 
+    },
+    {
+      caminho: "/Boletim",
+      nome: "Boletim Escolar",
     }
   ]);
 
@@ -75,9 +76,10 @@ const Header = () => {
     {
       caminho: "/ContasReceber",
       nome: "Contas a receber",
-    }, {
-      caminho: "/Boletim",
-      nome: "Boletim Escolar",
+    },
+    {
+      caminho: "/ListaContasAPagar",
+      nome: "Contas a pagar",
     }
   ]);
 
