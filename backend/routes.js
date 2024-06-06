@@ -396,11 +396,11 @@ router.delete('/contasReceber/:id', (req, res) => {
 });
 
 
-/////////////////////////////////////////// contas a pagar ///////////////////////////////////////////
+/////////////////////////////////////////// Boletim ///////////////////////////////////////////
 
 // Rota para listar todos os registros
-router.get('/contasPagar', (req, res) => {
-  connection.query('SELECT * FROM contasPagar', (err, results) => {
+router.get('/Boletim', (req, res) => {
+  connection.query('SELECT * FROM Boletim', (err, results) => {
     if (err) {
       console.error('Erro ao buscar os registros:', err);
       res.status(500).json({ error: 'Erro ao buscar os registros' });
@@ -411,9 +411,9 @@ router.get('/contasPagar', (req, res) => {
 });
 
 // Rota para buscar um registro específico pelo ID
-router.get('/contasPagar/:id', (req, res) => {
+router.get('/Boletim/:id', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM contasPagar WHERE idcontaPagar = ?', [id], (err, results) => {
+  connection.query('SELECT * FROM Boletim WHERE idBoletim = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -427,9 +427,9 @@ router.get('/contasPagar/:id', (req, res) => {
   });
 });
 
-router.get('/contasPagar/:status', (req, res) => {
+router.get('/Boletim/:situacao', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM contasPagar WHERE status = ?', [id], (err, results) => {
+  connection.query('SELECT * FROM Boletim WHERE situacao = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar o registro:', err);
       res.status(500).json({ error: 'Erro ao buscar o registro' });
@@ -444,11 +444,19 @@ router.get('/contasPagar/:status', (req, res) => {
 });
 
 // Rota para atualizar um registro existente pelo ID
+<<<<<<< HEAD
 router.put('/contasPagar/:idcontaPagar', (req, res) => {
   const { idcontaPagar } = req.params;
   const { clasificacao, valorPagar, vencimento, empresa, contaBancaria, descricao, status, valorPago } = req.body;
   connection.query('UPDATE contasPagar SET clasificacao =?, valorPagar =?, vencimento =?, empresa =?, contaBancaria =?, descricao =?, status =?, valorPago =? WHERE idcontaPagar = ?',
     [clasificacao, valorPagar, vencimento, empresa, contaBancaria, descricao, status, valorPago, idcontaPagar], (err, result) => {
+=======
+router.put('/Boletim/:idBoletim', (req, res) => {
+  const { idBoletim } = req.params;
+  const {nomeAluno, semestre, materia, nota1, nota2, nota3, notaFinal, situacao } = req.body;
+  connection.query('UPDATE Boletim SET nomeAluno =?, semestre =?, materia =?, nota1 =?, nota2 =?, nota3 =?, notaFinal =?, situacao =? WHERE idBoletim = ?',
+    [nomeAluno, semestre, materia, nota1, nota2, nota3, notaFinal, situacao, idBoletim], (err, result) => {
+>>>>>>> 6274fb9934c49d0d694efea32b232c381becd6ea
       if (err) {
         console.error('Erro ao atualizar conta:', err);
         res.status(500).json({ error: 'Erro ao atualizar conta' });
@@ -459,9 +467,9 @@ router.put('/contasPagar/:idcontaPagar', (req, res) => {
 });
 
 // Rota para excluir um registro pelo ID
-router.delete('/contasPagar/:id', (req, res) => {
+router.delete('/Boletim/:id', (req, res) => {
   const { id } = req.params;
-  connection.query('DELETE FROM contasPagar WHERE idcontaPagar = ?', [id], (err, result) => {
+  connection.query('DELETE FROM Boletim WHERE idBoletim = ?', [id], (err, result) => {
     if (err) {
       console.error('Erro ao excluir o registro:', err);
       res.status(500).json({ error: 'Erro ao excluir o registro' });
@@ -615,6 +623,76 @@ router.delete('/funcionario/:id', (req, res) => {
   });
 });
 
+
+///////////////////////////////////////// cadastro do funcionário Tercerizado ////////////////////////////////////
+// Rota para listar todos os registros
+router.get('/funcionarioTerc', (req, res) => {
+  connection.query('SELECT * FROM FuncionariosTerceirizados', (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar os registros:', err);
+      res.status(500).json({ error: 'Erro ao buscar os registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para buscar um registro específico pelo ID
+router.get('/funcionarioTerc/:idFuncionarioTercerizado', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM FuncionariosTerceirizados WHERE idFuncionarioTercerizado = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar o registro:', err);
+      res.status(500).json({ error: 'Erro ao buscar o registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+// Rota para criar um novo registro
+router.post('/funcionarioTerc', (req, res) => {
+  const { nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada, id } = req.body;
+  connection.query('INSERT INTO FuncionariosTerceirizados (nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada, id], (err, result) => {
+      if (err) {
+        console.error('Erro ao criar o registro:', err);
+        res.status(500).json({ error: 'Erro ao criar o registro' });
+        return;
+      }
+      res.status(201).json({ message: 'Registro criado com sucesso', id: result.insertId });
+    });
+});
+
+// Rota para atualizar um registro existente pelo ID
+router.put('/funcionarioTerc/:idFuncionarioTercerizado', (req, res) => {
+  const { idFuncionarioTercerizado } = req.params;
+  const { nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada, } = req.body;
+  connection.query('UPDATE FuncionariosTerceirizados SET nome = ?, email = ?, cpf = ?, cargo = ?, regime_trabalho  = ?, endereco = ?, telefone = ?, empresa_terceirizada = ? WHERE idFuncionarioTercerizado = ?',
+    [nome, email, cpf, cargo, regime_trabalho , endereco, telefone, empresa_terceirizada, idFuncionarioTercerizado], (err, result) => {
+      if (err) {
+        console.error('Erro ao atualizar o registro:', err);
+        res.status(500).json({ error: 'Erro ao atualizar o registro' });
+        return;
+      }
+      res.json({ message: 'Registro atualizado com sucesso' });
+    });
+});
+
+router.delete('/funcionarioTerc/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('DELETE FROM FuncionariosTerceirizados WHERE idFuncionarioTercerizado = ?', [id], (err, result) => {
+    if (err) {
+      console.error('Erro ao excluir o registro:', err);
+      res.status(500).json({ error: 'Erro ao excluir o registro' });
+      return;
+    }
+    res.json({ message: 'Registro excluído com sucesso' });
+  });
+});
 
 
 module.exports = router;

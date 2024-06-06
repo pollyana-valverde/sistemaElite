@@ -13,12 +13,14 @@ import TabelaFornecedor from "./Pages/ListaFornecedores";
 import ClienteCadastro from "./Pages/CadastroClientes";
 import ListaClientes from "./Pages/ListaClientes";
 import ContasReceber from "./Pages/ContasReceber";
-import ContasPagar from "./Pages/ContasPagar";
+import Boletim from "./Pages/Boletim";
 import ProdutosCadastro from './Pages/ProdutosCadastro';
 import ListaProdutos from "./Pages/ListaProdutos";
 import ListaFornecedores from "./Pages/ListaFornecedores";
 import ListaFuncionario from "./Pages/ListaFuncionario";
+import ListaFuncionarioTerc from "./Pages/ListaFuncionarioTerc";
 import FuncionarioCadastro from "./Pages/FuncionarioCadastro";
+import FuncionarioTercCadastro from "./Pages/FuncionarioTercCadastro";
 import ListaVendas from "./Pages/ListaVendas";
 
 const Rotas = () => {
@@ -40,7 +42,7 @@ const Rotas = () => {
     {
       path: "/",
       element: <ProtectedRoute />,
-      children: [
+      children: [ 
         {
           path: "/",
           element: <Home />,
@@ -66,8 +68,8 @@ const Rotas = () => {
           path: "/ContasReceber",
           element: <ContasReceber />,
         },{
-          path: "/ContasPagar",
-          element: < ContasPagar/>
+          path: "/Boletim",
+          element: < Boletim/>
         },{
           path: "/ProdutosCadastro",
           element: < ProdutosCadastro/>
@@ -78,8 +80,14 @@ const Rotas = () => {
           path: "/ListaFuncionario",
           element: < ListaFuncionario/>
         },{
+          path: "/ListaFuncionarioTerc",
+          element: < ListaFuncionarioTerc/>
+        },{
           path: "/FuncionarioCadastro",
           element: < FuncionarioCadastro/>
+        },{
+          path: "/FuncionarioTercCadastro",
+          element: <FuncionarioTercCadastro/>
         },{
           path: "/ListaVendas",
           element: < ListaVendas/>

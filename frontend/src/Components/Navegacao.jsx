@@ -5,6 +5,7 @@ import { useAuth } from '../provider/AuthProvider';
 import PerfilFoto from '../imagens/logoGeneralMotors.png';
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
+import { Accordion, AccordionTab } from 'primereact/accordion';
 
 import '../css/navegacao.css';
 
@@ -19,43 +20,117 @@ const Header = () => {
 
   const { token } = useAuth();
 
+  const [linksCadastros, setLinkCadastros] = useState([
+    // {
+    //   caminho: "/logout",
+    //   nome: "Logout",
+    // }, 
+    {
+      caminho: "/FuncionarioCadastro",
+      nome: " funcionários",
+    }, {
+      caminho: "/FuncionarioTercCadastro",
+      nome: "funcionários Terceirizados",
+    }, {
+      caminho: "/CadastroClientes",
+      nome: " clientes",
+    }, {
+      caminho: "/FornecedorCadastro",
+      nome: " fornecedor",
+    }, {
+      caminho: "/ProdutosCadastro",
+      nome: "produtos",
+    }
+  ]);
+
+  const [linksRegistros, setLinkRegistros] = useState([
+    {
+      caminho: "/listaUsuarios",
+      nome: "usuários",
+    }, {
+      caminho: "/ListaFuncionario",
+      nome: "funcionários",
+    },{
+      caminho: "/ListaFuncionarioTerc",
+      nome: "funcionários Terceirizados",
+    },
+ {
+      caminho: "/ListaFornecedores",
+      nome: "fornecedores",
+    }, {
+      caminho: "/ListaClientes",
+      nome: "clientes",
+    }, {
+      caminho: "/ListaProdutos",
+      nome: "produtos",
+    }, {
+
+      caminho: "/ListaVendas",
+      nome: "Lista de vendas",
+
+    }
+  ]);
+
+  const [linksContas, setLinkContas] = useState([
+    {
+      caminho: "/ContasReceber",
+      nome: "Contas a receber",
+    }, {
+      caminho: "/ContasPagar",
+      nome: "Contas a pagar",
+    }
+  ]);
+
+
+  //links pro responsivo
   const [links, setLink] = useState([
     {
-      titulo: <li className='headerLineNav'><p>Main</p></li>,
-      caminho: "/",
-      nome: "Home",
-    }, {
       caminho: "/logout",
       nome: "Logout",
     }, {
       titulo: <li className='headerLineNav'><p>Cadastrar</p></li>,
       caminho: "/FuncionarioCadastro",
-      nome: "Cadastrar funcionários",
+      nome: "funcionários",
     }, {
+      caminho: "/FuncionarioTercCadastro",
+      nome: "funcionários Terceirizados",
+    },
+{
       caminho: "/CadastroClientes",
-      nome: "Cadastrar clientes",
+      nome: " clientes",
     }, {
       caminho: "/FornecedorCadastro",
-      nome: "Cadastrar fornecedor",
+      nome: " fornecedor",
     }, {
       caminho: "/ProdutosCadastro",
+<<<<<<< HEAD
       nome: "Cadastrar pagamento",
+=======
+      nome: "produtos",
+>>>>>>> 6274fb9934c49d0d694efea32b232c381becd6ea
     }, {
       titulo: <li className='headerLineNav'> <p>Registros</p></li>,
       caminho: "/listaUsuarios",
-      nome: "Lista de usuários",
+      nome: "usuários",
     }, {
       caminho: "/ListaFuncionario",
       nome: "Lista de funcionários",
+    },{
+      caminho: "/ListaFuncionarioTerc",
+      nome: "Lista de funcionários Terceirizados",
     }, {
       caminho: "/ListaFornecedores",
-      nome: "Lista de fornecedores",
+      nome: "fornecedores",
     }, {
       caminho: "/ListaClientes",
-      nome: "Lista de clientes",
+      nome: "clientes",
     }, {
       caminho: "/ListaProdutos",
+<<<<<<< HEAD
       nome: "Contas a pagar",
+=======
+      nome: "produtos",
+>>>>>>> 6274fb9934c49d0d694efea32b232c381becd6ea
     }, {
 
       caminho: "/ListaVendas",
@@ -66,10 +141,11 @@ const Header = () => {
       caminho: "/ContasReceber",
       nome: "Contas a receber",
     }, {
-      caminho: "/ContasPagar",
-      nome: "Contas a pagar",
+      caminho: "/Boletim",
+      nome: "Boletim Escolar",
     }
   ]);
+
 
 
   return (
@@ -78,7 +154,7 @@ const Header = () => {
         <Row>
           {token ? (
             <>
-              <Col lg={3} md={3} sm={1}>
+              <Col lg={2} md={2} sm={1}>
                 <header>
                   <nav className='sideBar' >
                     <ul className='sideNavContent'>
@@ -90,44 +166,90 @@ const Header = () => {
                             <h5>{token}</h5>
                           </div>
                         </li>
-                        {links.map((link, index) => (
+                        <li className='lineNavLink'><a href="/">Home</a></li>
+                        <div className="bodyNavLinks">
+                          <li>
+                            <Accordion multiple >
+                              <AccordionTab header="Cadastrar">
+                                {linksCadastros.map((linkCadastro, index) => (
+                                  <>
+                                    <p className="m-0">
+
+                                      <div className='lineNavLink'>
+                                        <a href={linkCadastro.caminho} className='navProfile' >{linkCadastro.nome}</a>
+                                      </div>
+                                    </p>
+                                  </>
+                                ))}
+                              </AccordionTab>
+
+                              <AccordionTab header="Registros">
+                                {linksRegistros.map((linkRegistro, index) => (
+                                  <>
+                                    <p className="m-0">
+
+                                      <div className='lineNavLink'>
+                                        <a href={linkRegistro.caminho} className='navProfile' >{linkRegistro.nome}</a>
+                                      </div>
+                                    </p>
+                                  </>
+                                ))}
+                              </AccordionTab>
+
+                              <AccordionTab header="Contas">
+                                {linksContas.map((linkConta, index) => (
+                                  <>
+                                    <p className="m-0">
+                                      <div className='lineNavLink'>
+                                        <a href={linkConta.caminho} className='navProfile' >{linkConta.nome}</a>
+                                      </div>
+                                    </p>
+                                  </>
+                                ))}
+                              </AccordionTab>
+
+                            </Accordion>
+
+                          </li>
+                        </div>
+                        {/* {links.map((link, index) => (
                           <>
                             {link.titulo}
                             <li className='lineNavLink'>
                               <a href={link.caminho} className='navProfile' >{link.nome}</a>
                             </li>
                           </>
-                        ))}
+                        ))} */}
                       </div>
                     </ul>
                   </nav>
                 </header>
 
                 <div className="card flex justify-content-center sideBarResponsivo">
-                  <Sidebar   visible={visible} onHide={() => setVisible(false)}>
-                  <header>
+                  <Sidebar visible={visible} onHide={() => setVisible(false)}>
+                    <header>
 
-                    <ul className='sideNavContent'>
-                      <div>
-                        <li className='navProfile'>
-                          <img src={PerfilFoto} alt='logo da GM' />
-                          <div className='navProfileInfo'>
-                            <p>Administrador</p>
-                            <h5>{token}</h5>
-                          </div>
-                        </li>
-                        {links.map((link, index) => (
-                          <>
-                            {link.titulo}
-                            <li className='lineNavLink'>
-                              <a href={link.caminho} className='navProfile' >{link.nome}</a>
-                            </li>
-                          </>
-                        ))}
-                      </div>
-                    </ul>
+                      <ul className='sideNavContent'>
+                        <div>
+                          <li className='navProfile'>
+                            <img src={PerfilFoto} alt='logo da GM' />
+                            <div className='navProfileInfo'>
+                              <p>Administrador</p>
+                              <h5>{token}</h5>
+                            </div>
+                          </li>
+                          {links.map((link, index) => (
+                            <>
+                              {link.titulo}
+                              <li className='lineNavLink'>
+                                <a href={link.caminho} className='navProfile' >{link.nome}</a>
+                              </li>
+                            </>
+                          ))}
+                        </div>
+                      </ul>
 
-                </header>
+                    </header>
 
                   </Sidebar>
                   <Button icon="pi pi-bars" onClick={() => setVisible(true)} />
