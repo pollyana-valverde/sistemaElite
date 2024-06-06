@@ -39,7 +39,7 @@ const Header = () => {
       nome: "Cadastrar fornecedor",
     }, {
       caminho: "/ProdutosCadastro",
-      nome: "Cadastrar produtos",
+      nome: "Cadastrar pagamento",
     }, {
       titulo: <li className='headerLineNav'> <p>Registros</p></li>,
       caminho: "/listaUsuarios",
@@ -55,7 +55,7 @@ const Header = () => {
       nome: "Lista de clientes",
     }, {
       caminho: "/ListaProdutos",
-      nome: "Lista de produtos",
+      nome: "Contas a pagar",
     }, {
 
       caminho: "/ListaVendas",

@@ -6,7 +6,7 @@ const ListaProdutos = () => {
   return (
     <>
       <div className="tableSistemaGeral">
-        <h2>Lista de produtos</h2>
+        <h2>Contas a pagar</h2>
         <TabelaProdutos />
       </div>
     </>

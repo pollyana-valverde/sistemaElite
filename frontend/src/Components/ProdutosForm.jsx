@@ -1,25 +1,20 @@
-// CadastroForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { InputMask } from 'primereact/inputmask';
 import { InputNumber } from 'primereact/inputnumber';
 
-const ProdutosForm = () => {
+const CarrosForm = () => {
     const [formData, setFormData] = useState({
-        marca: '',
-        modelo: '',
-        classificacao: '',
-        cor: '',
-        anoFabricacao: '',
-        potencia: '',
-        tipoMotor: '',
-        tipoTransmissao: '',
-        numeroIdentificacao: '',
-        valor: '',
+        descricao: '',
+        categoria: '',
+        nomePagamento: '',
+        dataEmissao: '',
+        dataVencimento: '',
+        valor: 0,
+        parcelamento: 1,
+        status: 'Pendente'
     });
 
     const handleChange = (e) => {
@@ -30,6 +25,13 @@ const ProdutosForm = () => {
         });
     };
 
+    const handleNumberChange = (e, name) => {
+        setFormData({
+            ...formData,
+            [name]: e.value
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -37,16 +39,14 @@ const ProdutosForm = () => {
             alert('Cadastro criado com sucesso!');
             // Limpar o formulário após o envio bem-sucedido
             setFormData({
-                marca: '',
-                modelo: '',
-                classificacao: '',
-                cor: '',
-                anoFabricacao: '',
-                potencia: '',
-                tipoMotor: '',
-                tipoTransmissao: '',
-                numeroIdentificacao: '',
-                valor: ''
+                descricao: '',
+                categoria: '',
+                nomePagamento: '',
+                dataEmissao: '',
+                dataVencimento: '',
+                valor: 0,
+                parcelamento: 1,
+                status: 'Pendente'
             });
         } catch (error) {
             console.error('Erro ao criar cadastro:', error);
@@ -56,62 +56,71 @@ const ProdutosForm = () => {
 
     return (
         <Form onSubmit={handleSubmit} className='formsSistema'>
-
             <Row>
-                <Col className="mb-1" xs={3}>
-                    <Form.Label>Marca</Form.Label>
-                    <Form.Control type="text" name="marca" placeholder="Marca" value={formData.marca} onChange={handleChange} />
+                <Col>
+                    <Form.Label>Descrição</Form.Label>
+                    <Form.Control type="text" name="descricao" placeholder="Descrição" value={formData.descricao} onChange={handleChange} />
                 </Col>
                 <Col>
-                    <Form.Label>Modelo</Form.Label>
-                    <Form.Control type="text" name="modelo" placeholder="Modelo" value={formData.modelo} onChange={handleChange} />
-                </Col>
-                <Col>
-                    <Form.Label>Cor</Form.Label>
-                    <Form.Control  type="text" name="cor" placeholder="Cor" value={formData.cor} onChange={handleChange} />
-                </Col>
-                <Col>
-                    <Form.Label>Ano de fabricação</Form.Label>
-                    <Form.Control type="number" name="anoFabricacao" placeholder="Ano de fabricação" value={formData.anoFabricacao} onChange={handleChange} />
+                    <Form.Label>Categoria</Form.Label>
+                    <Form.Control as="select" name="categoria" value={formData.categoria} onChange={handleChange}>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="Salário">Salário</option>
+                        <option value="Aluguel">Aluguel</option>
+                        <option value="Luz">Luz</option>
+                        <option value="Água">Água</option>
+                        <option value="Internet">Internet</option>
+                        <option value="Material Escolar">Material Escolar</option>
+                        <option value="Manutenção">Manutenção</option>
+                    </Form.Control>
                 </Col>
             </Row>
-
-            <Row className="mb-1">
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Classificacao</Form.Label>
-                    <Form.Control  type="text" name="classificacao" placeholder="Classificação" value={formData.classificacao} onChange={handleChange} />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Label>Potência</Form.Label>
-                    <Form.Control type="text" name="potencia" placeholder="Potência" value={formData.potencia} onChange={handleChange} />
-                </Form.Group>
-            </Row>
-
-            <Row className="mb-1">
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Tipo de motor</Form.Label>
-                    <Form.Control  type="text" name="tipoMotor" placeholder="Tipo de motor" value={formData.tipoMotor} onChange={handleChange} />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Label>Tipo de transmissor</Form.Label>
-                    <Form.Control type="text" name="tipoTransmissao" placeholder="Tipo de transmissor" value={formData.tipoTransmissao} onChange={handleChange} />
-                </Form.Group>
-            </Row>
-
             <Row>
-                <Col className="mb-1" xs={7}>
-                    <Form.Label>Número de Identificação</Form.Label>
-                    <Form.Control type="text" name="numeroIdentificacao" placeholder="Número de Identificação" value={formData.numeroIdentificacao} onChange={handleChange} />
+                <Col>
+                    <Form.Label>Empresa/Funcionário</Form.Label>
+                    <Form.Control type="text" name="nomePagamento" placeholder="Nome" value={formData.nomePagamento} onChange={handleChange} />
                 </Col>
+                <Col>
+                    <Form.Label>Data de Emissão</Form.Label>
+                    <Form.Control type="date" name="dataEmissao" value={formData.dataEmissao} onChange={handleChange} />
+                </Col>
+                <Col>
+                    <Form.Label>Data de Vencimento</Form.Label>
+                    <Form.Control type="date" name="dataVencimento" value={formData.dataVencimento} onChange={handleChange} />
+                </Col>
+            </Row>
+            <Row>
                 <Col>
                     <Form.Label>Valor</Form.Label>
-                    <InputNumber name="valor" className='numeroInput' inputId="currency-brazil" placeholder='R$' value={formData.valor} onValueChange={handleChange} mode="currency" currency="BRL" locale="pt-BR" />
+                    <InputNumber
+                        name="valor"
+                        className='numeroInput'
+                        inputId="currency-brazil"
+                        placeholder='R$'
+                        value={formData.valor}
+                        onValueChange={(e) => handleNumberChange(e, 'valor')}
+                        mode="currency"
+                        currency="BRL"
+                        locale="pt-BR"
+                    />
+                </Col>
+                <Col>
+                    <Form.Label>Parcelamento</Form.Label>
+                    <Form.Control type="number" name="parcelamento" value={formData.parcelamento} onChange={handleChange} />
+                </Col>
+                <Col>
+                    <Form.Label>Status</Form.Label>
+                    <Form.Control as="select" name="status" value={formData.status} onChange={handleChange}>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Paga">Paga</option>
+                        <option value="Atrasada">Atrasada</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </Form.Control>
                 </Col>
             </Row>
             <button className='btnFormSistema' type="submit">Salvar</button>
-        </Form>);
+        </Form>
+    );
 };
 
-export default ProdutosForm;
+export default CarrosForm;
