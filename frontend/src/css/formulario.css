@@ -1,62 +1,99 @@
-.formsSistemaGeral{
+.formsSistemaGeral {
     display: flex;
     flex-direction: column;
     justify-content: center;
-margin: 50px 20px;
+    margin: 50px 20px;
 }
 
-.formsSistemaGeral h2{
- margin-bottom: 40px;
- color: rgba(50, 50, 50, 0.797);
+.formsSistema label {
+    font-weight: 600;
 }
 
-.formsSistemaGeral h2::after{
-    content: '';
-    margin-top: 13px;
-    position: absolute;
-    width: 64%;
-    display: flex;
-    flex-wrap: wrap;
-    height: 2px;
-    background-color:  rgba(50, 50, 50, 0.232);
-    border-radius: 70px;
-}
-
-.formsSistema input{
+.formsSistema input {
+    border-radius: 10px;
     border: 1px solid rgba(50, 50, 50, 0.266);
-    padding: 12px  !important;
+    padding: 14px !important;
     transition: ease .3s !important;
+    background-color: rgba(90, 90, 90, 0.052);
 }
 
-.formsSistema input:hover{
-     border: 1px solid rgba(50, 50, 50, 0.484);
-     background-color:  rgba(50, 50, 50, 0.052);
+.formsSistema input:hover {
+    border: 1px solid rgba(50, 50, 50, 0.484);
+    background-color: rgba(50, 50, 50, 0.064);
 }
 
-.formsSistema input:focus-visible{
+.formsSistema input:focus-visible {
     box-shadow: none !important;
-    padding: 17px  !important;
-    background-color:  rgba(50, 50, 50, 0.052);
+    padding: 17px !important;
+    background-color: rgba(50, 50, 50, 0.064);
     border: 1px solid rgba(50, 50, 50, 0.484);
 }
 
 .btnFormSistema {
+    display: flex;
+    justify-content: end;
+}
+
+.btnFormSistema button {
+    /* margin: 0px 30px;
+    position: absolute;
+    right: 0; */
     background-color: rgba(234, 234, 234, 0.845);
     border-radius: 10px;
-    padding: 5px 35px;
+    padding: 10px 50px;
     border: 1px solid rgba(50, 50, 50, 0.372);
     color: rgba(50, 50, 50, 0.699);
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 17px;
     transition: .3s ease;
 }
 
-.btnFormSistema:hover{
-    background-color:   rgba(222, 222, 222, 0.845);
-    transform: translateY(-3px) ;
+.btnFormSistema button:hover {
+    background-color: rgba(222, 222, 222, 0.845);
+    transform: translateY(-3px);
 }
 
 .numeroInput {
     /* white-space: pre; */
     display: block;
     width: 100%;
+}
+
+.modalForm{
+    border-radius: 40px;
+}
+
+.modalForm.p-dialog .p-dialog-header {
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.modalForm.p-dialog .p-dialog-content:last-of-type {
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.btnModal {
+    display: flex;
+    justify-content: center;
+    margin: 17px;
+    background-color: rgba(234, 234, 234, 0.845);
+    color: rgba(50, 50, 50, 0.699);
+    border-radius: 16px;
+    width: 100%;
+    border: 2px dashed rgba(50, 50, 50, 0.166);
+}
+
+.btnModal:hover {
+    background-color: rgba(217, 217, 217, 0.845);
+    border: 2px dashed rgba(50, 50, 50, 0.281);
+}
+
+.btnModal:focus{
+    box-shadow: none;
+}
+
+.btnModal h5, .btnModal i{
+    font-size: 14px;
+    margin:  auto 0;
 }

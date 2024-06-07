@@ -218,13 +218,13 @@ const handleAtualizarFornecedor =  (e) => {
 
   const formData ={
     ['idFornecedor']: newData.idFornecedor,
-    ['representanteImpresa']: newData.representanteImpresa,
+    ['representanteEmpresa']: newData.representanteEmpresa,
 ['telefoneRepresentante']: newData.telefoneRepresentante,
 ['cargoRepresentante']: newData.cargoRepresentante,
 ['cpfRepresentante']: newData.cpfRepresentante,
-['nomeImpresa']: newData.nomeImpresa,
+['nomeEmpresa']: newData.nomeEmpresa,
 ['email']: newData.email,
-['telefoneImpresa']: newData.telefoneImpresa,
+['telefoneEmpresa']: newData.telefoneEmpresa,
 ['cnpj']: newData.cnpj,
 ['endereco']: newData.endereco,
 ['produtoServico']: newData.produtoServico
