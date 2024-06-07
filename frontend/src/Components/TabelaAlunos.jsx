@@ -74,8 +74,8 @@ const TabelaAlunos = () => {
     return (
       <div className="align-content-center px-3 mb-3 border-round-lg" style={{ backgroundColor: 'whitesmoke' }}>
         <div className='flex  align-items-center'>
-          <i className="pi pi-graduation-cap" style={{ fontSize: '1.3rem' }}></i>
-          <h5>Alunos</h5>
+          <i className="pi pi-filter" style={{ fontSize: '1.3rem' }}></i>
+          <h5>Buscar registro</h5>
         </div>
         <div className="flex  mb-3">
           <div className='flex'>
@@ -102,7 +102,7 @@ const TabelaAlunos = () => {
     return (
       <div>
         <div className='flex  px-3 mt-1 align-items-center'>
-          <i className="pi pi-graduation-cap" style={{ fontSize: '1rem' }}></i>
+          <i className="pi pi-graduation-cap" style={{ fontSize: '1.5rem' }}></i>
           <h5>Alunos</h5>
         </div>
         <Divider className='mt-0' />
