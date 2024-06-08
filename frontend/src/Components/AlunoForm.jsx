@@ -1,8 +1,6 @@
 // CadastroAlunoForm.jsx
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { Dialog } from 'primereact/dialog';
-import { Button } from 'primereact/button';
 
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -10,6 +8,8 @@ import Row from 'react-bootstrap/Row';
 import { InputMask } from 'primereact/inputmask';
 import { Divider } from 'primereact/divider';
 import { Toast } from 'primereact/toast';
+import { Dialog } from 'primereact/dialog';
+import { Button } from 'primereact/button';
 
 
 const CadastroAlunoForm = () => {

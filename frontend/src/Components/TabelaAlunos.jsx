@@ -8,7 +8,7 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { ConfirmDialog } from 'primereact/confirmdialog';
 import { Divider } from 'primereact/divider';
 import CadastroAlunoForm from './AlunoForm';
 
@@ -75,7 +75,7 @@ const TabelaAlunos = () => {
       <div className="align-content-center px-3 mb-3 border-round-lg" style={{ backgroundColor: 'whitesmoke' }}>
         <div className='flex  align-items-center'>
           <i className="pi pi-filter" style={{ fontSize: '1.3rem' }}></i>
-          <h5>Buscar registro</h5>
+          <h5>Buscar registros</h5>
         </div>
         <div className="flex  mb-3">
           <div className='flex'>

@@ -29,15 +29,35 @@
     border: 1px solid rgba(50, 50, 50, 0.484);
 }
 
+
+.formsSistema select {
+    border-radius: 10px;
+    border: 1px solid rgba(50, 50, 50, 0.266);
+    padding: 14px !important;
+    transition: ease .3s !important;
+    background-color: rgba(90, 90, 90, 0.052);
+}
+
+.formsSistema select:hover {
+    border: 1px solid rgba(50, 50, 50, 0.484);
+    background-color: rgba(50, 50, 50, 0.064);
+}
+
+.formsSistema select:focus-visible {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: none !important;
+    padding: 17px !important;
+    background-color: rgba(50, 50, 50, 0.064);
+    border: 1px solid rgba(50, 50, 50, 0.484);
+}
+
 .btnFormSistema {
     display: flex;
     justify-content: end;
 }
 
 .btnFormSistema button {
-    /* margin: 0px 30px;
-    position: absolute;
-    right: 0; */
     background-color: rgba(234, 234, 234, 0.845);
     border-radius: 10px;
     padding: 10px 50px;
@@ -54,7 +74,6 @@
 }
 
 .numeroInput {
-    /* white-space: pre; */
     display: block;
     width: 100%;
 }

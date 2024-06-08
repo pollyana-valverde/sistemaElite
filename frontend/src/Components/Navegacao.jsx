@@ -60,11 +60,6 @@ const Header = () => {
     }, {
       caminho: "/ListaAlunos",
       nome: "Lista de Alunos",
-    }, {
-
-      caminho: "/ListaVendas",
-      nome: "Lista de vendas",
-
     },
     {
       caminho: "/Boletim",
@@ -126,12 +121,7 @@ const Header = () => {
       caminho: "/Boletim",
       nome: "Boletim Escolar",
 
-    }, {
-
-      caminho: "/ListaVendas",
-      nome: "Lista de vendas",
-
-    }, {
+    },{
       titulo: <li className='headerLineNav'><p>Contas</p></li>,
       caminho: "/ContasReceber",
       nome: "Contas a receber",

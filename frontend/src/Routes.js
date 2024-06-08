@@ -21,7 +21,6 @@ import ListaFuncionario from "./Pages/ListaFuncionario";
 import ListaFuncionarioTerc from "./Pages/ListaFuncionarioTerc";
 import FuncionarioCadastro from "./Pages/FuncionarioCadastro";
 import FuncionarioTercCadastro from "./Pages/FuncionarioTercCadastro";
-import ListaVendas from "./Pages/ListaVendas";
 
 const Rotas = () => {
   const { token } = useAuth();
@@ -88,9 +87,6 @@ const Rotas = () => {
         }, {
           path: "/FuncionarioTercCadastro",
           element: <FuncionarioTercCadastro />
-        }, {
-          path: "/ListaVendas",
-          element: < ListaVendas />
         }, {
           path: "/FuncionarioCadastro",
           element: < FuncionarioCadastro />

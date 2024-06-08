@@ -1,12 +1,12 @@
 //Cadastro
 import React from "react";
-import ProdutosForm from "../Components/ContasAPagar";
+import PagamentoForm from "../Components/PagamentoForm";
 const Produtos = () => {
   return (
     <>
       <div className="formsSistemaGeral">
         <h2>Cadastrar Pagamento</h2>
-        <ProdutosForm />
+        <PagamentoForm />
       </div>
     </>
   );
