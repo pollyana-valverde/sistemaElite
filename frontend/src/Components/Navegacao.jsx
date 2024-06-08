@@ -19,90 +19,17 @@ const Header = () => {
   const [visible, setVisible] = useState(false);
 
   const { token } = useAuth();
-
-  const [linksCadastros, setLinkCadastros] = useState([
+  const [links, setLink] = useState([
+    {
+      titulo: <li className='headerLineNav'> <p></p></li>,
+      caminho: "/",
+      nome: "Home",
+    },
     // {
     //   caminho: "/logout",
     //   nome: "Logout",
     // }, 
     {
-      caminho: "/FuncionarioCadastro",
-      nome: " funcionários",
-    }, {
-      caminho: "/FuncionarioTercCadastro",
-      nome: "funcionários Terceirizados",
-    }, {
-      caminho: "/CadastroAlunos",
-      nome: "Alunos",
-    }, {
-      caminho: "/FornecedorCadastro",
-      nome: " fornecedor",
-    }, {
-      caminho: "/CadastrarPagamento",
-      nome: "Cadastrar Pagamento",
-    }
-  ]);
-
-  const [linksRegistros, setLinkRegistros] = useState([
-    {
-      caminho: "/listaUsuarios",
-      nome: "usuários",
-    }, {
-      caminho: "/ListaFuncionario",
-      nome: "funcionários",
-    }, {
-      caminho: "/ListaFuncionarioTerc",
-      nome: "funcionários Terceirizados",
-    },
-    {
-      caminho: "/ListaFornecedores",
-      nome: "fornecedores",
-    }, {
-      caminho: "/ListaAlunos",
-      nome: "Lista de Alunos",
-    },
-    {
-      caminho: "/Boletim",
-      nome: "Boletim Escolar",
-    }
-  ]);
-
-  const [linksContas, setLinkContas] = useState([
-    {
-      caminho: "/ContasReceber",
-      nome: "Contas a receber",
-    },
-    {
-      caminho: "/ListaContasAPagar",
-      nome: "Contas a pagar",
-    }
-  ]);
-
-
-  //links pro responsivo
-  const [links, setLink] = useState([
-    {
-      caminho: "/logout",
-      nome: "Logout",
-    }, {
-      titulo: <li className='headerLineNav'><p>Cadastrar</p></li>,
-      caminho: "/FuncionarioCadastro",
-      nome: "funcionários",
-    }, {
-      caminho: "/FuncionarioTercCadastro",
-      nome: "funcionários Terceirizados",
-    },
-    {
-      caminho: "/CadastroAlunos",
-      nome: "Alunos",
-    }, {
-      caminho: "/FornecedorCadastro",
-      nome: " fornecedor",
-    }, {
-      caminho: "/CadastrarPagamento",
-      nome: "Cadastrar pagamento",
-    }, {
-      titulo: <li className='headerLineNav'> <p>Registros</p></li>,
       caminho: "/listaUsuarios",
       nome: "usuários",
     }, {
@@ -151,61 +78,14 @@ const Header = () => {
                             <h5>{token}</h5>
                           </div>
                         </li>
-                        <li className='headerLineNav'> <p></p></li>
-                        <li className='lineNavLink'><a href="/">Home</a></li>
-                        <div className="bodyNavLinks">
-                          <li>
-                            <Accordion multiple >
-                              <AccordionTab header="Cadastrar">
-                                {linksCadastros.map((linkCadastro, index) => (
-                                  <>
-                                    <p className="m-0">
-
-                                      <div className='lineNavLink'>
-                                        <a href={linkCadastro.caminho} className='navProfile' >{linkCadastro.nome}</a>
-                                      </div>
-                                    </p>
-                                  </>
-                                ))}
-                              </AccordionTab>
-
-                              <AccordionTab header="Registros">
-                                {linksRegistros.map((linkRegistro, index) => (
-                                  <>
-                                    <p className="m-0">
-
-                                      <div className='lineNavLink'>
-                                        <a href={linkRegistro.caminho} className='navProfile' >{linkRegistro.nome}</a>
-                                      </div>
-                                    </p>
-                                  </>
-                                ))}
-                              </AccordionTab>
-
-                              <AccordionTab header="Contas">
-                                {linksContas.map((linkConta, index) => (
-                                  <>
-                                    <p className="m-0">
-                                      <div className='lineNavLink'>
-                                        <a href={linkConta.caminho} className='navProfile' >{linkConta.nome}</a>
-                                      </div>
-                                    </p>
-                                  </>
-                                ))}
-                              </AccordionTab>
-
-                            </Accordion>
-
-                          </li>
-                        </div>
-                        {/* {links.map((link, index) => (
+                        {links.map((link, index) => (
                           <>
                             {link.titulo}
                             <li className='lineNavLink'>
                               <a href={link.caminho} className='navProfile' >{link.nome}</a>
                             </li>
                           </>
-                        ))} */}
+                        ))}
                       </div>
                     </ul>
                   </nav>

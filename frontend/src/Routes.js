@@ -8,19 +8,14 @@ import Cadastro from "./Pages/Cadastro";
 import Login from "./Pages/Login";
 import Logout from "./Pages/Logout";
 import TabelaUsuarios from "./Pages/ListaUsuarios";
-import FornecerCadastro from "./Pages/FornecedorCadastro";
 import TabelaFornecedor from "./Pages/ListaFornecedores";
-import CadastroAlunos from "./Pages/CadastroAlunos";
 import ListaAlunos from "./Pages/ListaAlunos";
 import ContasReceber from "./Pages/ContasReceber";
 import Boletim from "./Pages/Boletim";
-import CadastrarPagamento from './Pages/CadastrarPagamento';
 import ListaContasAPagar from "./Pages/ListaContasAPagar";
 import ListaFornecedores from "./Pages/ListaFornecedores";
 import ListaFuncionario from "./Pages/ListaFuncionario";
 import ListaFuncionarioTerc from "./Pages/ListaFuncionarioTerc";
-import FuncionarioCadastro from "./Pages/FuncionarioCadastro";
-import FuncionarioTercCadastro from "./Pages/FuncionarioTercCadastro";
 
 const Rotas = () => {
   const { token } = useAuth();
@@ -46,14 +41,8 @@ const Rotas = () => {
           path: "/",
           element: <Home />,
         }, {
-          path: "/CadastroAlunos",
-          element: <CadastroAlunos />,
-        }, {
           path: "/ListaUsuarios",
           element: <TabelaUsuarios />,
-        }, {
-          path: "/FornecedorCadastro",
-          element: <FornecerCadastro />,
         }, {
           path: "/TabelaFornecedor",
           element: <TabelaFornecedor />,
@@ -69,10 +58,7 @@ const Rotas = () => {
         }, {
           path: "/Boletim",
           element: < Boletim />
-        }, {
-          path: "/CadastrarPagamento",
-          element: < CadastrarPagamento />
-        }, {
+        },{
           path: "/ListaContasAPagar",
           element: < ListaContasAPagar />
         }, {
@@ -81,15 +67,6 @@ const Rotas = () => {
         }, {
           path: "/ListaFuncionarioTerc",
           element: < ListaFuncionarioTerc />
-        }, {
-          path: "/FuncionarioCadastro",
-          element: < FuncionarioCadastro />
-        }, {
-          path: "/FuncionarioTercCadastro",
-          element: <FuncionarioTercCadastro />
-        }, {
-          path: "/FuncionarioCadastro",
-          element: < FuncionarioCadastro />
         }, {
           path: "/Logout",
           element: <Logout />,
