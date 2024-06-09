@@ -31,16 +31,16 @@ const Header = () => {
     // }, 
     {
       caminho: "/listaUsuarios",
-      nome: "usuários",
+      nome: "Usuários",
     }, {
       caminho: "/ListaFuncionario",
-      nome: "Lista de funcionários",
+      nome: "Funcionários",
     }, {
       caminho: "/ListaFuncionarioTerc",
-      nome: "Lista de funcionários Terceirizados",
+      nome: "Funcionários Terceirizados",
     }, {
       caminho: "/ListaFornecedores",
-      nome: "fornecedores",
+      nome: "Fornecedores",
     }, {
       caminho: "/ListaAlunos",
       nome: "Alunos",
@@ -48,17 +48,15 @@ const Header = () => {
       caminho: "/Boletim",
       nome: "Boletim Escolar",
 
-    },{
+    }, {
       titulo: <li className='headerLineNav'><p>Contas</p></li>,
       caminho: "/ContasReceber",
       nome: "Contas a receber",
     }, {
-      caminho: "/Boletim",
-      nome: "Boletim Escolar",
+      caminho: "/ListaContasAPagar",
+      nome: "Contas a pagar",
     }
   ]);
-
-
 
   return (
     <>

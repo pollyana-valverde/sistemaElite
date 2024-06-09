@@ -11,6 +11,8 @@ import Rotas from "./Routes";
 import AuthProvider from "./provider/AuthProvider";
 //Importar componentes aqui
 import Navegacao from "./Components/Navegacao";
+import Calendario from "./Components/Calendario";
+
 
 import '../src/css/formulario.css';
 import './css/index.css';
@@ -20,6 +22,7 @@ const App = () => {
     <>
       <AuthProvider>
             <Navegacao />
+            <Calendario />
       </AuthProvider>
 
     </>

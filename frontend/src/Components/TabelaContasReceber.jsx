@@ -11,6 +11,7 @@ import { Toast } from 'primereact/toast';
 import { Tag } from 'primereact/tag';
 import { Dropdown } from 'primereact/dropdown';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { Divider } from 'primereact/divider';
 
 const TabelaContasReceber = () => {
     const [filters, setFilters] = useState(null); //filtro
@@ -99,8 +100,13 @@ const TabelaContasReceber = () => {
   //componente para limpar o input de texto com o filtro global
   const renderHeader = () => {
   return (
-      <div className="flex justify-content-between ">
-        <div className='flex mb-3 px-3 mt-3'>
+    <div className="align-content-center px-3 mb-3 border-round-lg" style={{ backgroundColor: 'whitesmoke' }}>
+    <div className='flex  align-items-center'>
+      <i className="pi pi-filter" style={{ fontSize: '1.3rem' }}></i>
+      <h5>Buscar registros</h5>
+    </div>
+    <div className="flex  mb-3">
+      <div className='flex'>
         <Button
         className='mr-2 border-round-lg'
         label="Excluir"
@@ -109,16 +115,29 @@ const TabelaContasReceber = () => {
         onClick={() => setVisible(true)}
         disabled={!selectedContasReceber || !selectedContasReceber.length}
       />
-          <Button className='border-round-lg' type="button" icon="pi pi-filter-slash" label="Limpar" outlined onClick={clearFilter} />
-        </div>
-          <IconField iconPosition="left" className=' align-content-center'>
-              <InputIcon className="pi pi-search" />
-              <InputText className='border-round-lg' style={{width:"100%"}} value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Pesquisar registro..." />
+           <Button className='border-round-lg' type="button" icon="pi pi-filter-slash" label="Limpar" outlined onClick={clearFilter} />
+          </div>
+          <IconField iconPosition="left" className='ml-2 align-content-center' style={{ width: "100%" }}>
+            <InputIcon className="pi pi-search" />
+            <InputText className='border-round-lg' style={{ width: "100%" }} value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Pesquisar registro..." />
           </IconField>
+        </div>
       </div>
   );
   };
   
+  const renderHeaderTable = () => {
+    return (
+      <div>
+        <div className='flex  px-3 mt-1 align-items-center'>
+          <i className="pi pi-wallet" style={{ fontSize: '1.5rem' }}></i>
+          <h5>Contas a receber</h5>
+        </div>
+        <Divider className='mt-0' />
+      </div>
+    );
+  };
+
   //filtro de status
 const statusBodyTemplate = (rowData) => {
   return <Tag value={rowData.status} severity={getStatus(rowData.status)} />;
@@ -308,10 +327,11 @@ const statusEditor = (options) => {
   
   
   
-  const header = renderHeader();
+  const header = renderHeaderTable();
 
   return (
     <>
+     <div >{renderHeader()}</div>
     <Toast ref={toast} style={{zIndex: '99999'}} />
     <ConfirmDialog group="declarative"  visible={visible} onHide={() => setVisible(false)} message="Tem certeza que quer excluír esses registros?" 
                   header="Confirmação" icon="pi pi-exclamation-triangle"   footer={footerContent}/>

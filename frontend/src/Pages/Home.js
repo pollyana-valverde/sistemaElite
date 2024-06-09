@@ -23,10 +23,10 @@ function Home() {
 
   return (
     <Container className="homeConteiner">
-<h1>Bem-vindo(a) {token}!</h1>
+      <h1>Bem-vindo(a) {token}!</h1>
       <Row>
         <Col >
-{/* <Calendario/> */}
+          {/* <Calendario /> */}
           {/* <AcessoRapidoHome />
           <ChartClienteHome /> */}
         </Col>

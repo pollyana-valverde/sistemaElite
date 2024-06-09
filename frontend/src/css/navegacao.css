@@ -4,7 +4,7 @@
     border-radius: 20px;
     padding: 20px 0;
     position: fixed;
-    width: 16%;
+    width: 14%;
     height: 95%;
     overflow-y: scroll  !important;
     scroll-behavior: smooth;
@@ -102,6 +102,11 @@ margin: 10px 0;
     text-decoration: none;
     color: rgba(50, 50, 50, 0.635);
 }
+
+.lineNavLink.linkAtivo{
+    background-color: rgba(50, 50, 50, 0.1);
+}
+
 
 /* corpo do acordeão */
 .bodyNavLinks li div.p-accordion-tab{
