@@ -1,15 +1,21 @@
 //Lista de Usuarios
 import React from "react";
 import TabelaProdutos from "../Components/TabelaContasAPagar";
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const ListaProdutos = () => {
   return (
-    <>
-      <div className="tableSistemaGeral">
-        <h2>Contas a pagar</h2>
-        <TabelaProdutos />
-      </div>
-    </>
+    <Container>
+      <Row>
+        <Col lg={10}>
+          <div className="tableSistemaGeral">
+            <TabelaProdutos />
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

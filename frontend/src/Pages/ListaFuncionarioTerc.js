@@ -1,15 +1,21 @@
 //Lista de Usuarios
 import React from "react";
 import TabelaFuncionarioTercerizado from "../Components/TabelaFuncionarioTerc";
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const ListaFuncionario = () => {
   return (
-    <>
-      <div className="tableSistemaGeral">
-        <h2>Lista de funcionários Terceirizados</h2>
-        <TabelaFuncionarioTercerizado />
-      </div>
-    </>
+    <Container>
+      <Row>
+        <Col lg={10}>
+          <div className="tableSistemaGeral">
+            <TabelaFuncionarioTercerizado />
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

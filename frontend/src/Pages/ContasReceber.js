@@ -1,16 +1,21 @@
 //Lista de Usuarios
 import React from "react";
 import TabelaContasReceber from "../Components/TabelaContasReceber";
-
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const ContasReceber = () => {
   return (
-    <>
-      <div className="tableSistemaGeral">
-        <h2>Contas a receber</h2>
-        < TabelaContasReceber/>
-      </div>
-    </>
+    <Container>
+      <Row>
+        <Col lg={10}>
+          <div className="tableSistemaGeral">
+            < TabelaContasReceber />
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

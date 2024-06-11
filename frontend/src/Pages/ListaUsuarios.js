@@ -1,15 +1,21 @@
 //Lista de Usuarios
 import React from "react";
 import TabelaCadastro from "../Components/TabelaCadastro";
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const ListaUsuarios = () => {
   return (
-    <>
-      <div className="tableSistemaGeral">
-        <h2>Lista de Usuários</h2>
-        <TabelaCadastro />
-      </div>
-    </>
+    <Container>
+      <Row>
+        <Col lg={10}>
+          <div className="tableSistemaGeral">
+            <TabelaCadastro />
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

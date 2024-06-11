@@ -1,0 +1,19 @@
+.rightBar {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right !important;
+    margin: 15px;
+    /* border-radius: 20px; */
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 25%;
+    height: 95%;
+    visibility: visible;
+    overflow-y: scroll  !important;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(50, 50, 50, 0.372) rgba(234, 234, 234, 0.845);
+}

@@ -11,7 +11,7 @@ import Rotas from "./Routes";
 import AuthProvider from "./provider/AuthProvider";
 //Importar componentes aqui
 import Navegacao from "./Components/Navegacao";
-import Calendario from "./Components/Calendario";
+import RightBar from "./Components/RightBar";
 
 
 import '../src/css/formulario.css';
@@ -22,7 +22,7 @@ const App = () => {
     <>
       <AuthProvider>
             <Navegacao />
-            <Calendario />
+            <RightBar />
       </AuthProvider>
 
     </>

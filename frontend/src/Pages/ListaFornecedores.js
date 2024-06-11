@@ -1,15 +1,21 @@
 //Lista de fornecedores
 import React from "react";
 import TabelaFornecedor from "../Components/TabelaFornecedor";
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const ListaFornecedores = () => {
   return (
-    <>
-      <div className="tableSistemaGeral">
-        <h2>Lista de Fornecedores</h2>
-        <TabelaFornecedor />
-      </div>
-    </>
+    <Container>
+      <Row>
+        <Col lg={10}>
+          <div className="tableSistemaGeral">
+            <TabelaFornecedor />
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

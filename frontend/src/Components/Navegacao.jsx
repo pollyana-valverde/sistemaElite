@@ -72,8 +72,7 @@ const Header = () => {
                         <li className='navProfile'>
                           <img src={PerfilFoto} alt='logo da GM' />
                           <div className='navProfileInfo'>
-                            <p>Administrador</p>
-                            <h5>{token}</h5>
+                            <h4>Elite School</h4>
                           </div>
                         </li>
                         {links.map((link, index) => (

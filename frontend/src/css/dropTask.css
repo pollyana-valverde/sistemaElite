@@ -1,0 +1,42 @@
+.tasks{
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks h4{
+    margin-bottom:10px;
+}
+
+.tasksConteiner{
+    display: flex;
+    margin: 10px;
+}
+
+.taskTime{
+    margin-right: 30px;
+    color: rgba(0, 0, 0, 0.695);
+}
+
+.tasksContent{
+    background-color: red;
+    padding: 15px 25px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.taskHeader{
+    color: white;
+   display: flex;
+   align-items: center;
+   
+}
+
+.taskHeader h5, .taskHeader i{
+    font-size: 18px;
+}
+
+.tasksContent span{
+    color: #ffffffc3;
+    font-size: 15px;
+}

@@ -1,15 +1,21 @@
 //Lista de fornecedores
 import React from "react";
 import TabelaCliente from "../Components/TabelaAlunos";
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const ListaClientes = () => {
   return (
-    <>
-      <div className="tableSistemaGeral">
-        <h2>Lista de alunos</h2>
-        <TabelaCliente />
-      </div>
-    </>
+    <Container>
+      <Row>
+        <Col lg={10}>
+          <div className="tableSistemaGeral">
+            <TabelaCliente />
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
