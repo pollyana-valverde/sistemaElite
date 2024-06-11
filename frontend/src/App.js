@@ -12,6 +12,8 @@ import AuthProvider from "./provider/AuthProvider";
 //Importar componentes aqui
 import Navegacao from "./Components/Navegacao";
 import RightBar from "./Components/RightBar";
+import './css/listaTabela.css';
+
 
 
 import '../src/css/formulario.css';

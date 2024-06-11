@@ -8,6 +8,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
+import "../css/formulario.css";
+
 
 const CadastroForm = () => {
 

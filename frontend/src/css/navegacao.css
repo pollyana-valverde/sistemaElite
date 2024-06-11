@@ -1,16 +1,36 @@
 .sideBar {
-    background: linear-gradient(135deg, rgba(234, 234, 234, 0.845) 50%, rgba(50, 50, 50, 0.142));
+    background: linear-gradient(135deg, rgb(254 248 248) 50%, rgba(250, 237, 237, 0.767));
     margin: 15px 0;
     border-radius: 20px;
     padding: 20px 0;
     position: fixed;
     width: 14%;
     height: 95%;
+    border: 1px solid rgba(145, 70, 101, 0.137);
     overflow-y: scroll  !important;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: rgba(50, 50, 50, 0.372) rgba(234, 234, 234, 0.845);
+    scrollbar-color: rgb(145 70 101) rgb(254 248 248);
     visibility: visible;
+}
+
+.navProfile{
+    display: flex;
+    align-items: center;
+}
+
+.navProfile img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 80px;
+    object-fit: cover;
+}
+
+
+.navProfileInfo h4 {
+    color: rgb(145 70 101);
+    font-weight: 600;
 }
 
 .sideBarResponsivo{
@@ -21,13 +41,14 @@
 .sideBarResponsivo button{
 margin: 10px 0;
     border-radius: 10px;
-    color: rgba(50, 50, 50, 0.676);
-    border-color: rgba(50, 50, 50, 0.58);
-    background-color:  rgba(206, 206, 206, 0.457);
+    color: rgb(145 70 101);
+    border-color: rgb(145 70 101);
+    background-color:  rgb(254 248 248);
 }
 
 
-@media (max-width: 770px){
+
+@media (max-width: 1000px){
     .sideBarResponsivo{
         visibility: visible;
     }
@@ -45,43 +66,12 @@ margin: 10px 0;
     display: flex;
 }
 
-
-.navProfile img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 80px;
-    object-fit: cover;
-}
-
-.navProfileInfo {
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.navProfileInfo p {
-    font-size: 10px;
-    background-color: rgba(50, 50, 50, 0.1);
-    padding: 2px 5px;
-    border-radius: 4px;
-    margin-bottom: 4px;
-    color: rgba(50, 50, 50, 0.635);
-}
-
-.navProfileInfo h5 {
-    font-size: 13px;
-    color: rgba(50, 50, 50, 0.795);
-    font-weight: 600;
-}
-
 .headerLineNav {
     font-size: 12px;
     margin-top: 18px;
     margin-bottom: -17px;
-    color: rgba(50, 50, 50, 0.635);
-    border-top: 1px solid rgba(50, 50, 50, 0.1);
+    color: rgba(145, 70, 101, 0.868);
+    border-top: 1px solid rgba(145, 70, 101, 0.171);
 }
 
 
@@ -92,51 +82,19 @@ margin: 10px 0;
     font-size: 14px;
     font-weight: 600;
     transition: .3s ease;
+    width: 90%;
 }
 
 .lineNavLink:hover {
-    background-color: rgba(50, 50, 50, 0.1);
+    background-color: rgba(145, 70, 101, 0.19);
+    transform: translateX(12px);
 }
 
 .lineNavLink a {
     text-decoration: none;
-    color: rgba(50, 50, 50, 0.635);
+    color: rgb(145 70 101);
 }
 
 .lineNavLink.linkAtivo{
-    background-color: rgba(50, 50, 50, 0.1);
-}
-
-
-/* corpo do acordeão */
-.bodyNavLinks li div.p-accordion-tab{
-    border-bottom: 0.5px solid rgba(50, 50, 50, 0.201);
-}
-
-.bodyNavLinks li div.p-accordion-tab.p-accordion-tab-active{
-    border: none;
-}
-
-.bodyNavLinks li a.p-accordion-header-link{
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px 13px;
-    border-radius: none;
-    border: none;
-    text-decoration: none;
-    background-color: transparent ;
-    color: rgba(50, 50, 50, 0.635);
-}
-
-
-.bodyNavLinks li div.p-accordion-tab.p-accordion-tab-active a.p-accordion-header-link{
-    text-decoration: none;
-    background-color: rgba(50, 50, 50, 0.1);    
-    color: rgba(50, 50, 50, 0.635);
-    border-bottom: 1px solid rgba(50, 50, 50, 0.226);
-}
-
-.bodyNavLinks li div.p-accordion-content{
-    background-color: rgba(50, 50, 50, 0.1);    
-    padding: 10px 13px;
+    background-color: rgb(145 70 101);
 }

@@ -7,40 +7,49 @@
 
 .formsSistema label {
     font-weight: 600;
+    color: rgba(5, 15, 46, 0.733);
 }
 
 .formsSistema input {
     border-radius: 10px;
-    border: 1px solid rgba(50, 50, 50, 0.266);
+    border: 1px solid rgba(5, 15, 46, 0.221);
     padding: 14px !important;
     transition: ease .3s !important;
-    background-color: rgba(90, 90, 90, 0.052);
+    background-color: rgba(5, 15, 46, 0.049);
 }
 
 .formsSistema input:hover {
-    border: 1px solid rgba(50, 50, 50, 0.484);
-    background-color: rgba(50, 50, 50, 0.064);
+    border: 1px solid rgba(5, 15, 46, 0.364);
+    background-color: rgba(5, 15, 46, 0.105);
 }
 
 .formsSistema input:focus-visible {
     box-shadow: none !important;
     padding: 17px !important;
-    background-color: rgba(50, 50, 50, 0.064);
-    border: 1px solid rgba(50, 50, 50, 0.484);
+    background-color: rgba(5, 15, 46, 0.105);
+    border: 1px solid rgba(5, 15, 46, 0.364);
+    color: rgb(5, 15, 46);
 }
 
+.formsSistema input::placeholder{
+    color: rgba(5, 15, 46, 0.667);
+}
+
+.formsSistema input:placeholder-shown{
+    color: rgba(5, 15, 46, 0.667);
+}
 
 .formsSistema select {
     border-radius: 10px;
-    border: 1px solid rgba(50, 50, 50, 0.266);
+    border: 1px solid rgba(5, 15, 46, 0.221);
     padding: 14px !important;
     transition: ease .3s !important;
-    background-color: rgba(90, 90, 90, 0.052);
+    background-color: rgba(5, 15, 46, 0.049);
 }
 
 .formsSistema select:hover {
-    border: 1px solid rgba(50, 50, 50, 0.484);
-    background-color: rgba(50, 50, 50, 0.064);
+    border: 1px solid rgba(5, 15, 46, 0.364);
+    background-color: rgba(5, 15, 46, 0.105);
 }
 
 .formsSistema select:focus-visible {
@@ -48,8 +57,13 @@
     border-bottom-right-radius: 0;
     box-shadow: none !important;
     padding: 17px !important;
-    background-color: rgba(50, 50, 50, 0.064);
-    border: 1px solid rgba(50, 50, 50, 0.484);
+    background-color: rgba(5, 15, 46, 0.105);
+    border: 1px solid rgba(5, 15, 46, 0.364);
+    color: rgb(5, 15, 46);
+}
+
+.formsSistema .p-divider.p-component.p-divider-horizontal.p-divider-solid.p-divider-left{
+    background-color: rgb(5, 15, 46) !important;
 }
 
 .btnFormSistema {
@@ -58,18 +72,18 @@
 }
 
 .btnFormSistema button {
-    background-color: rgba(234, 234, 234, 0.845);
+    background-color: rgba(5, 15, 46, 0.073);
     border-radius: 10px;
     padding: 10px 50px;
-    border: 1px solid rgba(50, 50, 50, 0.372);
-    color: rgba(50, 50, 50, 0.699);
+    border: 1px solid rgba(5, 15, 46, 0.227);
+    color: rgba(5, 15, 46, 0.703);
     font-weight: 700;
     font-size: 17px;
     transition: .3s ease;
 }
 
 .btnFormSistema button:hover {
-    background-color: rgba(222, 222, 222, 0.845);
+    background-color: rgba(5, 15, 46, 0.162);
     transform: translateY(-3px);
 }
 
@@ -85,27 +99,29 @@
 .modalForm.p-dialog .p-dialog-header {
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
+    background-color: rgb(239, 243, 255);
+    color: rgba(5, 15, 46, 0.733);
 }
 
 .modalForm.p-dialog .p-dialog-content:last-of-type {
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
+    background-color: rgb(239, 243, 255);
 }
 
 .btnModal {
     display: flex;
     justify-content: center;
     margin: 17px;
-    background-color: rgba(234, 234, 234, 0.845);
-    color: rgba(50, 50, 50, 0.699);
+    background-color: rgba(5, 15, 46, 0.073);
     border-radius: 16px;
     width: 100%;
-    border: 2px dashed rgba(50, 50, 50, 0.166);
+    border: 2px dashed rgba(5, 15, 46, 0.227);
 }
 
 .btnModal:hover {
-    background-color: rgba(217, 217, 217, 0.845);
-    border: 2px dashed rgba(50, 50, 50, 0.281);
+    background-color: rgba(5, 15, 46, 0.132);
+    border: 2px dashed rgba(5, 15, 46, 0.264);
 }
 
 .btnModal:focus{
@@ -113,6 +129,7 @@
 }
 
 .btnModal h5, .btnModal i{
+    color: rgba(5, 15, 46, 0.697) !important;
     font-size: 14px;
     margin:  auto 0;
 }

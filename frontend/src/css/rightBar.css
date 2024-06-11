@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: right !important;
     margin: 15px;
-    /* border-radius: 20px; */
+    border: 1px solid rgba(145, 70, 101, 0.137);
     padding: 20px;
     position: fixed;
     right: 0;
@@ -15,5 +15,8 @@
     overflow-y: scroll  !important;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: rgba(50, 50, 50, 0.372) rgba(234, 234, 234, 0.845);
+    scrollbar-color: rgb(145 70 101) rgb(254 248 248);
+    background: linear-gradient(135deg, rgb(254 248 248) 50%, rgba(250, 237, 237, 0.767));
 }
+
+

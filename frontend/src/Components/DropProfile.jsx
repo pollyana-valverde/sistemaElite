@@ -7,15 +7,17 @@ import { Badge } from 'primereact/badge';
 
 import { useAuth } from '../provider/AuthProvider';
 
-import PerfilFoto from '../imagens/logoGeneralMotors.png';
+import PerfilFoto from '../imagens/Branco e Quadrado Preto Imobiliária Logotipo.png';
+
+import '../css/dropProfile.css';
 
 
 function DropProfile() {
     const { token } = useAuth();
 
     return (
-        <div className='d-flex flex-wrap  mb-4' style={{ justifyContent: 'space-between', margin: '0 10px' }}>
-            <div className=" flex flex-wrap align-content-center gap-4">
+        <div className='dropProfile d-flex flex-wrap  mb-4'>
+            <div className="dropProfileIcons flex flex-wrap align-content-center gap-4">
                 <i className="pi pi-bell p-overlay-badge" style={{ fontSize: '1.5rem' }}>
                     <Badge value="2"></Badge>
                 </i>
@@ -26,21 +28,19 @@ function DropProfile() {
                     <Badge severity="warning" value="6"></Badge>
                 </i>
             </div>
-            <div className='mr-2'>
+            <div className=' dropProfileItem'>
                 <Dropdown as={ButtonGroup}>
-                    <Button variant='Secondary'>
-                        <div className='navProfile d-flex'>
+                    <Button  className='dropProfileHeader d-flex'>
                             <img src={PerfilFoto} alt='logo da GM' />
-                            <div className='navProfileInfo'>
+                            <div className='dropProfileInfo'>
                                 <h5>{token}</h5>
                                 <p>Administrador</p>
                             </div>
-                        </div>
                     </Button>
 
-                    <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+                    <Dropdown.Toggle split  id="dropdown-split-basic"  className='dropProfileToggle' />
 
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className='dropProfileContent'>
                         <Dropdown.Item href="#/action-1"> <i className='pi pi-cog mr-1'></i> Configurações</Dropdown.Item>
                         <Dropdown.Item href="/Logout"> <i className='pi pi-sign-out mr-1'></i> Logout</Dropdown.Item>
                     </Dropdown.Menu>

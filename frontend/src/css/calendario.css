@@ -14,50 +14,57 @@
 }
 
 .calendarioSide .p-datepicker.p-component.p-datepicker-inline.p-ripple-disabled {
-    background-color: aquamarine;
-    border: aquamarine;
+    background-color: rgb(145, 70, 101);
+    border: rgb(145 70 101);
     border-radius: 20px;
-    color: red;
+    color: rgb(254 248 248);
 }
 
 .calendarioSide .p-datepicker-group {
     height: 100%;
 }
 
+
+.calendarioSide .p-highlight{
+    background-color: rgb(100, 51, 71);
+    color: rgb(254 248 248);
+}
+
+
+.calendarioSide .p-highlight:hover{
+    background-color: rgb(100, 51, 71);
+    color: rgb(254 248 248);
+}
+
+
 .calendarioSide .p-datepicker-header {
     height: 10%;
-    background-color: aquamarine;
+    background-color: rgb(145 70 101);
+    border-bottom: rgb(145 70 101);
 }
 
 .calendarioSide .p-datepicker-header button {
-    color: red;
+    color: rgb(254 248 248);
     font-size: 13px;
 }
 
-.calendarioSide .p-highlight{
-    background-color: red;
-    color: white;
-}
 
 .calendarioSide .p-datepicker-today span{
-    background-color: blue;
-    color: white;
+    background-color:rgb(254 248 248);
+    color:  rgb(100, 51, 71);
 }
 
-.calendarioSide .p-highlight:hover{
-    background-color: red;
-    color: white;
-}
 
 .calendarioSide td span{
     transition: all .2s;
 }
 
 .calendarioSide td span:hover{
-    background-color: red;
-    color: white;
+    background-color: rgb(100, 51, 71);
+    color: rgb(254 248 248);
     transform: translateY(-7px);
 }
+
 
 
 /*tarefas diárias*/

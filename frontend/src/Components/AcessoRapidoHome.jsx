@@ -5,49 +5,54 @@ import { IconField } from 'primereact/iconfield';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import '../css/acessoRapidoHome.css';
 
 const AcessoRapidoHome = () => {
+    const [acessos, setAcessos] = useState([
+        {
+            caminho: '/ListaAlunos',
+            titulo: 'Alunos',
+            quant: '280'
+        },
+        {
+            caminho: '/ListaFuncionario',
+            titulo: 'Funcionários',
+            quant: '1020'
+        },
+        {
+            caminho: '/ListaFornecedores',
+            titulo: 'Fornecedores',
+            quant: '500'
+        },
+        {
+            caminho: '/ListaFuncionarioTerc',
+            titulo: 'Funcionários terceirizados',
+            quant: '450'
+        },
+    ])
 
     return (
         <Container>
             <Row className='acessoPai'>
-                <Col >
-                    <a className="link" href="/FuncionarioCadastro">
-                        <div className='acesso_tipoA blueLink'>
-                            <Col><i className="pi pi-address-book border-round-lg"></i></Col>
-                            <h3>Cadastrar novo funcionário</h3>
-                        </div>
-                    </a>
+                {acessos.map((acesso, index) => (
+                    <>
+                        <Col >
+                            <div className='acesso acesso_tipoB blueLink'>
+                                <div className='acessoInfo'>
+                                    <p>{acesso.titulo}</p>
+                                    <h3>{acesso.quant}</h3>
+                                </div>
+                                <a className="link" href={acesso.caminho}>
+                                    <i className="pi pi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                        </Col>
+                    </>
+                ))}
 
 
-                    <a className="link" href="/ProdutosCadastro">
-                        <div className='acesso_tipoB blueLink'>
-                            <Col><i className="pi pi-barcode border-round-lg"></i></Col>
-                            <h3>Cadastrar novo produto</h3>
-                        </div>
-                    </a>
-
-                </Col>
-
-                <Col >
-                    <a className="link" href="/CadastroClientes">
-                        <div className='acesso_tipoB greyLink'>
-                            <Col><i className="pi pi-user border-round-lg"></i></Col>
-                            <h3>Cadastrar novo cliente</h3>
-                        </div>
-                    </a>
-
-                    <a className="link" href="/FornecedorCadastro">
-                        <div className='acesso_tipoA greyLink'>
-                            <Col><i className="pi pi-id-card border-round-lg"></i></Col>
-                            <h3>Cadastrar novo fornecedor</h3>
-                        </div>
-                    </a>
-
-                </Col>
             </Row>
 
         </Container>

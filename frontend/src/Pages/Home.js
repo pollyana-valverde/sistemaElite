@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 
 import AcessoRapidoHome from "../Components/AcessoRapidoHome";
 // import ChartClienteHome from "../Components/ChartClienteHome";
-import ChartVendasHome from "../Components/ChartVendasHome";
+// import ChartVendasHome from "../Components/ChartVendasHome";
 // import ContaPagarHome from "../Components/ContaPagarHome";
 // import ContaReceberHome from "../Components/ContaReceberHome";
 
@@ -20,14 +20,14 @@ function Home() {
 
   return (
     <Container className="homeConteiner">
-      <h1>Bem-vindo(a) {token}!</h1>
+      <h1>Dashboard</h1>
       <Row>
         <Col lg={10}>
            <AcessoRapidoHome />
          {/* <ChartClienteHome /> */}
         </Col>
         <Col lg={10}>
-          <ChartVendasHome />
+          {/* <ChartVendasHome /> */}
           {/* <Col lg={12} className="d-flex wrapTablesHome">
             <ContaPagarHome />
             <ContaReceberHome />

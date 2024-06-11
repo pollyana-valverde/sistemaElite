@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 import { Container, Row, Col } from 'react-bootstrap'
 
-import '../css/dropTask.css';
+import '../css/dailyTask.css';
 
 export default function DailyTasks() {
     const [tasks, setTasks] = useState([

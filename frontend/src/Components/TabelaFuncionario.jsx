@@ -82,7 +82,7 @@ const TabelaFuncionario = () => {
   //componente para limpar o input de texto com o filtro global
   const renderHeader = () => {
     return (
-      <div className="align-content-center px-3 mb-3 border-round-lg" style={{ backgroundColor: 'whitesmoke' }}>
+      <div className="listaTabelaHeader align-content-center px-3 mb-3 border-round-lg" style={{ backgroundColor: 'whitesmoke' }}>
         <div className='flex  align-items-center'>
           <i className="pi pi-filter" style={{ fontSize: '1.3rem' }}></i>
           <h5>Buscar registros</h5>

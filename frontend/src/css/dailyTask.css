@@ -6,6 +6,7 @@
 
 .tasks h4{
     margin-bottom:10px;
+    color: rgb(145 70 101);
 }
 
 .tasksConteiner{
@@ -13,20 +14,22 @@
     margin: 10px;
 }
 
+
 .taskTime{
     margin-right: 30px;
-    color: rgba(0, 0, 0, 0.695);
+    color: rgba(145, 70, 101, 0.807)
 }
 
 .tasksContent{
-    background-color: red;
+    background-color: rgba(145, 70, 101, 0.092);
+    border: 1px dashed rgba(145, 70, 101, 0.847);
     padding: 15px 25px;
     width: 100%;
     border-radius: 20px;
 }
 
 .taskHeader{
-    color: white;
+    color: rgb(145 70 101);
    display: flex;
    align-items: center;
    
@@ -37,6 +40,6 @@
 }
 
 .tasksContent span{
-    color: #ffffffc3;
+    color: rgba(145, 70, 101, 0.742);
     font-size: 15px;
 }

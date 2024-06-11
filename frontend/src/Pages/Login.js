@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from "../provider/AuthProvider";
 import axios from "axios";
-import "../css/login.css"
+import "../css/login.css";
 
 import {Col, Form, Row} from 'react-bootstrap';
 
@@ -20,18 +20,6 @@ const Login = () => {
     e.preventDefault();
 
       try {
-
-        // const response = await fetch(`http://localhost:3001/login/${cpf}${senha}`, {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //    body: JSON.stringify({ cpf, senha })
-        // });
-          // const data = await response.json();
-          // console.log("Data: ", data);
-
-
         const response = await axios.post(`http://localhost:3001/login/${cpf}/${senha}`, {
           auth: {
             cpf: cpf,
@@ -82,7 +70,7 @@ const Login = () => {
           <Form.Group as={Col} controlId="formGridPassword">
               <Form.Control  type="password" name="senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)}/>
           </Form.Group>
-          <Col><button className='btnFormSistema' type="submit">Entrar</button></Col>
+          <Col><button type="submit">Entrar</button></Col>
           
         </Row>
           

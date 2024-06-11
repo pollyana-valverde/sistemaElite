@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useAuth } from '../provider/AuthProvider';
 
-import PerfilFoto from '../imagens/logoGeneralMotors.png';
+import PerfilFoto from '../imagens/Branco e Quadrado Preto Imobiliária Logotipo.png';
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 import { Accordion, AccordionTab } from 'primereact/accordion';
@@ -23,12 +23,8 @@ const Header = () => {
     {
       titulo: <li className='headerLineNav'> <p></p></li>,
       caminho: "/",
-      nome: "Home",
+      nome: "Dashboard",
     },
-    // {
-    //   caminho: "/logout",
-    //   nome: "Logout",
-    // }, 
     {
       caminho: "/listaUsuarios",
       nome: "Usuários",
@@ -64,7 +60,7 @@ const Header = () => {
         <Row>
           {token ? (
             <>
-              <Col lg={2} md={2} sm={1}>
+              <Col lg={2} md={1} sm={1}>
                 <header>
                   <nav className='sideBar' >
                     <ul className='sideNavContent'>

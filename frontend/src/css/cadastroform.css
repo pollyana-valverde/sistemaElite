@@ -17,6 +17,7 @@ width: 100%;
 }
 
 .formsSistemaCadastro {
+    background-color:   rgba(232, 238, 255, 0.584);
     width: 100%;
     padding: 70px;
     border-radius: 20px;
@@ -24,25 +25,39 @@ width: 100%;
 }
 
 .formsSistemaCadastro input{
-    border-color: rgba(32, 32, 32, 0.484) !important;
-        padding: 10px  !important;
+    border-radius: 10px;
+    border: 1px solid rgba(5, 15, 46, 0.221);
+    padding: 12px !important;
+    transition: ease .3s !important;
+    background-color: rgba(5, 15, 46, 0.049);
 }
 
 .formsSistemaCadastro input:hover{
-     border: 1px solid rgba(50, 50, 50, 0.484);
-     background-color:  rgba(50, 50, 50, 0.052);
+    border: 1px solid rgba(5, 15, 46, 0.364);
+    background-color: rgba(5, 15, 46, 0.105);
 }
 
 .formsSistemaCadastro input:focus-visible{
     box-shadow: none !important;
-    background-color:  rgba(50, 50, 50, 0.052);
-    border-color: rgba(32, 32, 32, 0.484) !important;
+    border: 1px solid rgba(5, 15, 46, 0.364);
+    background-color: rgba(5, 15, 46, 0.105);
 }
 
 
 .btnCadastro {
-    margin-top: 10px;
-    padding: 5px 50px !important;
+    background-color: rgba(5, 15, 46, 0.073);
+    border-radius: 10px;
+    padding: 10px 50px;
+    border: 1px solid rgba(5, 15, 46, 0.227);
+    color: rgba(5, 15, 46, 0.703);
+    font-weight: 700;
+    font-size: 17px;
+    transition: .3s ease;
+}
+
+.btnCadastro:hover{
+    background-color: rgba(5, 15, 46, 0.162);
+    transform: translateY(-3px);
 }
 
 .link {

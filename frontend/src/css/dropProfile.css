@@ -1,0 +1,105 @@
+.dropProfile{
+    justify-content: space-between;
+     margin: 0 10px;
+}
+
+.dropProfileIcons{
+    color: rgb(145 70 101);
+}
+
+.dropProfileItem{
+    margin: 0 10px;
+}
+
+.dropProfileHeader{
+    border: 1px solid rgba(145, 70, 101, 0.884) ;
+    background-color: transparent;
+    border-radius: 50px;
+    align-items: center;
+    width: 100%;
+}
+
+.dropProfileHeader:hover{
+    background-color: rgba(145, 70, 101, 0.107);
+    border: 1px solid rgb(145, 70, 101) ;
+}
+
+.dropProfileHeader img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 80px;
+    object-fit: cover;
+}
+
+.dropProfileInfo {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropProfileInfo p {
+    font-size: 10px;
+    background-color: rgba(145, 70, 101, 0.203);
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    color: rgb(145 70 101);
+}
+
+.dropProfileInfo h5 {
+    font-size: 13px;
+    color: rgb(145 70 101);
+    font-weight: 600;
+}
+
+.dropProfileToggle{
+    border: 1px solid rgba(145, 70, 101, 0.873) ;
+    background-color: transparent;
+    border-radius: 50px;
+    color: rgb(145 70 101);
+}
+
+.dropProfileToggle:hover{
+    background-color: rgba(145, 70, 101, 0.107);
+    border: 1px solid rgb(145, 70, 101) ;
+    color: rgb(145 70 101);
+}
+
+.dropProfileContent{
+    background-color: rgb(254 248 248);
+    border: 1px solid rgb(145, 70, 101) ;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.dropProfileContent a{
+    color: rgb(145 70 101) !important;
+    transition: all .3s !important;
+    width: 90%;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.dropProfileContent a:hover{
+    background-color: rgba(145, 70, 101, 0.107);
+    transform: translateX(5px);
+}
+
+@media (max-width: 1490px){
+    .dropProfile{
+        justify-content: center !important;
+        align-items: center;
+    }
+
+    .dropProfileIcons{
+        align-items: center;
+        margin-bottom: 15px;
+        margin-right: unset !important;
+    }
+
+    .dropProfileItem{
+        margin-right: unset !important;
+    }
+
+}
